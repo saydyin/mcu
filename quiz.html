@@ -3,12 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Test your knowledge of the Forbidden Legacy - Sinnercell Edition. A trial quiz for Demons covering all decrees and sections.">
+    <meta name="description" content="Test your knowledge of the Forbidden Legacy - Sinnercell Edition. A trial quiz for Demons.">
     <title>Sinnercell Trial — Forbidden Legacy MCU</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --emerald-500: #10b981;
@@ -37,10 +33,9 @@
             --incorrect-bg: #fee2e2;
             --incorrect-border: #ef4444;
             --shadow: 0 4px 16px rgba(0,0,0,0.04);
-            --font-serif: "Cinzel", ui-serif, Georgia, serif;
-            --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+            --font-serif: Georgia, "Times New Roman", serif;
+            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
-
         body.dark {
             --bg: #0f172a;
             --card-bg: #1e293b;
@@ -58,288 +53,101 @@
             --emerald-700: #6ee7b7;
             --slate-800: #e2e8f0;
         }
-
         * { margin:0; padding:0; box-sizing:border-box; }
-
         body {
-            font-family: var(--font-sans);
-            background: var(--bg);
-            color: var(--text);
+            font-family:var(--font-sans);
+            background:var(--bg);
+            color:var(--text);
             line-height:1.6;
             min-height:100vh;
             display:flex;
             flex-direction:column;
-            transition: background 0.3s, color 0.3s;
+            transition:background 0.3s,color 0.3s;
         }
-
-        .top-bar {
-            background: var(--card-bg);
-            border-bottom:1px solid var(--border);
-            padding:0.75rem 1.5rem;
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            flex-wrap:wrap;
-            gap:0.5rem;
-            position:sticky;
-            top:0;
-            z-index:50;
-        }
-        .brand {
-            display:flex;
-            align-items:center;
-            gap:0.6rem;
-            font-family:var(--font-serif);
-            font-weight:900;
-            font-size:1.2rem;
-            color:var(--text);
-            letter-spacing:0.04em;
-            text-decoration:none;
-        }
-        .brand i { color:var(--emerald-500); }
-
-        .top-actions { display:flex; align-items:center; gap:0.5rem; }
-        .back-link, .dark-toggle {
-            display:flex;
-            align-items:center;
-            gap:0.4rem;
-            color:var(--text-secondary);
-            text-decoration:none;
-            font-weight:500;
-            font-size:0.85rem;
-            padding:0.4rem 0.8rem;
-            border-radius:6px;
-            border:1px solid var(--border);
-            background:var(--card-bg);
-            cursor:pointer;
-            transition:0.2s;
-        }
-        .back-link:hover, .dark-toggle:hover { background:var(--option-hover); color:var(--text); }
-
-        .quiz-wrapper {
-            flex:1;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            padding:2rem 1.5rem;
-        }
-        .quiz-container { width:100%; max-width:720px; }
-
-        .start-screen, .result-screen, .quiz-card {
-            background: var(--card-bg);
-            border:1px solid var(--border);
-            border-radius:20px;
-            padding:3rem 2rem;
-            box-shadow:var(--shadow);
-            animation: fadeInUp 0.5s ease-out;
-        }
-
+        .icon { width:1em;height:1em;display:inline-block;vertical-align:-0.125em;fill:currentColor; }
+        .top-bar { background:var(--card-bg);border-bottom:1px solid var(--border);padding:0.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;position:sticky;top:0;z-index:50; }
+        .brand { display:flex;align-items:center;gap:0.6rem;font-family:var(--font-serif);font-weight:900;font-size:1.2rem;color:var(--text);letter-spacing:0.04em;text-decoration:none; }
+        .brand .icon { color:var(--emerald-500); }
+        .top-actions { display:flex;align-items:center;gap:0.5rem; }
+        .back-link, .dark-toggle { display:flex;align-items:center;gap:0.4rem;color:var(--text-secondary);text-decoration:none;font-weight:500;font-size:0.85rem;padding:0.4rem 0.8rem;border-radius:6px;border:1px solid var(--border);background:var(--card-bg);cursor:pointer;transition:0.2s; }
+        .back-link:hover, .dark-toggle:hover { background:var(--option-hover);color:var(--text); }
+        .quiz-wrapper { flex:1;display:flex;align-items:center;justify-content:center;padding:2rem 1.5rem; }
+        .quiz-container { width:100%;max-width:720px; }
+        .start-screen, .result-screen, .quiz-card { background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:3rem 2rem;box-shadow:var(--shadow);animation:fadeInUp 0.5s ease-out; }
         .start-screen { text-align:center; }
-        .shield-icon { font-size:3.5rem; color:var(--emerald-500); margin-bottom:1.5rem; }
-        .start-screen h2 { font-family:var(--font-serif); font-size:2rem; font-weight:900; margin-bottom:0.75rem; }
-        .start-screen p { color:var(--text-secondary); margin-bottom:2rem; max-width:450px; margin-inline:auto; }
-
-        .btn {
-            padding:0.8rem 2.2rem;
-            background:var(--slate-800);
-            color:#fff;
-            font-family:var(--font-serif);
-            font-weight:700;
-            text-transform:uppercase;
-            letter-spacing:0.06em;
-            border:none;
-            border-radius:10px;
-            cursor:pointer;
-            transition:0.2s;
-            display:inline-flex;
-            align-items:center;
-            gap:0.5rem;
-        }
+        .shield-icon { font-size:3.5rem;color:var(--emerald-500);margin-bottom:1.5rem; }
+        .start-screen h2 { font-family:var(--font-serif);font-size:2rem;font-weight:900;margin-bottom:0.75rem; }
+        .start-screen p { color:var(--text-secondary);margin-bottom:2rem;max-width:450px;margin-inline:auto; }
+        .btn { padding:0.8rem 2.2rem;background:var(--slate-800);color:#fff;font-family:var(--font-serif);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;border:none;border-radius:10px;cursor:pointer;transition:0.2s;display:inline-flex;align-items:center;gap:0.5rem; }
         .btn:hover { background:var(--slate-900); }
         .btn:active { transform:scale(0.97); }
-
-        .btn-outline {
-            background:transparent;
-            border:1px solid var(--border);
-            color:var(--text);
-            font-family:var(--font-sans);
-            font-weight:600;
-            text-transform:none;
-        }
+        .btn-outline { background:transparent;border:1px solid var(--border);color:var(--text);font-family:var(--font-sans);font-weight:600;text-transform:none; }
         .btn-outline:hover { background:var(--option-hover); }
-
         .quiz-card { padding:2rem 2rem 1.5rem; }
-        .quiz-header {
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            margin-bottom:1.5rem;
-            flex-wrap:wrap;
-            gap:0.5rem;
-        }
-        .decree-badge {
-            font-size:0.7rem;
-            font-weight:700;
-            text-transform:uppercase;
-            letter-spacing:0.08em;
-            color:var(--emerald-700);
-            background:var(--correct-bg);
-            padding:0.3rem 0.8rem;
-            border-radius:20px;
-        }
-        .progress { font-family:monospace; font-size:0.85rem; color:var(--text-secondary); }
-        .progress span { font-weight:700; color:var(--text); }
-
-        .quiz-scenario {
-            font-style:italic;
-            color:var(--text-secondary);
-            border-left:4px solid var(--border);
-            padding-left:1rem;
-            margin-bottom:1.8rem;
-            line-height:1.6;
-        }
-
-        .quiz-question {
-            font-family:var(--font-serif);
-            font-size:1.25rem;
-            font-weight:700;
-            margin-bottom:1.8rem;
-            line-height:1.4;
-        }
-
-        .options-group {
-            display:flex;
-            flex-direction:column;
-            gap:0.75rem;
-            margin-bottom:1.5rem;
-        }
-
-        .quiz-option {
-            display:flex;
-            align-items:center;
-            gap:1rem;
-            padding:0.9rem 1.2rem;
-            background:var(--option-bg);
-            border:1px solid var(--border);
-            border-radius:10px;
-            cursor:pointer;
-            transition:all 0.2s;
-            text-align:left;
-            font-size:0.95rem;
-            outline:none;
-        }
-        .quiz-option:hover, .quiz-option:focus-visible { background:var(--option-hover); border-color:var(--text-secondary); }
-        .quiz-option[aria-checked="true"] {
-            background:var(--selected-bg);
-            border-color:var(--selected-border);
-            font-weight:500;
-        }
-        .quiz-option.correct-feedback {
-            background:var(--correct-bg);
-            border-color:var(--emerald-500);
-        }
-        .quiz-option.incorrect-feedback {
-            background:var(--incorrect-bg);
-            border-color:var(--incorrect-border);
-        }
-
-        .option-circle {
-            width:22px; height:22px;
-            border:2px solid var(--text-secondary);
-            border-radius:50%;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            flex-shrink:0;
-            font-size:0.7rem;
-            color:transparent;
-            transition:0.2s;
-        }
-        .quiz-option[aria-checked="true"] .option-circle {
-            border-color:var(--selected-border);
-            color:var(--selected-border);
-            background:#fff;
-        }
-        .quiz-option.correct-feedback .option-circle { border-color:var(--emerald-500); color:var(--emerald-500); }
-        .quiz-option.incorrect-feedback .option-circle { border-color:var(--incorrect-border); color:var(--incorrect-border); }
-
-        .quiz-actions {
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            flex-wrap:wrap;
-            gap:1rem;
-        }
-        .feedback-message {
-            font-size:0.85rem;
-            font-weight:500;
-            min-height:1.5em;
-            color:var(--emerald-600);
-            flex:1;
-        }
+        .quiz-header { display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.5rem; }
+        .decree-badge { font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--emerald-700);background:var(--correct-bg);padding:0.3rem 0.8rem;border-radius:20px; }
+        .progress { font-family:monospace;font-size:0.85rem;color:var(--text-secondary); }
+        .progress span { font-weight:700;color:var(--text); }
+        .quiz-scenario { font-style:italic;color:var(--text-secondary);border-left:4px solid var(--border);padding-left:1rem;margin-bottom:1.8rem; }
+        .quiz-question { font-family:var(--font-serif);font-size:1.25rem;font-weight:700;margin-bottom:1.8rem; }
+        .options-group { display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.5rem; }
+        .quiz-option { display:flex;align-items:center;gap:1rem;padding:0.9rem 1.2rem;background:var(--option-bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all 0.2s;text-align:left;font-size:0.95rem;outline:none; }
+        .quiz-option:hover, .quiz-option:focus-visible { background:var(--option-hover);border-color:var(--text-secondary); }
+        .quiz-option[aria-checked="true"] { background:var(--selected-bg);border-color:var(--selected-border);font-weight:500; }
+        .quiz-option.correct-feedback { background:var(--correct-bg);border-color:var(--emerald-500); }
+        .quiz-option.incorrect-feedback { background:var(--incorrect-bg);border-color:var(--incorrect-border); }
+        .option-circle { width:22px;height:22px;border:2px solid var(--text-secondary);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.7rem;color:transparent;transition:0.2s; }
+        .quiz-option[aria-checked="true"] .option-circle { border-color:var(--selected-border);color:var(--selected-border);background:#fff; }
+        .quiz-option.correct-feedback .option-circle { border-color:var(--emerald-500);color:var(--emerald-500); }
+        .quiz-option.incorrect-feedback .option-circle { border-color:var(--incorrect-border);color:var(--incorrect-border); }
+        .quiz-actions { display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem; }
+        .feedback-message { font-size:0.85rem;font-weight:500;min-height:1.5em;color:var(--emerald-600);flex:1; }
         .feedback-message.error { color:#dc2626; }
-
-        .next-btn {
-            padding:0.7rem 1.8rem;
-            background:var(--slate-800);
-            color:#fff;
-            font-family:var(--font-serif);
-            font-weight:700;
-            text-transform:uppercase;
-            letter-spacing:0.05em;
-            border:none;
-            border-radius:8px;
-            cursor:pointer;
-            display:flex;
-            align-items:center;
-            gap:0.5rem;
-            transition:0.2s;
-        }
-        .next-btn:disabled { opacity:0.5; cursor:not-allowed; background:var(--text-secondary); }
+        .next-btn { padding:0.7rem 1.8rem;background:var(--slate-800);color:#fff;font-family:var(--font-serif);font-weight:700;text-transform:uppercase;letter-spacing:0.05em;border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:0.5rem;transition:0.2s; }
+        .next-btn:disabled { opacity:0.5;cursor:not-allowed;background:var(--text-secondary); }
         .next-btn:not(:disabled):hover { background:var(--slate-900); }
-
         .result-screen { text-align:center; }
-        .result-icon { font-size:3.5rem; color:var(--emerald-500); margin-bottom:1.2rem; }
-        .result-title { font-family:var(--font-serif); font-size:1.8rem; font-weight:900; margin-bottom:0.5rem; }
-        .result-subtitle { color:var(--text-secondary); margin-bottom:2rem; }
-        .score-circle {
-            display:inline-flex;
-            flex-direction:column;
-            align-items:center;
-            justify-content:center;
-            width:120px; height:120px;
-            border-radius:50%;
-            background:var(--option-bg);
-            border:4px solid var(--emerald-500);
-            margin:1rem auto 2rem;
-        }
-        .score-value { font-family:var(--font-serif); font-size:2.5rem; font-weight:900; }
-        .score-total { font-size:0.85rem; color:var(--text-secondary); margin-top:-5px; }
-        .result-message { max-width:320px; margin:0 auto 2rem; color:var(--text-secondary); }
-        .result-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
-
-        @keyframes fadeInUp {
-            from { opacity:0; transform:translateY(20px); }
-            to { opacity:1; transform:translateY(0); }
-        }
-
+        .result-icon { font-size:3.5rem;color:var(--emerald-500);margin-bottom:1.2rem; }
+        .result-title { font-family:var(--font-serif);font-size:1.8rem;font-weight:900;margin-bottom:0.5rem; }
+        .result-subtitle { color:var(--text-secondary);margin-bottom:2rem; }
+        .score-circle { display:inline-flex;flex-direction:column;align-items:center;justify-content:center;width:120px;height:120px;border-radius:50%;background:var(--option-bg);border:4px solid var(--emerald-500);margin:1rem auto 2rem; }
+        .score-value { font-family:var(--font-serif);font-size:2.5rem;font-weight:900; }
+        .score-total { font-size:0.85rem;color:var(--text-secondary);margin-top:-5px; }
+        .result-message { max-width:320px;margin:0 auto 2rem;color:var(--text-secondary); }
+        .result-actions { display:flex;gap:1rem;justify-content:center;flex-wrap:wrap; }
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
         @media (max-width:600px) {
             .quiz-card, .start-screen, .result-screen { padding:1.5rem 1.2rem; }
             .quiz-question { font-size:1.1rem; }
-            .next-btn { width:100%; justify-content:center; }
-            .quiz-actions { flex-direction:column; align-items:stretch; }
-            .result-actions { flex-direction:column; align-items:center; }
+            .next-btn { width:100%;justify-content:center; }
+            .quiz-actions { flex-direction:column;align-items:stretch; }
+            .result-actions { flex-direction:column;align-items:center; }
         }
     </style>
 </head>
 <body>
+    <svg style="display:none;">
+        <defs>
+            <symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 4h16v2H4zm0 4h16v2H4zm0 4h16v2H4z"/><path d="M4 2h16v2H4zm0 18h16v2H4z"/></symbol>
+            <symbol id="icon-sword" viewBox="0 0 24 24"><path d="M15.9 2.1L14.5 .7 7.8 7.4l1.4 1.4-7.4 7.4 1.4 1.4 7.4-7.4 1.4 1.4 6.7-6.7-1.4-1.4z"/></symbol>
+            <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm0 2.2l7 3.1V11c0 4.6-2.9 8.9-7 10-4.1-1.1-7-5.4-7-10V6.3l7-3.1z"/></symbol>
+            <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9 9 9 0 00-9-9z"/></symbol>
+            <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.2 4.2l1.4 1.4m12.8 12.8l1.4 1.4M1 12h2m18 0h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></symbol>
+            <symbol id="icon-arrow-left" viewBox="0 0 24 24"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20v-2z"/></symbol>
+            <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M4 13h12.2l-5.6 5.6L12 20l8-8-8-8-1.4 1.4L16.2 11H4v2z"/></symbol>
+            <symbol id="icon-redo" viewBox="0 0 24 24"><path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"/></symbol>
+            <symbol id="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+            <symbol id="icon-clock" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></symbol>
+        </defs>
+    </svg>
+
     <header class="top-bar">
-        <a href="index.html" class="brand"><i class="fas fa-book"></i> Forbidden Legacy</a>
+        <a href="index.html" class="brand"><svg class="icon"><use href="#icon-book"/></svg> Forbidden Legacy</a>
         <div class="top-actions">
             <button class="dark-toggle" id="dark-toggle" aria-label="Toggle dark mode">
-                <i class="fas fa-moon"></i> <span>Dark</span>
+                <svg class="icon"><use href="#icon-moon"/></svg> <span>Dark</span>
             </button>
-            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Codex</a>
+            <a href="index.html" class="back-link"><svg class="icon"><use href="#icon-arrow-left"/></svg> Codex</a>
         </div>
     </header>
 
@@ -347,451 +155,78 @@
 
     <script>
         (function() {
-            // ── FULL QUESTION BANK: ALL DECREES & SECTIONS (Sinnercell‑specific) ──
             const FULL_QUESTION_BANK = [
-                // Decree I
-                {
-                    id: "I-1",
-                    decree: "Decree I · Section 1",
-                    scenario: "A Demon loses composure during an argument and insults another member.",
-                    question: "What is the penalty for a Sinnercell member for a first offense?",
-                    choices: ["500 deduction points", "Warning in Judgement Chamber", "2000 deduction points", "Immediate expulsion"],
-                    correctIndex: 1,
-                    explanation: "First offense results in a warning issued in the Judgement Chamber."
-                },
-                {
-                    id: "I-2",
-                    decree: "Decree I · Section 2",
-                    scenario: "A Sinnercell member forgets their identification badge for the second time after already receiving a warning.",
-                    question: "What penalty applies now?",
-                    choices: ["Expulsion", "2000 deduction points", "500 deduction points", "Another warning"],
-                    correctIndex: 0,
-                    explanation: "Repeated offense after a warning leads to expulsion."
-                },
-                {
-                    id: "I-3",
-                    decree: "Decree I · Section 3",
-                    scenario: "A Demon addresses a Tormentor by their first name without 'Mr./Ms.' for the second time.",
-                    question: "What is the punishment for this Sinnercell member?",
-                    choices: ["Warning", "500 deduction points", "2000 deduction points", "Sign + 2 recruits"],
-                    correctIndex: 1,
-                    explanation: "Second offense: 500 deduction points (first was a warning)."
-                },
-                {
-                    id: "I-4",
-                    decree: "Decree I · Section 4",
-                    scenario: "A Sinnercell member shouts an uncensored profanity on a weekday.",
-                    question: "What punishment does the Sinnercell receive?",
-                    choices: ["Warning", "500 deduction points", "2000 deduction points", "Expulsion"],
-                    correctIndex: 2,
-                    explanation: "Profanity: 2000 deduction points."
-                },
-                {
-                    id: "I-5",
-                    decree: "Decree I · Section 5",
-                    scenario: "Two Demons engage in a public display of affection on campus.",
-                    question: "What is the penalty for each Sinnercell member?",
-                    choices: ["500 deduction points", "2000 deduction points", "Sign + 2 recruits", "Warning"],
-                    correctIndex: 1,
-                    explanation: "Public display of affection: 2000 deduction points."
-                },
-                // Decree II
-                {
-                    id: "II-1",
-                    decree: "Decree II · Section 1",
-                    scenario: "A Demon consistently fails to complete assigned tasks.",
-                    question: "What is the basis for punishment for this Sinnercell member?",
-                    choices: ["500 deduction points", "Varies (Sentinel's discretion)", "Automatic expulsion", "Sign + 2 recruits"],
-                    correctIndex: 1,
-                    explanation: "Penalty varies according to the discretion of the Sentinel."
-                },
-                {
-                    id: "II-2",
-                    decree: "Decree II · Section 2",
-                    scenario: "A Sinnercell (not a Berserker) changes the group chat theme without permission.",
-                    question: "What penalty applies?",
-                    choices: ["500 deduction points", "2000 deduction points", "Expulsion", "Warning"],
-                    correctIndex: 0,
-                    explanation: "Unauthorized administrative change: 500 deduction points."
-                },
-                {
-                    id: "II-3",
-                    decree: "Decree II · Section 3",
-                    scenario: "A Sinnercell member has been inactive for more than two days without valid justification.",
-                    question: "What is the consequence?",
-                    choices: ["500 deduction points", "Removal (expulsion)", "Warning", "2000 deduction points"],
-                    correctIndex: 1,
-                    explanation: "Inactivity over two days leads to removal."
-                },
-                // Decree III
-                {
-                    id: "III-1",
-                    decree: "Decree III · Section 1",
-                    scenario: "A Demon unsends a message that did not contain real-world information.",
-                    question: "What is the punishment for this Sinnercell member?",
-                    choices: ["500 deduction points", "Sign + 2 recruits", "2000 deduction points", "Warning"],
-                    correctIndex: 0,
-                    explanation: "Unsending non-real-world messages: 500 deduction points."
-                },
-                {
-                    id: "III-2",
-                    decree: "Decree III · Section 2",
-                    scenario: "During a 'Chat Off' declared by a Mephistopheles, a Demon sends a message.",
-                    question: "What penalty does the Sinnercell member face?",
-                    choices: ["500 deduction points", "2000 deduction points", "Expulsion", "Sign + 2 recruits"],
-                    correctIndex: 0,
-                    explanation: "Violation of Chat Off: 500 deduction points."
-                },
-                {
-                    id: "III-3",
-                    decree: "Decree III · Section 3",
-                    scenario: "A Sinnercell member spams likes, emojis, stickers, or repeats typos more than four times.",
-                    question: "What is the punishment?",
-                    choices: ["500 deduction points", "2000 deduction points", "Warning", "Sign + 2 recruits"],
-                    correctIndex: 0,
-                    explanation: "Spam: 500 deduction points."
-                },
-                // Decree IV
-                {
-                    id: "IV-1",
-                    decree: "Decree IV · Section 1",
-                    scenario: "A Demon enters a romantic relationship with a Tormentor.",
-                    question: "What is the punishment for the Sinnercell (Demon)?",
-                    choices: ["500 deduction points", "2000 deduction points", "Expulsion", "Sign + 2 recruits"],
-                    correctIndex: 2,
-                    explanation: "Forbidden relationship: Expulsion."
-                },
-                {
-                    id: "IV-2",
-                    decree: "Decree IV · Section 2",
-                    scenario: "A Sinnercell member is caught spying for another institution.",
-                    question: "What is the penalty for this Demon?",
-                    choices: ["Warning; Expulsion", "500 deduction points", "2000 deduction points", "Sign + 2 recruits"],
-                    correctIndex: 0,
-                    explanation: "Espionage: Warning, then Expulsion."
-                },
-                {
-                    id: "IV-3",
-                    decree: "Decree IV · Section 3",
-                    scenario: "A Demon tries to transfer to another Sinnercell without valid exemption.",
-                    question: "What is the likely outcome?",
-                    choices: ["500 deduction points", "Warning then possible removal", "The transfer is simply denied", "2000 deduction points"],
-                    correctIndex: 1,
-                    explanation: "Unauthorized transfer is prohibited; attempts may lead to warning and further action."
-                },
-                {
-                    id: "IV-4",
-                    decree: "Decree IV · Section 4",
-                    scenario: "A Sinnercell member shares unauthorized university information publicly.",
-                    question: "What penalty applies?",
-                    choices: ["Warning; Expulsion", "500 deduction points", "2000 deduction points", "Sign + 2 recruits"],
-                    correctIndex: 0,
-                    explanation: "Confidentiality breach: Warning, then Expulsion."
-                },
-                // Decree V
-                {
-                    id: "V-1",
-                    decree: "Decree V · Section 1",
-                    scenario: "A Demon witnesses clear favoritism. What must they do?",
-                    question: "What is the required action for a Sinnercell member who sees unfairness?",
-                    choices: ["Ignore it", "Report it to the Mephistopheles", "Confront the person responsible", "Submit a 500-point penalty"],
-                    correctIndex: 1,
-                    explanation: "Members must report unfairness to the Mephistopheles."
-                },
-                {
-                    id: "V-2",
-                    decree: "Decree V · Section 2 & 3",
-                    scenario: "A Sinnercell member is issued a violation mark (e.g., ☒ for negligence).",
-                    question: "What immediate administrative action is taken?",
-                    choices: ["They are placed in a 48‑hour timeout", "They are automatically removed from the main group chat", "They must recruit 2 new members", "They receive a warning only"],
-                    correctIndex: 1,
-                    explanation: "Any member receiving a mark is immediately removed from the main group chat."
-                },
-                {
-                    id: "V-3",
-                    decree: "Decree V · Section 3",
-                    scenario: "After a mark is lifted, a Sinnercell member wants to return to the main chat.",
-                    question: "What condition must be met?",
-                    choices: ["Pay 500 points", "Wait 48 hours", "The mark must be officially lifted and all penalties fulfilled", "They can never return"],
-                    correctIndex: 2,
-                    explanation: "Reinstatement requires the official lifting of the mark and fulfillment of all penalties/recruitment quotas."
-                }
+                { id:"I-1", decree:"Decree I · Section 1", scenario:"A Demon loses composure during an argument and insults another member.", question:"What is the penalty for a Sinnercell member for a first offense?", choices:["500 deduction points","Warning in Judgement Chamber","2000 deduction points","Immediate expulsion"], correctIndex:1, explanation:"First offense results in a warning issued in the Judgement Chamber." },
+                { id:"I-2", decree:"Decree I · Section 2", scenario:"A Sinnercell member forgets their identification badge for the second time after already receiving a warning.", question:"What penalty applies now?", choices:["Expulsion","2000 deduction points","500 deduction points","Another warning"], correctIndex:0, explanation:"Repeated offense after a warning leads to expulsion." },
+                { id:"I-3", decree:"Decree I · Section 3", scenario:"A Demon addresses a Tormentor by their first name without 'Mr./Ms.' for the second time.", question:"What is the punishment for this Sinnercell member?", choices:["Warning","500 deduction points","2000 deduction points","Sign + 2 recruits"], correctIndex:1, explanation:"Second offense: 500 deduction points (first was a warning)." },
+                { id:"I-4", decree:"Decree I · Section 4", scenario:"A Sinnercell member shouts an uncensored profanity on a weekday.", question:"What punishment does the Sinnercell receive?", choices:["Warning","500 deduction points","2000 deduction points","Expulsion"], correctIndex:2, explanation:"Profanity: 2000 deduction points." },
+                { id:"I-5", decree:"Decree I · Section 5", scenario:"Two Demons engage in a public display of affection on campus.", question:"What is the penalty for each Sinnercell member?", choices:["500 deduction points","2000 deduction points","Sign + 2 recruits","Warning"], correctIndex:1, explanation:"Public display of affection: 2000 deduction points." },
+                { id:"II-1", decree:"Decree II · Section 1", scenario:"A Demon consistently fails to complete assigned tasks.", question:"What is the basis for punishment for this Sinnercell member?", choices:["500 deduction points","Varies (Sentinel's discretion)","Automatic expulsion","Sign + 2 recruits"], correctIndex:1, explanation:"Penalty varies according to the discretion of the Sentinel." },
+                { id:"II-2", decree:"Decree II · Section 2", scenario:"A Sinnercell (not a Berserker) changes the group chat theme without permission.", question:"What penalty applies?", choices:["500 deduction points","2000 deduction points","Expulsion","Warning"], correctIndex:0, explanation:"Unauthorized administrative change: 500 deduction points." },
+                { id:"II-3", decree:"Decree II · Section 3", scenario:"A Sinnercell member has been inactive for more than two days without valid justification.", question:"What is the consequence?", choices:["500 deduction points","Removal (expulsion)","Warning","2000 deduction points"], correctIndex:1, explanation:"Inactivity over two days leads to removal." },
+                { id:"III-1", decree:"Decree III · Section 1", scenario:"A Demon unsends a message that did not contain real-world information.", question:"What is the punishment for this Sinnercell member?", choices:["500 deduction points","Sign + 2 recruits","2000 deduction points","Warning"], correctIndex:0, explanation:"Unsending non-real-world messages: 500 deduction points." },
+                { id:"III-2", decree:"Decree III · Section 2", scenario:"During a 'Chat Off' declared by a Mephistopheles, a Demon sends a message.", question:"What penalty does the Sinnercell member face?", choices:["500 deduction points","2000 deduction points","Expulsion","Sign + 2 recruits"], correctIndex:0, explanation:"Violation of Chat Off: 500 deduction points." },
+                { id:"III-3", decree:"Decree III · Section 3", scenario:"A Sinnercell member spams likes, emojis, stickers, or repeats typos more than four times.", question:"What is the punishment?", choices:["500 deduction points","2000 deduction points","Warning","Sign + 2 recruits"], correctIndex:0, explanation:"Spam: 500 deduction points." },
+                { id:"IV-1", decree:"Decree IV · Section 1", scenario:"A Demon enters a romantic relationship with a Tormentor.", question:"What is the punishment for the Sinnercell (Demon)?", choices:["500 deduction points","2000 deduction points","Expulsion","Sign + 2 recruits"], correctIndex:2, explanation:"Forbidden relationship: Expulsion." },
+                { id:"IV-2", decree:"Decree IV · Section 2", scenario:"A Sinnercell member is caught spying for another institution.", question:"What is the penalty for this Demon?", choices:["Warning; Expulsion","500 deduction points","2000 deduction points","Sign + 2 recruits"], correctIndex:0, explanation:"Espionage: Warning, then Expulsion." },
+                { id:"IV-3", decree:"Decree IV · Section 3", scenario:"A Demon tries to transfer to another Sinnercell without valid exemption.", question:"What is the likely outcome?", choices:["500 deduction points","Warning then possible removal","The transfer is simply denied","2000 deduction points"], correctIndex:1, explanation:"Unauthorized transfer is prohibited; attempts may lead to warning and further action." },
+                { id:"IV-4", decree:"Decree IV · Section 4", scenario:"A Sinnercell member shares unauthorized university information publicly.", question:"What penalty applies?", choices:["Warning; Expulsion","500 deduction points","2000 deduction points","Sign + 2 recruits"], correctIndex:0, explanation:"Confidentiality breach: Warning, then Expulsion." },
+                { id:"V-1", decree:"Decree V · Section 1", scenario:"A Demon witnesses clear favoritism. What must they do?", question:"What is the required action for a Sinnercell member who sees unfairness?", choices:["Ignore it","Report it to the Mephistopheles","Confront the person responsible","Submit a 500-point penalty"], correctIndex:1, explanation:"Members must report unfairness to the Mephistopheles." },
+                { id:"V-2", decree:"Decree V · Section 2 & 3", scenario:"A Sinnercell member is issued a violation mark (e.g., ☒ for negligence).", question:"What immediate administrative action is taken?", choices:["They are placed in a 48‑hour timeout","They are automatically removed from the main group chat","They must recruit 2 new members","They receive a warning only"], correctIndex:1, explanation:"Any member receiving a mark is immediately removed from the main group chat." },
+                { id:"V-3", decree:"Decree V · Section 3", scenario:"After a mark is lifted, a Sinnercell member wants to return to the main chat.", question:"What condition must be met?", choices:["Pay 500 points","Wait 48 hours","The mark must be officially lifted and all penalties fulfilled","They can never return"], correctIndex:2, explanation:"Reinstatement requires the official lifting of the mark and fulfillment of all penalties/recruitment quotas." }
             ];
 
-            // ── STATE ──
             let currentQuestion = 0;
             let score = 0;
             let quizCompleted = false;
             let feedbackActive = false;
-            let selectedQuestions = [];  // 10 randomly chosen questions
-
+            let selectedQuestions = [];
             const app = document.getElementById('quiz-app');
             const STORAGE_KEY = 'mcu_quiz_progress_v2';
 
-            function shuffle(array) {
-                for (let i = array.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [array[i], array[j]] = [array[j], array[i]];
-                }
-                return array;
-            }
+            function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
+            function saveProgress(){ const d={currentQuestion,score,quizCompleted,selectedIds:selectedQuestions.map(q=>q.id),timestamp:Date.now()}; localStorage.setItem(STORAGE_KEY,JSON.stringify(d)); }
+            function clearProgress(){ localStorage.removeItem(STORAGE_KEY); }
+            function loadProgress(){ const s=localStorage.getItem(STORAGE_KEY); if(!s)return null; const d=JSON.parse(s); if(Date.now()-d.timestamp>30*60*1000){clearProgress();return null;} if(d.selectedIds&&d.selectedIds.length===10){ const rebuilt=d.selectedIds.map(id=>FULL_QUESTION_BANK.find(q=>q.id===id)).filter(Boolean); if(rebuilt.length===10){ selectedQuestions=rebuilt; currentQuestion=d.currentQuestion; score=d.score; quizCompleted=d.quizCompleted; return d; } } clearProgress(); return null; }
 
-            function saveProgress() {
-                const data = {
-                    currentQuestion,
-                    score,
-                    quizCompleted,
-                    selectedIds: selectedQuestions.map(q => q.id),
-                    timestamp: Date.now()
-                };
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-            }
-
-            function clearProgress() {
-                localStorage.removeItem(STORAGE_KEY);
-            }
-
-            function loadProgress() {
-                const saved = localStorage.getItem(STORAGE_KEY);
-                if (!saved) return null;
-                const data = JSON.parse(saved);
-                if (Date.now() - data.timestamp > 30 * 60 * 1000) {
-                    clearProgress();
-                    return null;
-                }
-                // Reconstruct selected questions from IDs
-                if (data.selectedIds && data.selectedIds.length === 10) {
-                    const rebuilt = data.selectedIds.map(id => FULL_QUESTION_BANK.find(q => q.id === id)).filter(Boolean);
-                    if (rebuilt.length === 10) {
-                        selectedQuestions = rebuilt;
-                        currentQuestion = data.currentQuestion;
-                        score = data.score;
-                        quizCompleted = data.quizCompleted;
-                        return data;
-                    }
-                }
-                // Fallback: reset
-                clearProgress();
-                return null;
-            }
-
-            // ── RENDER ──
-            function renderStartScreen() {
-                clearProgress();
-                quizCompleted = false;
-                currentQuestion = 0;
-                score = 0;
-                // Randomly select 10 questions from the full bank
-                selectedQuestions = shuffle([...FULL_QUESTION_BANK]).slice(0, 10);
-                app.innerHTML = `
-                    <div class="quiz-container start-screen">
-                        <div class="shield-icon"><i class="fas fa-shield-alt"></i></div>
-                        <h2>Sinnercell Trial</h2>
-                        <p>This test is <strong>exclusively for Demons (Sinnercell members).</strong><br>
-                        Each trial randomly selects <strong>10 questions</strong> from a bank covering <em>all decrees and sections</em> of the Forbidden Legacy.</p>
-                        <button class="btn" id="start-quiz-btn"><i class="fas fa-play"></i> Begin Trial</button>
-                    </div>
-                `;
+            function renderStartScreen(){
+                clearProgress(); quizCompleted=false; currentQuestion=0; score=0;
+                selectedQuestions = shuffle([...FULL_QUESTION_BANK]).slice(0,10);
+                app.innerHTML = `<div class="quiz-container start-screen"><div class="shield-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div><h2>Sinnercell Trial</h2><p>This test is <strong>exclusively for Demons (Sinnercell members).</strong><br>Each trial randomly selects <strong>10 questions</strong> from a bank covering <em>all decrees and sections</em> of the Forbidden Legacy.</p><button class="btn" id="start-quiz-btn"><svg class="icon"><use href="#icon-play"/></svg> Begin Trial</button></div>`;
                 document.getElementById('start-quiz-btn').addEventListener('click', startQuiz);
             }
-
-            function startQuiz() {
-                currentQuestion = 0;
-                score = 0;
-                quizCompleted = false;
-                saveProgress();
-                renderQuestion();
-            }
-
-            function renderQuestion() {
-                if (currentQuestion >= selectedQuestions.length) {
-                    completeQuiz();
-                    return;
-                }
+            function startQuiz(){ currentQuestion=0; score=0; quizCompleted=false; saveProgress(); renderQuestion(); }
+            function renderQuestion(){
+                if(currentQuestion >= selectedQuestions.length){ completeQuiz(); return; }
                 feedbackActive = false;
                 const q = selectedQuestions[currentQuestion];
-                app.innerHTML = `
-                    <div class="quiz-container quiz-card" role="main">
-                        <div class="quiz-header">
-                            <span class="decree-badge">${q.decree}</span>
-                            <span class="progress">Question <span>${currentQuestion + 1}</span> / ${selectedQuestions.length}</span>
-                        </div>
-                        <div class="quiz-scenario">"${q.scenario}"</div>
-                        <div class="quiz-question">${q.question}</div>
-                        <div class="options-group" role="radiogroup" aria-label="Answer choices">
-                            ${q.choices.map((choice, idx) => `
-                                <button class="quiz-option" role="radio" aria-checked="false" data-index="${idx}"
-                                    tabindex="${idx === 0 ? 0 : -1}">
-                                    <div class="option-circle">&#10003;</div>
-                                    <span>${choice}</span>
-                                </button>
-                            `).join('')}
-                        </div>
-                        <div class="quiz-actions">
-                            <div class="feedback-message" id="feedback-msg" aria-live="polite"></div>
-                            <button class="next-btn" id="next-btn" disabled>
-                                ${currentQuestion < selectedQuestions.length - 1 ? 'Next Scenario' : 'Submit Trial'}
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-
-                const options = document.querySelectorAll('.quiz-option');
-                const nextBtn = document.getElementById('next-btn');
-                const feedbackMsg = document.getElementById('feedback-msg');
-
-                if (options.length) options[0].focus();
-
-                options.forEach(opt => {
-                    opt.addEventListener('click', () => {
-                        if (feedbackActive) return;
-                        options.forEach(o => o.setAttribute('aria-checked', 'false'));
-                        opt.setAttribute('aria-checked', 'true');
-                        nextBtn.disabled = false;
-                        feedbackMsg.textContent = '';
-                        feedbackMsg.classList.remove('error');
-                    });
-                });
-
-                nextBtn.addEventListener('click', () => {
-                    if (feedbackActive) return;
-                    const selected = document.querySelector('.quiz-option[aria-checked="true"]');
-                    if (!selected) {
-                        feedbackMsg.textContent = 'Please select an answer.';
-                        feedbackMsg.classList.add('error');
-                        return;
-                    }
-                    const selectedIndex = parseInt(selected.dataset.index);
-                    const correct = q.correctIndex;
-                    const isCorrect = (selectedIndex === correct);
-
-                    options.forEach((opt, idx) => {
-                        opt.setAttribute('aria-disabled', 'true');
-                        if (idx === correct) opt.classList.add('correct-feedback');
-                        if (idx === selectedIndex && !isCorrect) opt.classList.add('incorrect-feedback');
-                    });
-
-                    feedbackMsg.textContent = isCorrect
-                        ? `✓ Correct! ${q.explanation}`
-                        : `✗ Incorrect. The correct answer is: ${q.choices[correct]}. ${q.explanation}`;
-                    feedbackMsg.classList.toggle('error', !isCorrect);
-
-                    if (isCorrect) score++;
-
-                    feedbackActive = true;
-                    nextBtn.disabled = true;
-
-                    setTimeout(() => {
-                        currentQuestion++;
-                        saveProgress();
-                        feedbackActive = false;
-                        renderQuestion();
-                    }, 1800);
-                });
-
+                app.innerHTML = `<div class="quiz-container quiz-card" role="main"><div class="quiz-header"><span class="decree-badge">${q.decree}</span><span class="progress">Question <span>${currentQuestion+1}</span> / ${selectedQuestions.length}</span></div><div class="quiz-scenario">"${q.scenario}"</div><div class="quiz-question">${q.question}</div><div class="options-group" role="radiogroup" aria-label="Answer choices">${q.choices.map((c,i)=>`<button class="quiz-option" role="radio" aria-checked="false" data-index="${i}" tabindex="${i===0?0:-1}"><div class="option-circle">&#10003;</div><span>${c}</span></button>`).join('')}</div><div class="quiz-actions"><div class="feedback-message" id="feedback-msg" aria-live="polite"></div><button class="next-btn" id="next-btn" disabled>${currentQuestion<selectedQuestions.length-1?'Next Scenario':'Submit Trial'} <svg class="icon"><use href="#icon-arrow-right"/></svg></button></div></div>`;
+                const options = document.querySelectorAll('.quiz-option'), nextBtn = document.getElementById('next-btn'), feedbackMsg = document.getElementById('feedback-msg');
+                if(options.length) options[0].focus();
+                options.forEach(opt => opt.addEventListener('click',()=>{ if(feedbackActive)return; options.forEach(o=>o.setAttribute('aria-checked','false')); opt.setAttribute('aria-checked','true'); nextBtn.disabled=false; feedbackMsg.textContent=''; feedbackMsg.classList.remove('error'); }));
+                nextBtn.addEventListener('click',()=>{ if(feedbackActive)return; const sel=document.querySelector('.quiz-option[aria-checked="true"]'); if(!sel){ feedbackMsg.textContent='Please select an answer.'; feedbackMsg.classList.add('error'); return; } const idx=parseInt(sel.dataset.index), correct=q.correctIndex, isCorrect=(idx===correct); options.forEach((opt,i)=>{ opt.setAttribute('aria-disabled','true'); if(i===correct) opt.classList.add('correct-feedback'); if(i===idx&&!isCorrect) opt.classList.add('incorrect-feedback'); }); feedbackMsg.textContent=isCorrect?`✓ Correct! ${q.explanation}`:`✗ Incorrect. The correct answer is: ${q.choices[correct]}. ${q.explanation}`; feedbackMsg.classList.toggle('error',!isCorrect); if(isCorrect) score++; feedbackActive=true; nextBtn.disabled=true; setTimeout(()=>{ currentQuestion++; saveProgress(); feedbackActive=false; renderQuestion(); },1800); });
                 const group = document.querySelector('.options-group');
-                group.addEventListener('keydown', (e) => {
-                    const current = document.activeElement;
-                    if (!current.classList.contains('quiz-option')) return;
-                    const opts = Array.from(group.querySelectorAll('.quiz-option'));
-                    const idx = opts.indexOf(current);
-                    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-                        e.preventDefault();
-                        const next = opts[(idx + 1) % opts.length];
-                        next.focus();
-                    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-                        e.preventDefault();
-                        const prev = opts[(idx - 1 + opts.length) % opts.length];
-                        prev.focus();
-                    } else if (e.key === ' ' || e.key === 'Enter') {
-                        e.preventDefault();
-                        current.click();
-                    }
-                });
-
+                group.addEventListener('keydown',e=>{ const cur=document.activeElement; if(!cur.classList.contains('quiz-option'))return; const opts=Array.from(group.querySelectorAll('.quiz-option')), idx=opts.indexOf(cur); if(e.key==='ArrowDown'||e.key==='ArrowRight'){ e.preventDefault(); opts[(idx+1)%opts.length].focus(); } else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){ e.preventDefault(); opts[(idx-1+opts.length)%opts.length].focus(); } else if(e.key===' '||e.key==='Enter'){ e.preventDefault(); cur.click(); } });
                 saveProgress();
             }
-
-            function completeQuiz() {
-                quizCompleted = true;
-                clearProgress();
-                const total = selectedQuestions.length;
-                const percentage = Math.round((score / total) * 100);
-                let message = '';
-                if (percentage === 100) message = 'Perfect. You embody the Legacy.';
-                else if (percentage >= 70) message = 'Honorable. Review a few decrees.';
-                else if (percentage >= 50) message = 'Mediocre. Study the Codex again.';
-                else message = 'The Council demands immediate remedial study.';
-
-                app.innerHTML = `
-                    <div class="quiz-container result-screen">
-                        <div class="result-icon"><i class="fas fa-check-circle"></i></div>
-                        <div class="result-title">Trial Completed</div>
-                        <div class="result-subtitle">Your understanding of the Sinnercell rules has been measured.</div>
-                        <div class="score-circle">
-                            <span class="score-value">${score}/${total}</span>
-                            <span class="score-total">${percentage}%</span>
-                        </div>
-                        <div class="result-message">${message}</div>
-                        <div class="result-actions">
-                            <button class="btn" id="retry-btn"><i class="fas fa-redo-alt"></i> Retry Trial</button>
-                            <a href="index.html" class="btn btn-outline"><i class="fas fa-book"></i> Codex</a>
-                        </div>
-                    </div>
-                `;
+            function completeQuiz(){
+                quizCompleted=true; clearProgress();
+                const total=selectedQuestions.length, pct=Math.round((score/total)*100);
+                let msg=pct===100?'Perfect. You embody the Legacy.':pct>=70?'Honorable. Review a few decrees.':pct>=50?'Mediocre. Study the Codex again.':'The Council demands immediate remedial study.';
+                app.innerHTML = `<div class="quiz-container result-screen"><div class="result-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div><div class="result-title">Trial Completed</div><div class="result-subtitle">Your understanding of the Sinnercell rules has been measured.</div><div class="score-circle"><span class="score-value">${score}/${total}</span><span class="score-total">${pct}%</span></div><div class="result-message">${msg}</div><div class="result-actions"><button class="btn" id="retry-btn"><svg class="icon"><use href="#icon-redo"/></svg> Retry Trial</button><a href="index.html" class="btn btn-outline"><svg class="icon"><use href="#icon-book"/></svg> Codex</a></div></div>`;
                 document.getElementById('retry-btn').addEventListener('click', renderStartScreen);
             }
-
-            function initDarkMode() {
-                const toggle = document.getElementById('dark-toggle');
-                const icon = toggle.querySelector('i');
-                const span = toggle.querySelector('span');
-                const stored = localStorage.getItem('mcu_dark_mode');
-                if (stored === 'true') {
-                    document.body.classList.add('dark');
-                    icon.classList.replace('fa-moon', 'fa-sun');
-                    span.textContent = 'Light';
-                }
-                toggle.addEventListener('click', () => {
-                    const isDark = document.body.classList.toggle('dark');
-                    if (isDark) {
-                        icon.classList.replace('fa-moon', 'fa-sun');
-                        span.textContent = 'Light';
-                        localStorage.setItem('mcu_dark_mode', 'true');
-                    } else {
-                        icon.classList.replace('fa-sun', 'fa-moon');
-                        span.textContent = 'Dark';
-                        localStorage.setItem('mcu_dark_mode', 'false');
-                    }
-                });
+            function initDarkMode(){
+                const toggle=document.getElementById('dark-toggle'), icon=toggle.querySelector('use'), span=toggle.querySelector('span');
+                if(localStorage.getItem('mcu_dark_mode')==='true'){ document.body.classList.add('dark'); icon.setAttribute('href','#icon-sun'); span.textContent='Light'; }
+                toggle.addEventListener('click',()=>{ const isDark=document.body.classList.toggle('dark'); localStorage.setItem('mcu_dark_mode',isDark); icon.setAttribute('href',isDark?'#icon-sun':'#icon-moon'); span.textContent=isDark?'Light':'Dark'; });
             }
-
-            function checkResume() {
-                const saved = loadProgress();
-                if (saved && !saved.quizCompleted) {
-                    app.innerHTML = `
-                        <div class="quiz-container start-screen">
-                            <div class="shield-icon"><i class="fas fa-clock"></i></div>
-                            <h2>Unfinished Trial</h2>
-                            <p>You were on question ${saved.currentQuestion + 1} of ${selectedQuestions.length}.<br>Resume your trial?</p>
-                            <div style="display:flex; gap:1rem; justify-content:center; margin-top:1.5rem;">
-                                <button class="btn" id="resume-btn"><i class="fas fa-play"></i> Resume</button>
-                                <button class="btn btn-outline" id="restart-btn">Start Over</button>
-                            </div>
-                        </div>
-                    `;
-                    document.getElementById('resume-btn').addEventListener('click', () => {
-                        renderQuestion();
-                    });
-                    document.getElementById('restart-btn').addEventListener('click', renderStartScreen);
-                } else {
-                    renderStartScreen();
-                }
+            function checkResume(){
+                const saved=loadProgress();
+                if(saved&&!saved.quizCompleted){ app.innerHTML=`<div class="quiz-container start-screen"><div class="shield-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-clock"/></svg></div><h2>Unfinished Trial</h2><p>You were on question ${saved.currentQuestion+1} of ${selectedQuestions.length}.<br>Resume your trial?</p><div style="display:flex;gap:1rem;justify-content:center;margin-top:1.5rem;"><button class="btn" id="resume-btn"><svg class="icon"><use href="#icon-play"/></svg> Resume</button><button class="btn btn-outline" id="restart-btn">Start Over</button></div></div>`; document.getElementById('resume-btn').addEventListener('click',()=>{ renderQuestion(); }); document.getElementById('restart-btn').addEventListener('click',renderStartScreen); }
+                else { renderStartScreen(); }
             }
-
-            initDarkMode();
-            checkResume();
+            initDarkMode(); checkResume();
         })();
     </script>
 </body>
