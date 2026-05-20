@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Forbidden Legacy — the sacred decrees of the MCU, binding all Sinnercells, Tormentors, and Mephistopheles.">
+    <title>Forbidden Legacy — MCU Codex</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ── DESIGN TOKENS ── */
+        :root {
+            --emerald-500: #10b981;
+            --emerald-600: #059669;
+            --emerald-700: #047857;
+            --slate-50: #f8fafc;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-300: #cbd5e1;
+            --slate-400: #94a3b8;
+            --slate-500: #64748b;
+            --slate-600: #475569;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #475569;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px rgba(0,0,0,0.03);
+            --font-serif: "Cinzel", ui-serif, Georgia, serif;
+            --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+            --sidebar-width: 250px;
+            --sidebar-collapsed: 72px;
+        }
+
+        body.dark {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+            --shadow: 0 4px 12px rgba(0,0,0,0.25);
+            --emerald-700: #6ee7b7;
+            --slate-800: #e2e8f0;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* ── SKIP LINK ── */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--emerald-500);
+            color: #fff;
+            padding: 8px 16px;
+            z-index: 200;
+            transition: top 0.2s;
+            border-radius: 0 0 4px 0;
+        }
+        .skip-link:focus { top: 10px; }
+
+        /* ── SIDEBAR ── */
+        .sidebar {
+            position: fixed;
+            left:0; top:0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            height: 100dvh;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+            transition: width 0.3s ease, transform 0.35s ease;
+            overflow: hidden;
+        }
+
+        .sidebar.collapsed {
+            width: var(--sidebar-collapsed);
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 1rem;
+            border-bottom: 1px solid var(--border);
+            min-height: 64px;
+            position: relative;
+        }
+        .sidebar-header .book-icon {
+            font-size: 1.65rem;
+            color: var(--emerald-500);
+            flex-shrink: 0;
+        }
+        .sidebar-header h1 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            color: var(--text);
+            white-space: nowrap;
+            opacity: 1;
+            transition: opacity 0.25s;
+        }
+        .sidebar.collapsed .sidebar-header h1 { opacity: 0; }
+
+        .sidebar-toggle {
+            position: absolute;
+            top: 14px; right: -38px;
+            width: 34px; height: 34px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 110;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+        .sidebar-toggle:hover {
+            background: var(--slate-100);
+            color: var(--text);
+        }
+
+        .nav-section-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--slate-400);
+            padding: 0.75rem 1rem 0.25rem;
+            white-space: nowrap;
+            transition: opacity 0.25s;
+        }
+        .sidebar.collapsed .nav-section-label { opacity: 0; }
+
+        .nav-buttons {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.65rem 0.85rem;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            text-decoration: none;
+            text-align: left;
+        }
+        .nav-btn i { width: 20px; text-align: center; flex-shrink: 0; }
+        .nav-btn:hover { background: var(--slate-100); color: var(--text); }
+        .nav-btn.active { background: var(--slate-800); color: #fff; }
+        .nav-btn.active:hover { background: var(--slate-900); }
+        .nav-btn span { transition: opacity 0.25s; }
+        .sidebar.collapsed .nav-btn span { opacity: 0; }
+
+        .nav-menu {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0.5rem 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+        .nav-menu::-webkit-scrollbar { width: 3px; }
+        .nav-menu::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.6rem 0.85rem;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            text-align: left;
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+        .nav-item i { width: 20px; text-align: center; flex-shrink: 0; }
+        .nav-item:hover { background: var(--slate-100); color: var(--text); }
+        .nav-item.active {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid var(--emerald-500);
+            font-weight: 600;
+        }
+        .nav-item span { transition: opacity 0.25s; }
+        .sidebar.collapsed .nav-item span { opacity: 0; }
+
+        .sidebar-footer {
+            padding: 0.75rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.6rem;
+            color: var(--slate-400);
+            text-align: center;
+            white-space: nowrap;
+            transition: opacity 0.25s;
+        }
+        .sidebar.collapsed .sidebar-footer { opacity: 0; }
+
+        /* ── MAIN CONTENT ── */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 2rem;
+            max-width: 960px;
+            width: calc(100% - var(--sidebar-width));
+            transition: margin-left 0.3s ease, width 0.3s ease;
+        }
+        .sidebar.collapsed ~ .main-content {
+            margin-left: var(--sidebar-collapsed);
+            width: calc(100% - var(--sidebar-collapsed));
+        }
+
+        /* ── MOBILE HEADER ── */
+        .mobile-header {
+            display: none;
+            position: sticky;
+            top: 0;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 0.6rem 1rem;
+            z-index: 90;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 56px;
+        }
+        .mobile-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: var(--font-serif);
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: var(--text);
+            letter-spacing: 0.04em;
+        }
+        .mobile-title i { color: var(--emerald-500); }
+        .mobile-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        .mobile-nav-btn, .dark-toggle, .hamburger {
+            padding: 0.45rem 0.55rem;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s, color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            text-decoration: none;
+        }
+        .mobile-nav-btn:hover, .dark-toggle:hover, .hamburger:hover {
+            background: var(--slate-100);
+            color: var(--text);
+        }
+        .mobile-nav-btn.active {
+            background: var(--slate-800);
+            color: #fff;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.35);
+            z-index: 99;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        .sidebar-overlay.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        /* ── COVER ── */
+        .cover {
+            text-align: center;
+            padding: 3rem 1rem 5rem;
+            animation: fadeInUp 0.7s ease-out;
+        }
+        .cover .book-icon-large {
+            font-size: 3.5rem;
+            color: var(--emerald-500);
+            margin-bottom: 1.5rem;
+        }
+        .cover h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            font-weight: 900;
+            color: var(--text);
+            letter-spacing: 0.04em;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+        .cover h1 span { color: var(--emerald-500); }
+        .cover .subtitle {
+            text-transform: uppercase;
+            letter-spacing: 0.28em;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        .cover .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--emerald-500);
+            margin: 1.5rem auto;
+            border-radius: 2px;
+        }
+
+        /* ── PREAMBLE ── */
+        .preamble {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        .preamble-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+        .preamble-content p {
+            font-family: var(--font-serif);
+            font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+            color: var(--text);
+            line-height: 1.75;
+            margin-bottom: 1.25rem;
+        }
+        .preamble-content p:last-child { margin-bottom: 0; }
+
+        /* ── DECREES ── */
+        .decrees-container {
+            margin-bottom: 3rem;
+        }
+        .decree {
+            margin-bottom: 5rem;
+        }
+        .decree-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 1rem;
+        }
+        .decree-header .decree-num {
+            font-family: var(--font-serif);
+            font-size: clamp(1.6rem, 4vw, 2rem);
+            font-weight: 900;
+            color: var(--emerald-500);
+        }
+        .decree-header h2 {
+            font-family: var(--font-serif);
+            font-size: clamp(1.4rem, 3.5vw, 2rem);
+            font-weight: 900;
+            color: var(--text);
+            letter-spacing: 0.04em;
+        }
+
+        .section {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            border-left: 3px solid var(--border);
+            padding-left: 1.25rem;
+            transition: border-color 0.25s;
+        }
+        .section:hover { border-color: var(--emerald-500); }
+        .section-number {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--slate-400);
+            font-weight: 700;
+            flex-shrink: 0;
+            width: 32px;
+            text-align: right;
+            padding-top: 0.15rem;
+        }
+        .section-content {
+            flex: 1;
+            min-width: 0;
+        }
+        .section-content h3 {
+            font-size: clamp(1.05rem, 2vw, 1.35rem);
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+        }
+        .section-content p {
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 0.8rem;
+        }
+        .section-content ul {
+            list-style: none;
+            padding-left: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .section-content li {
+            position: relative;
+            padding-left: 1.4rem;
+            margin-bottom: 0.4rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+        .section-content li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--emerald-500);
+            font-weight: 700;
+        }
+
+        .judgement {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 10px;
+            padding: 1.1rem 1.25rem;
+            margin-top: 1rem;
+        }
+        .judgement h4 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--emerald-700);
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .judgement p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.35rem;
+        }
+        .judgement strong { color: var(--text); }
+
+        .note-block {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 0.85rem 1.1rem;
+            margin-top: 1rem;
+            border-radius: 0 10px 10px 0;
+            font-size: 0.85rem;
+            color: #1e40af;
+            line-height: 1.55;
+        }
+
+        /* ── DARK MODE ADJUSTMENTS ── */
+        body.dark .judgement {
+            background: #064e3b;
+            border-color: #065f46;
+            color: #d1fae5;
+        }
+        body.dark .judgement p { color: #d1fae5; }
+        body.dark .judgement h4 { color: #6ee7b7; }
+        body.dark .note-block {
+            background: #1e3a5f;
+            border-color: #3b82f6;
+            color: #bfdbfe;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        .footer i { font-size: 1.3rem; margin-bottom: 0.75rem; color: var(--slate-300); }
+        .footer p { font-family: var(--font-serif); font-size: 0.8rem; letter-spacing: 0.06em; margin-bottom: 0.35rem; }
+        .footer .credit { color: var(--emerald-600); font-weight: 700; }
+
+        /* ── BACK TO TOP ── */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, background 0.2s;
+            z-index: 50;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            box-shadow: var(--shadow);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background: var(--slate-100);
+            color: var(--text);
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── PRINT STYLES ── */
+        @media print {
+            .sidebar, .mobile-header, .sidebar-overlay, .back-to-top, .nav-buttons, .dark-toggle, .hamburger {
+                display: none !important;
+            }
+            .main-content {
+                margin-left: 0 !important;
+                width: 100% !important;
+                padding: 1cm;
+            }
+            body {
+                background: #fff;
+                color: #000;
+                font-size: 12pt;
+            }
+            .judgement, .note-block {
+                background: #f0f0f0 !important;
+                border: 1px solid #ccc !important;
+                color: #000 !important;
+            }
+            .cover h1, .decree-header h2, .section-content h3 { color: #000 !important; }
+            .footer { border-top: 1px solid #ccc; }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (min-width: 1025px) {
+            .sidebar-toggle { display: flex; }
+        }
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: var(--sidebar-collapsed);
+            }
+            .sidebar.expanded {
+                width: var(--sidebar-width);
+            }
+            .main-content {
+                margin-left: var(--sidebar-collapsed);
+                width: calc(100% - var(--sidebar-collapsed));
+            }
+            .sidebar.expanded ~ .main-content {
+                margin-left: var(--sidebar-width);
+                width: calc(100% - var(--sidebar-width));
+            }
+            .sidebar-toggle { display: flex; }
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: var(--sidebar-width);
+                box-shadow: 4px 0 20px rgba(0,0,0,0.12);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .sidebar .nav-btn span,
+            .sidebar .nav-item span,
+            .sidebar .nav-section-label,
+            .sidebar .sidebar-footer,
+            .sidebar-header h1 { opacity: 1; }
+            .sidebar-toggle { display: none; }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 1rem;
+            }
+            .mobile-header { display: flex; }
+            .section {
+                flex-direction: column;
+                gap: 0.2rem;
+                padding-left: 1rem;
+            }
+            .section-number {
+                text-align: left;
+                width: auto;
+                font-size: 1rem;
+            }
+            .cover { padding: 2rem 0.5rem 3rem; }
+            .preamble-content { padding: 1.5rem 1.25rem; }
+            .decree-header { flex-direction: column; gap: 0.25rem; }
+        }
+        @media (max-width: 480px) {
+            .cover h1 { font-size: 1.8rem; }
+            .decree-header h2 { font-size: 1.2rem; }
+            .section-content h3 { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar expanded" id="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-book book-icon"></i>
+            <h1>MCU</h1>
+            <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar width">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+
+        <span class="nav-section-label">Navigation</span>
+        <div class="nav-buttons">
+            <button class="nav-btn active" data-view="codex">
+                <i class="fas fa-book"></i> <span>Codex</span>
+            </button>
+            <a href="quiz.html" class="nav-btn">
+                <i class="fas fa-sword"></i> <span>Trial Quiz</span>
+            </a>
+        </div>
+
+        <span class="nav-section-label">Decrees</span>
+        <nav class="nav-menu" id="nav-menu">
+            <button class="nav-item active" data-section="preamble">
+                <i class="fas fa-scroll"></i> <span>Preamble</span>
+            </button>
+            <button class="nav-item" data-section="decree-i">
+                <i class="fas fa-balance-scale"></i> <span>Decree I</span>
+            </button>
+            <button class="nav-item" data-section="decree-ii">
+                <i class="fas fa-users-cog"></i> <span>Decree II</span>
+            </button>
+            <button class="nav-item" data-section="decree-iii">
+                <i class="fas fa-comments"></i> <span>Decree III</span>
+            </button>
+            <button class="nav-item" data-section="decree-iv">
+                <i class="fas fa-shield-alt"></i> <span>Decree IV</span>
+            </button>
+            <button class="nav-item" data-section="decree-v">
+                <i class="fas fa-gavel"></i> <span>Decree V</span>
+            </button>
+        </nav>
+        <div class="sidebar-footer">BELPHEGOR BERSERKERS</div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content" id="main-content">
+        <!-- Mobile Header -->
+        <header class="mobile-header">
+            <div class="mobile-title">
+                <i class="fas fa-book"></i>
+                <span>MCU Codex</span>
+            </div>
+            <div class="mobile-actions">
+                <button class="dark-toggle mobile-nav-btn" id="dark-toggle-mobile" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="quiz.html" class="mobile-nav-btn" aria-label="Trial Quiz">
+                    <i class="fas fa-sword"></i>
+                </a>
+                <button class="hamburger" id="hamburger" aria-label="Open menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Cover Section -->
+        <section class="cover">
+            <i class="fas fa-book book-icon-large"></i>
+            <h1>The Forbidden <span>Legacy</span></h1>
+            <p class="subtitle">— Established For The University —</p>
+            <div class="divider"></div>
+        </section>
+
+        <!-- Preamble -->
+        <section class="preamble" id="preamble">
+            <div class="preamble-content">
+                <p>"We, the members of this University, in order to maintain a structured, harmonious, and disciplined environment, do hereby establish this Forbidden Legacy. All members, regardless of rank—be they Demons, Berserkers, Tormentors, or Mephistopheles—are bound by these sacred Decrees to uphold mutual respect, personal accountability, and the integrity of our institution."</p>
+                <p>"The dominion of this Forbidden Legacy shall extend across the Main Chamber, the Sinnercells, the Tormentors, and the Berserkers' Chamber."</p>
+            </div>
+        </section>
+
+        <!-- Decrees -->
+        <div class="decrees-container">
+            <!-- Decree I -->
+            <section class="decree" id="decree-i">
+                <div class="decree-header">
+                    <span class="decree-num">01</span>
+                    <h2>DECREE I: CODE OF CONDUCT AND DISCIPLINE</h2>
+                </div>
+                <div class="sections">
+                    <!-- Section 1 -->
+                    <div class="section">
+                        <div class="section-number">01</div>
+                        <div class="section-content">
+                            <h3>Section 1. Standards of Manners.</h3>
+                            <p>All members, regardless of position, shall maintain composure during conflicts and demonstrate respectful, responsible, and self-controlled behavior at all times.</p>
+                            <div class="judgement">
+                                <h4><i class="fas fa-gavel"></i> Judgement</h4>
+                                <p><strong>Sinnercell Level, Tormentors and Mephistopheles:</strong> First offense would be a warning issued in the Judgement Chamber, where the member will be called to explain their actions. Failure to show understanding or a repeated offense will lead to a final hearing, where a decision of temporary suspension or expulsion may be made based on the severity of the conduct.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Section 2 -->
+                    <div class="section">
+                        <div class="section-number">02</div>
+                        <div class="section-content">
+                            <h3>Section 2. Identification Protocols.</h3>
+                            <p>All members must wear their identification badges at all times. Failure to do so will result in a first warning; repeated offenses will lead to expulsion.</p>
+                            <div class="judgement">
+                                <h4><i class="fas fa-gavel"></i> Judgement</h4>
+                                <p><strong>Sinnercell Level:</strong> Warning; Expulsion</p>
+                                <p><strong>Tormentors and Mephistopheles:</strong> Warning; Termination</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Section 3 -->
+                    <div class="section">
+                        <div class="section-number">03</div>
+                        <div class="section-content">
+                            <h3>Section 3. Formalities of Address.</h3>
+                            <p>High-ranking officials, specifically Tormentors and Mephistopheles, must be addressed formally by their titles, "Ms." or "Mr." followed by their surname; alternatively, they may also be addressed as "Ms." or "Mr." followed by their first name.</p>
+                            <div class="judgement">
+                                <h4><i class="fas fa-gavel"></i> Judgement</h4>
+                                <p><strong>Sinnercell Level:</strong> First offense, Warning; second offense, 500 deduction points</p>
+                                <p><strong>Tormentors and Mephistopheles:</strong> Warning; formal reprimand.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Section 4 -->
+                    <div class="section">
+                        <div class="section-number">04</div>
+                        <div class="section-content">
+                            <h3>Section 4. Prohibition of Obscenity.</h3>
+                            <p>Profanity is strictly forbidden during weekdays. However, if the profanity is fully censored or completely concealed with no visible traces, it shall not be considered as violation. Any profanity that remains visible, partially uncensored, or still readable shall be counted as a violation.</p>
+                            <p>Sexual language and R18+ content are prohibited without exception.</p>
+                            <div class="judgement">
+                                <h4><i class="fas fa-gavel"></i> Judgement</h4>
+                                <p><strong>Sinnercell Level:</strong> 2000 deduction points</p>
+                                <p><strong>Tormentors and Mephistopheles:</strong> Sign + 2 recruits</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Section 5 -->
+                    <div class="section">
+                        <div class="section-number">05</div>
+                        <div class="section-content">
+                            <h3>Section 5. Public Decorum.</h3>
+                            <p>Inappropriate behavior and public displays of affection are strictly prohibited within the university.</p>
+                            <div class="judgement">
+                                <h4><i class="fas fa-gavel"></i> Judgement</h4>
+                                <p><strong>Sinnercell Level:</strong> 2000 deduction points</p>
+                                <p><strong>Tormentors and Mephistopheles:</strong> Sign + 2 recruits</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Decree II -->
+            <section class="decree" id="decree-ii">
+                <div class="decree-header">
+                    <span class="decree-num">02</span>
+                    <h2>DECREE II: HIERARCHY AND ADMINISTRATIVE AUTHORITY</h2>
+                </div>
+                <div class="sections">
+                    <div class="section">
+                        <div class="section-number">01</div>
+                        <div class="section-content">
+                            <h3>Section 1. Duty of Participation.</h3>
+                            <p>Every member is constitutionally obligated to fulfill their assigned tasks and actively participate in their designated roles.</p>
+                            <div class="judgement">
+                                <h4><i class="fas fa-gavel"></i> Judgement</h4>
+                                <p><strong>Sinnercell Level:</strong> (Varies according to the discretion of the Sentinel)</p>
+                                <p><strong>Tormentors and Mephistopheles:</strong> Sign + Recruit; Termination</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-number">02</div>
+                        <div class="section-content">
+                            <h3>Section 2. Administrative Control.</h3>
+                            <p>The power to alter nicknames, group imagery, themes, and institutional settings is reserved exclusively for Mephistopheles, Tormentors, and Berserkers. Unauthorized changes will result in penalties.</p>
+                            <div class="judgement">
+                                <h4><i class="fas fa-gavel"></i> Judgement</h4>
+                                <p><strong>Sinnercell Level (excluding berserkers):</strong> 500 deduction points</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-number">03</div>
+                        <div class="section-content">
+                            <h3>Section 3. Membership Management.</h3>
+                            <p>Only Mephistopheles, Tormentors, and Berserkers possess the authority to add or remove members. Formal removals shall occur on the days when an individual reaches the three-day inactivity.</p>
+                            <p><strong>Inactivity:</strong> Members inactive for more than two days without valid justification shall be removed.</p>
+                            <p><strong>Hiatus Violations:</strong> Failure to return on the specified date following a hiatus results in automatic expulsion.</p>
+                            <p><strong>Re-entry:</strong> Members who depart voluntarily are barred from rejoining for 14 days; violation of this period results in rejection.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Decree III -->
+            <section class="decree" id="decree-iii">
+                <div class="decree-header">
+                    <span class="decree-num">03</span>
+                    <h2>DECREE III: COMMUNICATION INTEGRITY</h2>
+                </div>
+                <div class="sections">
+                    <div class="section">
+                        <div class="section-number">01</div>
+                        <div class="section-content">
+                            <h3>Section 1. Transmission Permanence.</h3>
+                            <p>The "unsending" of messages within any group registry is strictly prohibited unless they contain real-world information. Editing is permitted, provided it is not used to mask sexual undertones; such deception shall not be tolerated.</p>
+                            <div class="judgement">
+                                <h4><i class="fas fa-gavel"></i> Judgement</h4>
+                                <p><strong>Sinnercell Level:</strong> 500 deduction points</p>
+                                <p><strong>Tormentors and Mephistopheles:</strong> Sign + 2 recruits</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-number">02</div>
+                        <div class="section-content">
+                            <h3>Section 2. The Decree of Silence (Chat Off).</h3>
+                            <p>The invocation of "Chat Off" may only be declared by a Mephistopheles, Tormentors or Berserkers. Once enforced, all must fall silent—no exceptions. Permission to Chat (PTC) is strictly forbidden. No utterance, no message—unless sanctioned by the authority who silenced the space. Only when given leave may questions or complaints be voiced.</p>
+                            <div class="note-block">
+                                <strong>Note for Berserkers, Tormentors and Mephistopheles only:</strong> Only the one who initiated the "Chat Off" holds the right to lift it. Any interference—such as turning the chat back on without rightful authority—shall be considered a violation. Respect among the ranks is non-negotiable; do not override your peer's silence with your own voice.
+                            </div>
+                            <div class="judgement">
+                                <h4><i class="fas fa-gavel"></i> Judgement</h4>
+                                <p><strong>Sinnercell Level:</strong> 500 deduction points</p>
+                                <p><strong>Tormentors and Mephistopheles:</strong> Sign + 2 recruits</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-number">03</div>
+                        <div class="section-content">
+                            <h3>Section 3. Anti-Spam Measures.</h3>
+                            <p>The excessive use of likes, emojis, stickers, or repeating typos more than four times is prohibited.</p>
+                            <div class="judgement">
+                                <h4><i class="fas fa-gavel"></i> Judgement</h4>
+                                <p><strong>Sinnercell Level:</strong> 500 deduction points</p>
+                                <p><strong>Tormentors and Mephistopheles:</strong> Sign + 2 recruits</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Decree IV -->
+            <section class="decree" id="decree-iv">
+                <div class="decree-header">
+                    <span class="decree-num">04</span>
+                    <h2>DECREE IV: INSTITUTIONAL INTEGRITY AND LOYALTY</h2>
+                </div>
+                <div class="sections">
+                    <div class="section">
+                        <div class="section-number">01</div>
+                        <div class="section-content">
+                            <h3>Section 1. Conflicts of Interest.</h3>
+                            <p>Romantic relationships between authority figures (Tormentors/Mephistopheles) and demons are strictly prohibited to prevent favoritism, bias, or manipulation.</p>
+                            <p>The following relationships are not tolerated:</p>
+                            <ul>
+                                <li>Mephistopheles &amp; Tormentors</li>
+                                <li>Mephistopheles &amp; Demons</li>
+                                <li>Tormentors &amp; Demons</li>
+                            </ul>
+                            <div class="judgement">
+                                <h4><i class="fas fa-gavel"></i> Judgement</h4>
+                                <p><strong>Sinnercell Level:</strong> Expulsion</p>
+                                <p><strong>Tormentors and Mephistopheles:</strong> Termination</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-number">02</div>
+                        <div class="section-content">
+                            <h3>Section 2. Exclusivity and Espionage.</h3>
+                            <p>The creation of multiple or shared accounts is forbidden. Members must dedicate themselves to this University exclusively; participating in multiple institutions to facilitate espionage is strictly prohibited. Members are encouraged to visit any Sinnercell during weekends, but espionage activities will not be tolerated. Those under hiatus are barred from such visitations.</p>
+                            <div class="judgement">
+                                <h4><i class="fas fa-gavel"></i> Judgement</h4>
+                                <p><strong>Sinnercell Level:</strong> Warning; Expulsion</p>
+                                <p><strong>Tormentors and Mephistopheles:</strong> Warning; Termination</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-number">03</div>
+                        <div class="section-content">
+                            <h3>Section 3. Sinnercell Stability.</h3>
+                            <p>Changing of Sinnercell is strictly prohibited to maintain structure, accountability, and inter-group harmony. For returning members, transference to another Sinnercell shall remain forbidden. Only upon the reopening of the university may they be permitted to transfer.</p>
+                            <p>Exemptions may be granted under the following validated conditions:</p>
+                            <ul>
+                                <li>Transfer due to long-term inactivity of the assigned cell or its leader.</li>
+                                <li>Presence of irreconcilable conflicts or proven incompatibility that affect the mental well-being or effective participation of a member.</li>
+                                <li>Administrative reshuffling authorized by the Mephistopheles.</li>
+                            </ul>
+                            <div class="note-block">
+                                <strong>Note:</strong> "Feeling out of place" may be considered a valid reason only when substantial efforts to resolve the issue have failed and the misalignment proves disruptive to participation or personal well-being. Requests must undergo review and approval by the overseeing authority.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-number">04</div>
+                        <div class="section-content">
+                            <h3>Section 4. Confidentiality.</h3>
+                            <p>Only authorized information about the university may be shared publicly. Unauthorized disclosures will be penalized.</p>
+                            <div class="judgement">
+                                <h4><i class="fas fa-gavel"></i> Judgement</h4>
+                                <p><strong>Sinnercell Level:</strong> Warning; Expulsion</p>
+                                <p><strong>Tormentors and Mephistopheles:</strong> Warning; Termination</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Decree V -->
+            <section class="decree" id="decree-v">
+                <div class="decree-header">
+                    <span class="decree-num">05</span>
+                    <h2>DECREE V: PENAL CODES AND "SIGNS"</h2>
+                </div>
+                <div class="sections">
+                    <div class="section">
+                        <div class="section-number">01</div>
+                        <div class="section-content">
+                            <h3>Section 1. Fairness and Reporting.</h3>
+                            <p>Fairness is a core value; prohibiting any form of favouritism to ensure equal opportunities and a harmonious environment. Members must report issues of unfairness to the Mephistopheles.</p>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-number">02</div>
+                        <div class="section-content">
+                            <h3>Section 2. The Marks of Violation.</h3>
+                            <p>• This sign "☒" is added to the nickname of a Mephistopheles or Tormentor for duty negligence</p>
+                            <p>• This sign "⊝" is added to the nickname of somebody who will file a hiatus form.</p>
+                            <p>• This sign "⨷" is added to the nickname of a Mephistopheles and Tormentor who violate a decree without prior warning.</p>
+                            <p>Each mark excluding the hiatus sign requires the recruitment of two (2) new members within 48 hours as a penalty. Failure to meet this requirement will result in the permanent retention of the mark. Accumulating three (3) violation marks will lead to immediate expulsion from the university.</p>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-number">03</div>
+                        <div class="section-content">
+                            <h3>Section 3. The Administration of Signs</h3>
+                            <p><strong>Placement of Signs:</strong> All disciplinary signs or marks shall be appended exclusively to the member's nickname within the Sinnercell group chats.</p>
+                            <p><strong>Mandatory Seclusion:</strong> Any member who receives a mark of violation or hiatus shall be automatically removed from the main group chat.</p>
+                            <p><strong>Conditions of Reinstatement:</strong> Access to the main group chat shall be restored only upon the official lifting of the mark, following the fulfillment of all restorative penalties or recruitment quotas.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <i class="fas fa-book"></i>
+            <p>ESTABLISHED BY THE MEMBERS OF THE UNIVERSITY</p>
+            <p class="credit">CREATED BY BELPHEGOR BERSERKERS</p>
+        </footer>
+    </main>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="back-to-top" title="Back to top" role="button" tabindex="0" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        (function() {
+            // ── Dark Mode ──
+            function initDarkMode() {
+                const stored = localStorage.getItem('mcu_dark_mode');
+                if (stored === 'true') document.body.classList.add('dark');
+                updateDarkIcons();
+
+                const toggles = document.querySelectorAll('.dark-toggle');
+                toggles.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const isDark = document.body.classList.toggle('dark');
+                        localStorage.setItem('mcu_dark_mode', isDark ? 'true' : 'false');
+                        updateDarkIcons();
+                    });
+                });
+            }
+
+            function updateDarkIcons() {
+                const icons = document.querySelectorAll('.dark-toggle i');
+                const isDark = document.body.classList.contains('dark');
+                icons.forEach(icon => {
+                    icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+                });
+            }
+
+            // ── Sidebar & Mobile ──
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            const toggleBtn = document.getElementById('sidebar-toggle');
+            const hamburger = document.getElementById('hamburger');
+            const navItems = document.querySelectorAll('.nav-item');
+            let activeSection = 'preamble';
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                    if (window.innerWidth >= 1025) {
+                        sidebar.classList.toggle('collapsed');
+                        localStorage.setItem('mcu_sidebar_collapsed', sidebar.classList.contains('collapsed') ? 'true' : 'false');
+                        const icon = toggleBtn.querySelector('i');
+                        if (sidebar.classList.contains('collapsed')) {
+                            icon.className = 'fas fa-chevron-right';
+                        } else {
+                            icon.className = 'fas fa-chevron-left';
+                        }
+                    } else if (window.innerWidth >= 769) {
+                        sidebar.classList.toggle('expanded');
+                    }
+                });
+            }
+
+            hamburger.addEventListener('click', () => {
+                sidebar.classList.add('open');
+                overlay.classList.add('visible');
+                document.body.style.overflow = 'hidden';
+            });
+
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('visible');
+                document.body.style.overflow = '';
+            });
+
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const sectionId = item.dataset.section;
+                    const el = document.getElementById(sectionId);
+                    if (el) {
+                        const offset = 80;
+                        const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                        activeSection = sectionId;
+                        updateNavActive();
+                    }
+                    // Close mobile sidebar
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.remove('open');
+                        overlay.classList.remove('visible');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+
+            function updateNavActive() {
+                navItems.forEach(item => {
+                    item.classList.toggle('active', item.dataset.section === activeSection);
+                });
+            }
+
+            // Scroll spy
+            const sectionIds = ['preamble', 'decree-i', 'decree-ii', 'decree-iii', 'decree-iv', 'decree-v'];
+            window.addEventListener('scroll', () => {
+                let current = 'preamble';
+                for (const id of sectionIds) {
+                    const el = document.getElementById(id);
+                    if (el && el.getBoundingClientRect().top <= 180) {
+                        current = id;
+                    }
+                }
+                if (current !== activeSection) {
+                    activeSection = current;
+                    updateNavActive();
+                }
+            });
+
+            // Back to top
+            const backBtn = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                backBtn.classList.toggle('visible', window.scrollY > 500);
+            });
+            backBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            backBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+
+            // Collapsed state persistence
+            if (localStorage.getItem('mcu_sidebar_collapsed') === 'true') {
+                sidebar.classList.add('collapsed');
+                if (toggleBtn) {
+                    toggleBtn.querySelector('i').className = 'fas fa-chevron-right';
+                }
+            }
+
+            initDarkMode();
+        })();
+    </script>
+</body>
+</html>
