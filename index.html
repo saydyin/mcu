@@ -43,7 +43,7 @@
         }
         .icon { width: 1em; height: 1em; display: inline-block; vertical-align: -0.125em; fill: currentColor; }
 
-        /* ----- Top bar (centered brand, hamburger, dark toggle) ----- */
+        /* Top bar (centered brand, hamburger, dark toggle) */
         .top-bar {
             background: var(--card-bg);
             border-bottom: 1px solid var(--border);
@@ -386,7 +386,7 @@
             color: var(--text-secondary);
         }
 
-        /* ========== SANCTUARY CONTENT (Facebook links + terminology) ========== */
+        /* ========== SANCTUARY CONTENT (images instead of text links) ========== */
         .page-header {
             text-align: center;
             margin-bottom: 2rem;
@@ -425,40 +425,40 @@
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 1.2rem;
+            padding: 1rem;
             transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
             box-shadow: var(--shadow);
+            text-align: center;
         }
         .sanctuary-card:hover {
             transform: translateY(-4px);
             border-color: var(--emerald-500);
             box-shadow: 0 12px 24px rgba(0,0,0,0.08);
         }
+        .sanctuary-image {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            display: block;
+            transition: opacity 0.2s;
+        }
+        .sanctuary-image-link:hover .sanctuary-image {
+            opacity: 0.9;
+        }
         .sanctuary-title {
             font-weight: 600;
             font-size: 1rem;
             color: var(--emerald-500);
-            margin-bottom: 0.5rem;
-        }
-        .sanctuary-link {
-            display: inline-block;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            word-break: break-all;
-            margin-bottom: 0.75rem;
-            text-decoration: none;
-            border-bottom: 1px dotted var(--border);
-        }
-        .sanctuary-link:hover {
-            color: var(--emerald-500);
-            border-bottom-color: var(--emerald-500);
+            margin: 0.5rem 0 0.25rem;
         }
         .sanctuary-desc {
             font-size: 0.85rem;
             color: var(--text-secondary);
             line-height: 1.4;
+            margin-top: 0.25rem;
         }
 
+        /* Terminology (unchanged from original) */
         .terminology {
             margin-top: 2rem;
         }
@@ -761,7 +761,7 @@
         </defs>
     </svg>
 
-    <!-- CAPYBARA LOADING OVERLAY (full) -->
+    <!-- CAPYBARA LOADING OVERLAY -->
     <div id="loading-overlay" class="loading-overlay">
         <div class="capybaraloader">
             <div class="capybara">
@@ -818,7 +818,7 @@
         </div>
     </div>
 
-    <!-- MAIN CONTENT (Sanctuaries & Terminology) - hidden until code correct -->
+    <!-- MAIN CONTENT (Sanctuaries & Terminology) -->
     <div id="page-wrapper">
         <header class="top-bar">
             <a href="#" class="brand"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
@@ -832,7 +832,7 @@
             <a href="#" class="mobile-nav-btn active"><svg class="icon"><use href="#icon-flame"/></svg> Sanctuaries</a>
             <a href="front.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
             <a href="codex.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-book"/></svg> Codex</a>
-            <a href="quiz.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-sword"/></svg> Quiz</a>
+            <a href="quiz.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-sword"/></svg> Trial</a>
             <a href="students.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-users"/></svg> Students</a>
         </div>
         <div class="menu-overlay" id="menu-overlay"></div>
@@ -844,32 +844,103 @@
                 <div class="divider"></div>
             </div>
 
-            <!-- SANCTUARY LINKS (full list) -->
+            <!-- SANCTUARY GRID WITH IMAGES -->
             <div class="sanctuary-grid">
-                <div class="sanctuary-card"><div class="sanctuary-title">Ꮚ. MCU - FIENDSPIRE SANCTUARY</div><a href="https://www.facebook.com/groups/1990019005732669/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/1990019005732669/</a><div class="sanctuary-desc">➛ This contains all the university announcements and information.</div></div>
-                <div class="sanctuary-card"><div class="sanctuary-title">Ꮚ. MCU - NEFARIOUS SANCTUARY</div><a href="https://www.facebook.com/groups/2232201527313883/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/2232201527313883/</a><div class="sanctuary-desc">➛ This contains all the university's convergences, covenants, gamblings, cryptworks, and unholy sovereignty.</div></div>
-                <div class="sanctuary-card"><div class="sanctuary-title">Ꮚ. MCU - DEMONOLOGY SANCTUARY</div><a href="https://www.facebook.com/share/g/17Fa2nShau/" target="_blank" class="sanctuary-link">https://www.facebook.com/share/g/17Fa2nShau/</a><div class="sanctuary-desc">➛ This contains all the university's abyssal rhetorics.</div></div>
-                <div class="sanctuary-card"><div class="sanctuary-title">Ꮚ. MCU - NEATHERBOARD SANCTUARY</div><a href="https://www.facebook.com/groups/1277055980538434/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/1277055980538434/</a><div class="sanctuary-desc">➛ This contains all the university members' links to their covenants.</div></div>
-                <div class="sanctuary-card"><div class="sanctuary-title">Ꮚ. MCU - PANDEMONIUM SANCTUARY</div><a href="https://www.facebook.com/groups/588264037077534/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/588264037077534/</a><div class="sanctuary-desc">➛ It serves as freedom wall for all university members.</div></div>
-                <div class="sanctuary-card"><div class="sanctuary-title">Ꮚ. MCU - HELLFIRE SANCTUARY</div><a href="https://www.facebook.com/groups/1279291150973210/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/1279291150973210/</a><div class="sanctuary-desc">➛ This contains all the university events.</div></div>
-                <div class="sanctuary-card"><div class="sanctuary-title">Ꮚ. MCU - BELPHEGOR</div><a href="https://facebook.com/groups/2259171634618441/" target="_blank" class="sanctuary-link">https://facebook.com/groups/2259171634618441/</a><div class="sanctuary-desc">➛ This is our official group page</div></div>
+                <!-- Fiendspire -->
+                <div class="sanctuary-card">
+                    <a href="https://www.facebook.com/groups/1990019005732669/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-image-link">
+                        <img src="MCU Fiendspire.jpg" alt="Fiendspire Sanctuary" class="sanctuary-image" onerror="this.style.opacity=0.5">
+                    </a>
+                    <div class="sanctuary-title">Ꮚ. MCU - FIENDSPIRE SANCTUARY</div>
+                    <div class="sanctuary-desc">➛ This contains all the university announcements and information.</div>
+                </div>
+                <!-- Nefarious -->
+                <div class="sanctuary-card">
+                    <a href="https://www.facebook.com/groups/2232201527313883/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-image-link">
+                        <img src="MCU Nefarious.jpg" alt="Nefarious Sanctuary" class="sanctuary-image">
+                    </a>
+                    <div class="sanctuary-title">Ꮚ. MCU - NEFARIOUS SANCTUARY</div>
+                    <div class="sanctuary-desc">➛ This contains all the university's convergences, covenants, gamblings, cryptworks, and unholy sovereignty.</div>
+                </div>
+                <!-- Demonology -->
+                <div class="sanctuary-card">
+                    <a href="https://www.facebook.com/share/g/17Fa2nShau/" target="_blank" class="sanctuary-image-link">
+                        <img src="MCU Demonology.jpg" alt="Demonology Sanctuary" class="sanctuary-image">
+                    </a>
+                    <div class="sanctuary-title">Ꮚ. MCU - DEMONOLOGY SANCTUARY</div>
+                    <div class="sanctuary-desc">➛ This contains all the university's abyssal rhetorics.</div>
+                </div>
+                <!-- Neatherboard -->
+                <div class="sanctuary-card">
+                    <a href="https://www.facebook.com/groups/1277055980538434/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-image-link">
+                        <img src="MCU Neatherboard.jpg" alt="Neatherboard Sanctuary" class="sanctuary-image">
+                    </a>
+                    <div class="sanctuary-title">Ꮚ. MCU - NEATHERBOARD SANCTUARY</div>
+                    <div class="sanctuary-desc">➛ This contains all the university members' links to their covenants.</div>
+                </div>
+                <!-- Pandemonium -->
+                <div class="sanctuary-card">
+                    <a href="https://www.facebook.com/groups/588264037077534/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-image-link">
+                        <img src="MCU Pandemonium.jpg" alt="Pandemonium Sanctuary" class="sanctuary-image">
+                    </a>
+                    <div class="sanctuary-title">Ꮚ. MCU - PANDEMONIUM SANCTUARY</div>
+                    <div class="sanctuary-desc">➛ It serves as freedom wall for all university members.</div>
+                </div>
+                <!-- Hellfire -->
+                <div class="sanctuary-card">
+                    <a href="https://www.facebook.com/groups/1279291150973210/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-image-link">
+                        <img src="MCU Hellfire.jpg" alt="Hellfire Sanctuary" class="sanctuary-image">
+                    </a>
+                    <div class="sanctuary-title">Ꮚ. MCU - HELLFIRE SANCTUARY</div>
+                    <div class="sanctuary-desc">➛ This contains all the university events.</div>
+                </div>
+                <!-- Belphegor official group -->
+                <div class="sanctuary-card">
+                    <a href="https://facebook.com/groups/2259171634618441/" target="_blank" class="sanctuary-image-link">
+                        <img src="MCU Belphegor.jpg" alt="Belphegor Official Group" class="sanctuary-image">
+                    </a>
+                    <div class="sanctuary-title">Ꮚ. MCU - BELPHEGOR</div>
+                    <div class="sanctuary-desc">➛ This is our official group page</div>
+                </div>
             </div>
 
-            <!-- TERMINOLOGIES (full) -->
+            <!-- TERMINOLOGIES (full list) -->
             <div class="terminology">
                 <h2>〘 <span>TERMINOLOGIES</span> 〙</h2>
                 <div class="role-section">
                     <h3>₪ MEPHISTOPHELES :: EXECUTIVES</h3>
-                    <ul class="role-list"><li><strong>Chancellor</strong> — Founder</li><li><strong>Provost</strong> — Principal</li><li><strong>Infernal</strong> — Dean</li><li><strong>Malefic Infernal</strong> — Assistant Dean</li><li><strong>Scorchscribe</strong> — Artistic Coordinator</li><li><strong>Archivist</strong> — Record Keeper</li><li><strong>Abyss Syndicates</strong> — Board of Directors</li></ul>
+                    <ul class="role-list">
+                        <li><strong>Chancellor</strong> — Founder</li>
+                        <li><strong>Provost</strong> — Principal</li>
+                        <li><strong>Infernal</strong> — Dean</li>
+                        <li><strong>Malefic Infernal</strong> — Assistant Dean</li>
+                        <li><strong>Scorchscribe</strong> — Artistic Coordinator</li>
+                        <li><strong>Archivist</strong> — Record Keeper</li>
+                        <li><strong>Abyss Syndicates</strong> — Board of Directors</li>
+                    </ul>
                 </div>
                 <div class="role-section">
                     <h3>₪ TORMENTORS :: FACULTY</h3>
-                    <ul class="role-list"><li><strong>Sentinels</strong> — Department Heads</li><li><strong>Revenants</strong> — Professors</li><li><strong>Sentinels’ Archivists</strong> — Departments’ Record Keeper</li><li><strong>Warden Curators</strong> — Club Handlers</li><li><strong>Igniters</strong> — Editors</li></ul>
+                    <ul class="role-list">
+                        <li><strong>Sentinels</strong> — Department Heads</li>
+                        <li><strong>Revenants</strong> — Professors</li>
+                        <li><strong>Sentinels’ Archivists</strong> — Departments’ Record Keeper</li>
+                        <li><strong>Warden Curators</strong> — Club Handlers</li>
+                        <li><strong>Igniters</strong> — Editors</li>
+                    </ul>
                 </div>
                 <div class="role-section">
                     <h3>₪ BERSERKERS :: OFFICERS</h3>
-                    <ul class="role-list"><li><strong>Inferno</strong> — President</li><li><strong>Viz Inferno</strong> — Vice President</li><li><strong>Sinister</strong> — Secretary</li><li><strong>Cerberus</strong> — PIO</li><li><strong>Centaurs</strong> — PO</li><li><strong>Demons</strong> — Students</li></ul>
+                    <ul class="role-list">
+                        <li><strong>Inferno</strong> — President</li>
+                        <li><strong>Viz Inferno</strong> — Vice President</li>
+                        <li><strong>Sinister</strong> — Secretary</li>
+                        <li><strong>Cerberus</strong> — PIO</li>
+                        <li><strong>Centaurs</strong> — PO</li>
+                        <li><strong>Demons</strong> — Students</li>
+                    </ul>
                 </div>
+
                 <div class="role-section">
                     <h3>° Cursed Lexicon — Official Terms</h3>
                     <div class="term-grid">
@@ -888,6 +959,7 @@
                         <div class="term-item"><span class="term-name">Cryptworks</span> <span class="term-desc">— Club Activities</span></div>
                         <div class="term-item"><span class="term-name">Tribute Reckoning</span> <span class="term-desc">— Open Forum</span></div>
                     </div>
+
                     <div class="sub-section">
                         <h4>Chambers &amp; Halls</h4>
                         <div class="term-grid">
