@@ -3,520 +3,917 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The Forbidden Legacy — the sacred decrees of the MCU">
-    <title>Forbidden Legacy — MCU Codex</title>
-    <!-- Demonic / Gothic font import + green hellfire vibe -->
+    <meta name="description" content="Belphegor Sinnercell — Forbidden Legacy MCU">
+    <title>Belphegor Sinnercell</title>
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Metal+Mania&family=Special+Elite&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Green hellfire palette – no orange, pure emerald/forest fire */
-            --greenfire-500: #10b981;
-            --greenfire-600: #059669;
-            --greenfire-700: #047857;
-            --greenfire-glow: #34d399;
-            --dark-bg: #0a0507;
-            --card-bg: #130c0e;
-            --text: #ecd9c9;
-            --text-secondary: #b89a8a;
-            --border: #1e3a2f;
-            --shadow: 0 8px 20px rgba(0,0,0,0.5);
-            --font-serif: "Special Elite", "Times New Roman", serif;
-            --font-sans: "Segoe UI", system-ui, sans-serif;
+            --emerald-500: #10b981;
+            --emerald-600: #059669;
+            --emerald-700: #047857;
+            --slate-50: #f8fafc;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-300: #cbd5e1;
+            --slate-400: #94a3b8;
+            --slate-500: #64748b;
+            --slate-600: #475569;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #475569;
+            --border: #e2e8f0;
+            --shadow: 0 4px 12px rgba(0,0,0,0.04);
+            --font-serif: "Special Elite", Georgia, "Times New Roman", serif;
+            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             --font-demonic: 'UnifrakturMaguntia', 'Metal Mania', cursive;
         }
-        body {
-            background: radial-gradient(circle at 20% 30%, #0a1f1a, #020202);
-            color: var(--text);
-            font-family: var(--font-sans);
-            line-height: 1.6;
-            transition: background 0.3s, color 0.3s;
-            min-height: 100vh;
-        }
         body.dark {
-            background: radial-gradient(circle at 20% 30%, #071712, #000000);
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+            --shadow: 0 4px 20px rgba(0,0,0,0.3);
+            --emerald-700: #6ee7b7;
+            --slate-800: #e2e8f0;
         }
-        .icon { width:1em; height:1em; display:inline-block; vertical-align:-0.125em; fill:currentColor; }
 
-        /* ── TOP NAVIGATION BAR ── */
-        .top-nav {
-            background: rgba(5, 12, 10, 0.9);
-            backdrop-filter: blur(8px);
-            border-bottom: 2px solid var(--greenfire-700);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .icon {
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+            vertical-align: -0.125em;
+            fill: currentColor;
+        }
+
+        /* ----- Top bar (centered brand, hamburger, dark toggle) ----- */
+        .top-bar {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
             padding: 0.75rem 1.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: sticky;
             top: 0;
-            z-index: 50;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            z-index: 100;
         }
-        .top-nav .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+
+        .brand {
             font-family: var(--font-demonic);
             font-weight: 900;
             font-size: 1.5rem;
-            color: var(--greenfire-500);
-            text-shadow: 0 0 5px #064e3b;
+            color: var(--text);
             text-decoration: none;
-            letter-spacing: 2px;
-        }
-        .top-nav .brand .icon { color: var(--greenfire-500); }
-        .nav-actions { display: flex; align-items: center; gap: 0.5rem; }
-        .nav-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid #1e4a3a;
-            border-radius: 0px;
-            background: #0f1e18;
-            color: #b8dfc8;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            text-decoration: none;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
-            transition: all 0.25s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            gap: 0.5rem;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        .nav-btn.active {
-            background: var(--greenfire-700);
-            color: #050a08;
-            border-color: var(--greenfire-500);
-            box-shadow: 0 0 8px var(--greenfire-500);
+
+        .brand .icon {
+            color: var(--emerald-500);
+            font-size: 1.3rem;
         }
-        .nav-btn:hover {
-            background: #0b2a20;
-            color: #e6fffa;
-            border-color: var(--greenfire-500);
+
+        .right-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: auto;
         }
+
         .dark-toggle {
             padding: 0.5rem;
-            border: 1px solid #1e4a3a;
-            background: #0f1e18;
-            color: #b8dfc8;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text-secondary);
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 36px;
             height: 36px;
             transition: 0.2s;
         }
-        .dark-toggle:hover { background: #0b2a20; color: var(--greenfire-500); }
 
-        /* ── MAIN CONTENT ── */
-        .main-content {
-            display: flex;
-            justify-content: center;
-            padding: 2rem 1rem;
+        .dark-toggle:hover {
+            background: var(--slate-100);
+            color: var(--text);
         }
-        .content-wrapper {
-            max-width: 960px;
-            width: 100%;
+
+        /* Hamburger icon */
+        .hamburger {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            justify-content: space-between;
+            width: 30px;
+            height: 24px;
+            cursor: pointer;
+            z-index: 101;
         }
 
-        /* ── RESTORED COVER (Forbidden Legacy title) – minimal padding, no extra lines ── */
-        .cover {
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: var(--text);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* Slide-out mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100%;
+            background: var(--card-bg);
+            border-left: 1px solid var(--border);
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+            z-index: 200;
+            transition: right 0.3s ease;
+            padding: 5rem 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 150;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.3s, opacity 0.3s;
+        }
+
+        .menu-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Mobile nav buttons – using system font (same as front.html) */
+        .mobile-nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            font-family: var(--font-sans);
+            font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: normal;
+            color: var(--text);
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .mobile-nav-btn:hover {
+            background: var(--border);
+        }
+
+        .mobile-nav-btn.active {
+            background: var(--emerald-500);
+            color: #fff;
+        }
+
+        /* Main content (unchanged) */
+        .main-content {
+            flex: 1;
+            padding: 2rem 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .page-header {
             text-align: center;
-            padding: 1.5rem 1rem 1rem;
-            animation: fadeInUp 0.7s ease-out;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-family: var(--font-demonic);
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--text);
+            letter-spacing: 2px;
+        }
+
+        .page-header h1 span {
+            color: var(--emerald-500);
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            font-family: var(--font-serif);
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--emerald-500);
+            margin: 0.5rem auto 1.5rem;
+            border-radius: 2px;
+        }
+
+        .carousel {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            box-sizing: border-box;
             position: relative;
         }
-        .cover .book-icon-large {
-            font-size: 3rem;
-            color: var(--greenfire-500);
-            filter: drop-shadow(0 0 5px #047857);
-            margin-bottom: 0.75rem;
+
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            aspect-ratio: 9 / 16;
+            border-radius: 12px;
         }
-        .cover h1 {
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 2.5rem 1rem 1rem;
+            text-align: center;
+            pointer-events: none;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .caption-name {
+            display: block;
             font-family: var(--font-demonic);
-            font-size: clamp(2.8rem, 9vw, 4.8rem);
-            font-weight: 900;
-            color: #e6b422;
-            text-shadow: 3px 3px 0px #1a4a2a, 0 0 10px #10b981;
-            letter-spacing: 5px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+
+        .caption-rank {
+            display: block;
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin-top: 0.2rem;
+            font-family: var(--font-serif);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            padding: 0.4rem 0.8rem;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+            transition: background 0.2s;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .prev {
+            left: 1rem;
+        }
+
+        .next {
+            right: 1rem;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+
+        .carousel-dots .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .carousel-dots .dot.active {
+            background: white;
+        }
+
+        /* Achievements placeholder */
+        .achievements {
+            margin: 3rem auto 2rem;
+            text-align: center;
+        }
+
+        .achievements h2 {
+            font-family: var(--font-demonic);
+            font-size: 2rem;
+            color: var(--text);
+            letter-spacing: 2px;
             margin-bottom: 0.5rem;
         }
-        .cover h1 span {
-            color: var(--greenfire-500);
-            text-shadow: 2px 2px 0px #022c1f;
-        }
-        .cover .subtitle {
-            text-transform: uppercase;
-            letter-spacing: 0.35em;
-            font-size: 0.75rem;
-            color: #b89a8a;
-            font-weight: 600;
-            border-top: 1px solid #2a5a4a;
-            display: inline-block;
-            padding-top: 0.6rem;
+
+        .achievements h2 span {
+            color: var(--emerald-500);
         }
 
-        /* ── PREAMBLE ── */
-        .preamble { margin-bottom: 0.5rem; }
-        .preamble-content {
-            max-width: 760px;
+        .achievements-sub {
+            font-family: var(--font-serif);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .under-construction {
+            background: var(--card-bg);
+            border: 1px dashed var(--emerald-500);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 400px;
             margin: 0 auto;
-            padding: 2rem 2rem;
-            background: rgba(10, 22, 18, 0.85);
-            border: 1px solid var(--greenfire-700);
-            border-radius: 0px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.6), inset 0 0 12px rgba(16, 185, 129, 0.15);
-            backdrop-filter: blur(2px);
-        }
-        .preamble-content p {
-            font-family: var(--font-serif);
-            font-size: 1.1rem;
-            color: #ecd9c9;
-            line-height: 1.75;
-            margin-bottom: 1rem;
-            text-shadow: 0 1px 1px black;
+            text-align: center;
         }
 
-        /* ── DECREES (gothic, green hellfire accents) ── */
-        .decree {
-            margin-bottom: 4rem;
-            border-left: 4px solid var(--greenfire-600);
-            padding-left: 0.5rem;
-        }
-        .decree-header {
-            display: flex;
-            align-items: baseline;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid #1e4a3a;
-            padding-bottom: 0.75rem;
-            flex-wrap: wrap;
-            gap: 0.5rem 0.75rem;
-        }
-        .decree-prefix {
-            font-family: 'Metal Mania', cursive;
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
-            font-weight: 900;
-            color: var(--greenfire-500);
-            letter-spacing: 2px;
-            text-shadow: 1px 1px 0 #022c1f;
-        }
-        .decree-title {
+        .under-construction p {
             font-family: var(--font-serif);
-            font-size: clamp(1.3rem, 3.5vw, 1.9rem);
-            font-weight: 900;
-            color: #e6b8a0;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .section {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            border-left: 3px solid #1e3a2f;
-            padding-left: 1.25rem;
-            transition: all 0.2s;
-            background: rgba(0,0,0,0.2);
-        }
-        .section:hover {
-            border-left-color: var(--greenfire-500);
-            background: rgba(16, 185, 129, 0.08);
-        }
-        .section-number {
-            font-family: 'Metal Mania', cursive;
-            font-size: 1.2rem;
-            color: #5a8a74;
-            font-weight: 700;
-            flex-shrink: 0;
-            width: 36px;
-            text-align: right;
-            padding-top: 0.2rem;
-        }
-        .section-content h3 {
-            font-family: 'Special Elite', monospace;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--greenfire-500);
-            margin-bottom: 0.6rem;
-            letter-spacing: 1px;
-        }
-        .section-content p {
-            color: #cbb5a5;
-            line-height: 1.65;
-        }
-        .section-content ul {
-            list-style: none;
-            padding-left: 0.5rem;
-        }
-        .section-content li {
-            position: relative;
-            padding-left: 1.4rem;
-            margin-bottom: 0.4rem;
-            color: #cbb5a5;
-        }
-        .section-content li::before {
-            content: "⛧";
-            position: absolute;
-            left: 0;
-            color: var(--greenfire-500);
-            font-size: 0.8rem;
-        }
-        .judgement {
-            background: #0f1814;
-            border: 1px solid #1e5a44;
-            border-radius: 0px;
-            padding: 1rem 1.25rem;
-            margin-top: 1rem;
-            box-shadow: inset 0 0 8px #0a2a1a;
-        }
-        .judgement h4 {
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--greenfire-500);
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-        .judgement p {
-            font-size: 0.85rem;
-            color: #cbb5a5;
-        }
-        .note-block {
-            background: #0e1e18;
-            border-left: 4px solid var(--greenfire-500);
-            padding: 0.8rem 1rem;
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            color: #a6d9c4;
-            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
         }
 
-        /* ── FOOTER with "established by the Mephistopheles" ── */
+        .under-construction .emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
         .footer {
             text-align: center;
-            padding: 2rem 0 2.5rem;
-            border-top: 2px solid #1e5a44;
+            padding: 2rem 0 2rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+            background: var(--card-bg);
+        }
+
+        .footer-logo {
+            max-width: 70px;
+            height: auto;
+            margin-bottom: 0.75rem;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .footer-logo:hover {
+            opacity: 1;
+        }
+
+        .footer p {
+            font-family: var(--font-serif);
+            font-size: 0.75rem;
+            letter-spacing: 0.06em;
+            color: var(--text-secondary);
+        }
+
+        .footer .credit {
+            font-family: 'Metal Mania', cursive;
+            color: var(--emerald-500);
+            font-weight: bold;
+            margin-top: 0.25rem;
+        }
+
+        /* Loading overlay – system font (matches front.html) */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            z-index: 9999;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.6rem;
-            margin-top: 1rem;
-            background: rgba(0,0,0,0.4);
-        }
-        .footer-logo {
-            max-width: 85px;
-            filter: drop-shadow(0 0 4px var(--greenfire-500));
-            margin-bottom: 0.2rem;
-        }
-        .footer p {
-            font-family: 'Special Elite', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #b4896e;
-            margin: 0;
-        }
-        .footer .credit {
-            color: var(--greenfire-500);
-            font-weight: bold;
-            text-shadow: 0 0 3px black;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s;
         }
 
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: #0f1814;
-            border: 1px solid var(--greenfire-600);
-            border-radius: 0%;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+        .loading-overlay.hide {
             opacity: 0;
             visibility: hidden;
-            transition: 0.2s;
-            z-index: 50;
-            color: var(--greenfire-500);
-            box-shadow: 0 0 8px black;
-        }
-        .back-to-top.visible { opacity: 1; visibility: visible; }
-        .back-to-top:hover { background: #0b2a20; border-color: var(--greenfire-500); }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(25px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
-        .decree-header::after {
-            content: "⛧";
-            margin-left: auto;
-            color: #1e5a44;
-            font-size: 1rem;
-            opacity: 0.5;
-        }
-        .section:hover .section-number {
-            color: var(--greenfire-500);
-            text-shadow: 0 0 4px #047857;
+        .capybaraloader {
+            width: 14em;
+            height: 10em;
+            position: relative;
+            z-index: 1;
+            --color: rgb(204, 125, 45);
+            --color2: rgb(83, 56, 28);
+            transform: scale(0.75);
         }
 
-        @media (max-width: 768px) {
-            .top-nav { padding: 0.5rem 1rem; }
-            .cover { padding: 1rem 0.75rem 0.5rem; }
-            .cover h1 { letter-spacing: 3px; }
-            .cover .subtitle { letter-spacing: 0.2em; font-size: 0.65rem; }
-            .section { flex-direction: column; gap: 0.2rem; padding-left: 1rem; }
-            .section-number { text-align: left; width: auto; }
-            .decree-header::after { display: none; }
-            .preamble-content { padding: 1.25rem; }
+        .capybara {
+            width: 100%;
+            height: 7.5em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .loader {
+            width: 100%;
+            height: 2.5em;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .capy {
+            width: 85%;
+            height: 100%;
+            background: linear-gradient(var(--color), 90%, var(--color2));
+            border-radius: 45%;
+            position: relative;
+            z-index: 1;
+            animation: movebody 1s linear infinite;
+        }
+
+        .capyhead {
+            width: 7.5em;
+            height: 7em;
+            bottom: 0em;
+            right: 0em;
+            position: absolute;
+            background-color: var(--color);
+            z-index: 3;
+            border-radius: 3.5em;
+            box-shadow: -1em 0em var(--color2);
+            animation: movebody 1s linear infinite;
+        }
+
+        .capyear {
+            width: 2em;
+            height: 2em;
+            background: linear-gradient(-45deg, var(--color), 90%, var(--color2));
+            top: 0em;
+            left: 0em;
+            border-radius: 100%;
+            position: absolute;
+            overflow: hidden;
+            z-index: 3;
+        }
+
+        .capyear:nth-child(2) {
+            left: 5em;
+            background: linear-gradient(25deg, var(--color), 90%, var(--color2));
+        }
+
+        .capyear2 {
+            width: 100%;
+            height: 1em;
+            background-color: var(--color2);
+            bottom: 0em;
+            left: 0.5em;
+            border-radius: 100%;
+            position: absolute;
+            transform: rotate(-45deg);
+        }
+
+        .capymouth {
+            width: 3.5em;
+            height: 2em;
+            background-color: var(--color2);
+            position: absolute;
+            bottom: 0em;
+            left: 2.5em;
+            border-radius: 50%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0.5em;
+        }
+
+        .capylips {
+            width: 0.25em;
+            height: 0.75em;
+            border-radius: 100%;
+            transform: rotate(-45deg);
+            background-color: var(--color);
+        }
+
+        .capylips:nth-child(2) {
+            transform: rotate(45deg);
+        }
+
+        .capyeye {
+            width: 2em;
+            height: 0.5em;
+            background-color: var(--color2);
+            position: absolute;
+            bottom: 3.5em;
+            left: 1.5em;
+            border-radius: 5em;
+            transform: rotate(45deg);
+        }
+
+        .capyeye:nth-child(4) {
+            transform: rotate(-45deg);
+            left: 5.5em;
+            width: 1.75em;
+        }
+
+        .capyleg {
+            width: 6em;
+            height: 5em;
+            bottom: 0em;
+            left: 0em;
+            position: absolute;
+            background: linear-gradient(var(--color), 95%, var(--color2));
+            z-index: 2;
+            border-radius: 2em;
+            animation: movebody 1s linear infinite;
+        }
+
+        .capyleg2 {
+            width: 1.75em;
+            height: 3em;
+            bottom: 0em;
+            left: 3.25em;
+            position: absolute;
+            background: linear-gradient(var(--color), 80%, var(--color2));
+            z-index: 2;
+            border-radius: 0.75em;
+            box-shadow: inset 0em -0.5em var(--color2);
+            animation: moveleg 1s linear infinite;
+        }
+
+        .capyleg2:nth-child(3) {
+            width: 1.25em;
+            left: 0.5em;
+            height: 2em;
+            animation: moveleg2 1s linear infinite 0.075s;
+        }
+
+        @keyframes moveleg {
+            0% {
+                transform: rotate(-45deg) translateX(-5%);
+            }
+
+            50% {
+                transform: rotate(45deg) translateX(5%);
+            }
+
+            100% {
+                transform: rotate(-45deg) translateX(-5%);
+            }
+        }
+
+        @keyframes moveleg2 {
+            0% {
+                transform: rotate(45deg);
+            }
+
+            50% {
+                transform: rotate(-45deg);
+            }
+
+            100% {
+                transform: rotate(45deg);
+            }
+        }
+
+        @keyframes movebody {
+            0% {
+                transform: translateX(0%);
+            }
+
+            50% {
+                transform: translateX(2%);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        .loaderline {
+            width: 50em;
+            height: 0.5em;
+            border-top: 0.5em dashed var(--color2);
+            animation: moveline 10s linear infinite;
+        }
+
+        @keyframes moveline {
+            0% {
+                transform: translateX(0%);
+                opacity: 0%;
+            }
+
+            5% {
+                opacity: 100%;
+            }
+
+            95% {
+                opacity: 100%;
+            }
+
+            100% {
+                opacity: 0%;
+                transform: translateX(-70%);
+            }
+        }
+
+        .loading-text {
+            font-family: var(--font-sans);
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--emerald-500);
+            letter-spacing: 0.2em;
+            margin-top: 1.5rem;
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.6;
+                text-shadow: 0 0 2px var(--emerald-500);
+            }
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 12px var(--emerald-500);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .top-bar {
+                padding: 0.5rem 1rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .achievements h2 {
+                font-size: 1.6rem;
+            }
+
+            .capybaraloader {
+                transform: scale(0.5);
+            }
+
+            .brand {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
     <svg style="display:none;">
         <defs>
+            <symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 23c-3.6 0-8-2.4-8-7.7 0-3.5 2-6.3 3.5-8.2.4-.5 1.2-.3 1.3.3.3 1.5.9 3.2 2.2 4.3.2-.8.5-1.7 1-2.6 1-2 2.5-3.5 3.3-4.3.4-.4 1.1-.2 1.2.3.5 2.5 2.5 5.5 2.5 9.2C18 20.6 15.6 23 12 23z"/></symbol>
             <symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 4h16v2H4zm0 4h16v2H4zm0 4h16v2H4z"/><path d="M4 2h16v2H4zm0 18h16v2H4z"/></symbol>
             <symbol id="icon-sword" viewBox="0 0 24 24"><path d="M15.9 2.1L14.5 .7 7.8 7.4l1.4 1.4-7.4 7.4 1.4 1.4 7.4-7.4 1.4 1.4 6.7-6.7-1.4-1.4z"/></symbol>
             <symbol id="icon-gavel" viewBox="0 0 24 24"><path d="M2 21h20v-2H2v2zm2.3-8.3l2.8-2.8L9 11.8 6.2 14.6l-1.9-1.9zm6.3-6.3l7.1 7.1-2.8 2.8-7.1-7.1 2.8-2.8zm4.2-4.2l2.8 2.8-1.4 1.4-2.8-2.8 1.4-1.4z"/></symbol>
             <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9 9 9 0 00-9-9z"/></symbol>
             <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.2 4.2l1.4 1.4m12.8 12.8l1.4 1.4M1 12h2m18 0h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></symbol>
-            <symbol id="icon-arrow-up" viewBox="0 0 24 24"><path d="M12 4l-8 8 1.4 1.4L11 7.8V20h2V7.8l5.6 5.6L20 12z"/></symbol>
+            <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20v-2c0-2.2 3.6-4 8-4s8 1.8 8 4v2"/><path d="M19 3c1.1 0 2 .9 2 2s-.9 2-2 2"/><path d="M5 3c-1.1 0-2 .9-2 2s.9 2 2 2"/></symbol>
         </defs>
     </svg>
 
-    <nav class="top-nav">
-        <a href="#" class="brand" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
-            <svg class="icon"><use href="#icon-book"/></svg> MCU
-        </a>
-        <div class="nav-actions">
-            <a href="#" class="nav-btn active" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
-                <svg class="icon"><use href="#icon-book"/></svg> Codex
-            </a>
-            <a href="quiz.html" class="nav-btn">
-                <svg class="icon"><use href="#icon-sword"/></svg> Quiz
-            </a>
-            <button class="dark-toggle" id="dark-toggle" aria-label="Toggle dark mode">
-                <svg class="icon"><use href="#icon-moon"/></svg>
-            </button>
+    <!-- Loading overlay (3 seconds) -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="capybaraloader">
+            <div class="capybara">
+                <div class="capyhead">
+                    <div class="capyear"><div class="capyear2"></div></div>
+                    <div class="capyear"><div class="capyear2"></div></div>
+                    <div class="capymouth">
+                        <div class="capylips"></div>
+                        <div class="capylips"></div>
+                    </div>
+                    <div class="capyeye"></div>
+                    <div class="capyeye"></div>
+                </div>
+                <div class="capyleg"></div>
+                <div class="capyleg2"></div>
+                <div class="capyleg2"></div>
+                <div class="capy"></div>
+            </div>
+            <div class="loader"><div class="loaderline"></div></div>
         </div>
-    </nav>
+        <div class="loading-text">SUMMONING THE LEGACY...</div>
+    </div>
+
+    <header class="top-bar">
+        <a href="#" class="brand"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
+        <div class="right-actions">
+            <button class="dark-toggle" id="dark-toggle" aria-label="Toggle dark mode"><svg class="icon"><use href="#icon-moon"/></svg></button>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Slide-out mobile menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#" class="mobile-nav-btn active"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
+        <a href="codex.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-book"/></svg> Codex</a>
+        <a href="quiz.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-sword"/></svg> Quiz</a>
+        <a href="students.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-users"/></svg> Students</a>
+        <a href="front.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-flame"/></svg> Sanctuaries</a>
+    </div>
+    <div class="menu-overlay" id="menu-overlay"></div>
 
     <main class="main-content">
-        <div class="content-wrapper">
-
-            <!-- Restored Forbidden Legacy title with demonic font, no extra lines -->
-            <section class="cover">
-                <svg class="icon book-icon-large"><use href="#icon-book"/></svg>
-                <h1>The Forbidden <span>Legacy</span></h1>
-                <p class="subtitle">— ESTABLISHED FOR THE UNIVERSITY —</p>
-            </section>
-
-            <section class="preamble" id="preamble">
-                <div class="preamble-content">
-                    <p>"We, the members of this University, in order to maintain a structured, harmonious, and disciplined environment, do hereby establish this Forbidden Legacy. All members, regardless of rank—be they Demons, Berserkers, Tormentors, or Mephistopheles—are bound by these sacred Decrees to uphold mutual respect, personal accountability, and the integrity of our institution."</p>
-                    <p>"The dominion of this Forbidden Legacy shall extend across the Main Chamber, the Sinnercells, the Tormentors, and the Berserkers' Chamber."</p>
-                </div>
-            </section>
-
-            <div class="decrees-container">
-                <!-- Decree I -->
-                <section class="decree" id="decree-i">
-                    <div class="decree-header">
-                        <span class="decree-prefix">DECREE I:</span>
-                        <span class="decree-title">CODE OF CONDUCT AND DISCIPLINE</span>
-                    </div>
-                    <div class="sections">
-                        <div class="section"><div class="section-number">01</div><div class="section-content"><h3>Section 1. Standards of Manners.</h3><p>All members, regardless of position, shall maintain composure during conflicts and demonstrate respectful, responsible, and self-controlled behavior at all times.</p><div class="judgement"><h4><svg class="icon"><use href="#icon-gavel"/></svg> Judgement</h4><p><strong>Sinnercell Level, Tormentors and Mephistopheles:</strong> First offense would be a warning issued in the Judgement Chamber, where the member will be called to explain their actions. Failure to show understanding or a repeated offense will lead to a final hearing, where a decision of temporary suspension or expulsion may be made based on the severity of the conduct.</p></div></div></div>
-                        <div class="section"><div class="section-number">02</div><div class="section-content"><h3>Section 2. Identification Protocols.</h3><p>All members must wear their identification badges at all times. Failure to do so will result in a first warning; repeated offenses will lead to expulsion.</p><div class="judgement"><h4><svg class="icon"><use href="#icon-gavel"/></svg> Judgement</h4><p><strong>Sinnercell Level:</strong> Warning; Expulsion</p><p><strong>Tormentors and Mephistopheles:</strong> Warning; Termination</p></div></div></div>
-                        <div class="section"><div class="section-number">03</div><div class="section-content"><h3>Section 3. Formalities of Address.</h3><p>High-ranking officials, specifically Tormentors and Mephistopheles, must be addressed formally by their titles, "Ms." or "Mr." followed by their surname; alternatively, they may also be addressed as "Ms." or "Mr." followed by their first name.</p><div class="judgement"><h4><svg class="icon"><use href="#icon-gavel"/></svg> Judgement</h4><p><strong>Sinnercell Level:</strong> First offense, Warning; second offense, 500 deduction points</p><p><strong>Tormentors and Mephistopheles:</strong> Warning; formal reprimand.</p></div></div></div>
-                        <div class="section"><div class="section-number">04</div><div class="section-content"><h3>Section 4. Prohibition of Obscenity.</h3><p>Profanity is strictly forbidden during weekdays. However, if the profanity is fully censored or completely concealed with no visible traces, it shall not be considered as violation. Any profanity that remains visible, partially uncensored, or still readable shall be counted as a violation.</p><p>Sexual language and R18+ content are prohibited without exception.</p><div class="judgement"><h4><svg class="icon"><use href="#icon-gavel"/></svg> Judgement</h4><p><strong>Sinnercell Level:</strong> 2000 deduction points</p><p><strong>Tormentors and Mephistopheles:</strong> Sign + 2 recruits</p></div></div></div>
-                        <div class="section"><div class="section-number">05</div><div class="section-content"><h3>Section 5. Public Decorum.</h3><p>Inappropriate behavior and public displays of affection are strictly prohibited within the university.</p><div class="judgement"><h4><svg class="icon"><use href="#icon-gavel"/></svg> Judgement</h4><p><strong>Sinnercell Level:</strong> 2000 deduction points</p><p><strong>Tormentors and Mephistopheles:</strong> Sign + 2 recruits</p></div></div></div>
-                    </div>
-                </section>
-                <!-- Decree II -->
-                <section class="decree" id="decree-ii">
-                    <div class="decree-header">
-                        <span class="decree-prefix">DECREE II:</span>
-                        <span class="decree-title">HIERARCHY AND ADMINISTRATIVE AUTHORITY</span>
-                    </div>
-                    <div class="sections">
-                        <div class="section"><div class="section-number">01</div><div class="section-content"><h3>Section 1. Duty of Participation.</h3><p>Every member is constitutionally obligated to fulfill their assigned tasks and actively participate in their designated roles.</p><div class="judgement"><h4><svg class="icon"><use href="#icon-gavel"/></svg> Judgement</h4><p><strong>Sinnercell Level:</strong> (Varies according to the discretion of the Sentinel)</p><p><strong>Tormentors and Mephistopheles:</strong> Sign + Recruit; Termination</p></div></div></div>
-                        <div class="section"><div class="section-number">02</div><div class="section-content"><h3>Section 2. Administrative Control.</h3><p>The power to alter nicknames, group imagery, themes, and institutional settings is reserved exclusively for Mephistopheles, Tormentors, and Berserkers. Unauthorized changes will result in penalties.</p><div class="judgement"><h4><svg class="icon"><use href="#icon-gavel"/></svg> Judgement</h4><p><strong>Sinnercell Level (excluding berserkers):</strong> 500 deduction points</p></div></div></div>
-                        <div class="section"><div class="section-number">03</div><div class="section-content"><h3>Section 3. Membership Management.</h3><p>Only Mephistopheles, Tormentors, and Berserkers possess the authority to add or remove members. Formal removals shall occur on the days when an individual reaches the three-day inactivity.</p><p><strong>Inactivity:</strong> Members inactive for more than two days without valid justification shall be removed.</p><p><strong>Hiatus Violations:</strong> Failure to return on the specified date following a hiatus results in automatic expulsion.</p><p><strong>Re-entry:</strong> Members who depart voluntarily are barred from rejoining for 14 days; violation of this period results in rejection.</p></div></div>
-                    </div>
-                </section>
-                <!-- Decree III -->
-                <section class="decree" id="decree-iii">
-                    <div class="decree-header">
-                        <span class="decree-prefix">DECREE III:</span>
-                        <span class="decree-title">COMMUNICATION INTEGRITY</span>
-                    </div>
-                    <div class="sections">
-                        <div class="section"><div class="section-number">01</div><div class="section-content"><h3>Section 1. Transmission Permanence.</h3><p>The "unsending" of messages within any group registry is strictly prohibited unless they contain real-world information. Editing is permitted, provided it is not used to mask sexual undertones; such deception shall not be tolerated.</p><div class="judgement"><h4><svg class="icon"><use href="#icon-gavel"/></svg> Judgement</h4><p><strong>Sinnercell Level:</strong> 500 deduction points</p><p><strong>Tormentors and Mephistopheles:</strong> Sign + 2 recruits</p></div></div></div>
-                        <div class="section"><div class="section-number">02</div><div class="section-content"><h3>Section 2. The Decree of Silence (Chat Off).</h3><p>The invocation of "Chat Off" may only be declared by a Mephistopheles, Tormentors or Berserkers. Once enforced, all must fall silent—no exceptions. Permission to Chat (PTC) is strictly forbidden. No utterance, no message—unless sanctioned by the authority who silenced the space. Only when given leave may questions or complaints be voiced.</p><div class="note-block"><strong>Note for Berserkers, Tormentors and Mephistopheles only:</strong> Only the one who initiated the "Chat Off" holds the right to lift it. Any interference—such as turning the chat back on without rightful authority—shall be considered a violation. Respect among the ranks is non-negotiable; do not override your peer's silence with your own voice.</div><div class="judgement"><h4><svg class="icon"><use href="#icon-gavel"/></svg> Judgement</h4><p><strong>Sinnercell Level:</strong> 500 deduction points</p><p><strong>Tormentors and Mephistopheles:</strong> Sign + 2 recruits</p></div></div></div>
-                        <div class="section"><div class="section-number">03</div><div class="section-content"><h3>Section 3. Anti-Spam Measures.</h3><p>The excessive use of likes, emojis, stickers, or repeating typos more than four times is prohibited.</p><div class="judgement"><h4><svg class="icon"><use href="#icon-gavel"/></svg> Judgement</h4><p><strong>Sinnercell Level:</strong> 500 deduction points</p><p><strong>Tormentors and Mephistopheles:</strong> Sign + 2 recruits</p></div></div></div>
-                    </div>
-                </section>
-                <!-- Decree IV -->
-                <section class="decree" id="decree-iv">
-                    <div class="decree-header">
-                        <span class="decree-prefix">DECREE IV:</span>
-                        <span class="decree-title">INSTITUTIONAL INTEGRITY AND LOYALTY</span>
-                    </div>
-                    <div class="sections">
-                        <div class="section"><div class="section-number">01</div><div class="section-content"><h3>Section 1. Conflicts of Interest.</h3><p>Romantic relationships between authority figures (Tormentors/Mephistopheles) and demons are strictly prohibited to prevent favoritism, bias, or manipulation.</p><p>The following relationships are not tolerated:</p><ul><li>Mephistopheles &amp; Tormentors</li><li>Mephistopheles &amp; Demons</li><li>Tormentors &amp; Demons</li></ul><div class="judgement"><h4><svg class="icon"><use href="#icon-gavel"/></svg> Judgement</h4><p><strong>Sinnercell Level:</strong> Expulsion</p><p><strong>Tormentors and Mephistopheles:</strong> Termination</p></div></div></div>
-                        <div class="section"><div class="section-number">02</div><div class="section-content"><h3>Section 2. Exclusivity and Espionage.</h3><p>The creation of multiple or shared accounts is forbidden. Members must dedicate themselves to this University exclusively; participating in multiple institutions to facilitate espionage is strictly prohibited. Members are encouraged to visit any Sinnercell during weekends, but espionage activities will not be tolerated. Those under hiatus are barred from such visitations.</p><div class="judgement"><h4><svg class="icon"><use href="#icon-gavel"/></svg> Judgement</h4><p><strong>Sinnercell Level:</strong> Warning; Expulsion</p><p><strong>Tormentors and Mephistopheles:</strong> Warning; Termination</p></div></div></div>
-                        <div class="section"><div class="section-number">03</div><div class="section-content"><h3>Section 3. Sinnercell Stability.</h3><p>Changing of Sinnercell is strictly prohibited to maintain structure, accountability, and inter-group harmony. For returning members, transference to another Sinnercell shall remain forbidden. Only upon the reopening of the university may they be permitted to transfer.</p><p>Exemptions may be granted under the following validated conditions:</p><ul><li>Transfer due to long-term inactivity of the assigned cell or its leader.</li><li>Presence of irreconcilable conflicts or proven incompatibility that affect the mental well-being or effective participation of a member.</li><li>Administrative reshuffling authorized by the Mephistopheles.</li></ul><div class="note-block"><strong>Note:</strong> "Feeling out of place" may be considered a valid reason only when substantial efforts to resolve the issue have failed and the misalignment proves disruptive to participation or personal well-being. Requests must undergo review and approval by the overseeing authority.</div></div></div>
-                        <div class="section"><div class="section-number">04</div><div class="section-content"><h3>Section 4. Confidentiality.</h3><p>Only authorized information about the university may be shared publicly. Unauthorized disclosures will be penalized.</p><div class="judgement"><h4><svg class="icon"><use href="#icon-gavel"/></svg> Judgement</h4><p><strong>Sinnercell Level:</strong> Warning; Expulsion</p><p><strong>Tormentors and Mephistopheles:</strong> Warning; Termination</p></div></div></div>
-                    </div>
-                </section>
-                <!-- Decree V -->
-                <section class="decree" id="decree-v">
-                    <div class="decree-header">
-                        <span class="decree-prefix">DECREE V:</span>
-                        <span class="decree-title">PENAL CODES AND "SIGNS"</span>
-                    </div>
-                    <div class="sections">
-                        <div class="section"><div class="section-number">01</div><div class="section-content"><h3>Section 1. Fairness and Reporting.</h3><p>Fairness is a core value; prohibiting any form of favouritism to ensure equal opportunities and a harmonious environment. Members must report issues of unfairness to the Mephistopheles.</p></div></div>
-                        <div class="section"><div class="section-number">02</div><div class="section-content"><h3>Section 2. The Marks of Violation.</h3><p>• This sign "☒" is added to the nickname of a Mephistopheles or Tormentor for duty negligence</p><p>• This sign "⊝" is added to the nickname of somebody who will file a hiatus form.</p><p>• This sign "⨷" is added to the nickname of a Mephistopheles and Tormentor who violate a decree without prior warning.</p><p>Each mark excluding the hiatus sign requires the recruitment of two (2) new members within 48 hours as a penalty. Failure to meet this requirement will result in the permanent retention of the mark. Accumulating three (3) violation marks will lead to immediate expulsion from the university.</p></div></div>
-                        <div class="section"><div class="section-number">03</div><div class="section-content"><h3>Section 3. The Administration of Signs</h3><p><strong>Placement of Signs:</strong> All disciplinary signs or marks shall be appended exclusively to the member's nickname within the Sinnercell group chats.</p><p><strong>Mandatory Seclusion:</strong> Any member who receives a mark of violation or hiatus shall be automatically removed from the main group chat.</p><p><strong>Conditions of Reinstatement:</strong> Access to the main group chat shall be restored only upon the official lifting of the mark, following the fulfillment of all restorative penalties or recruitment quotas.</p></div></div>
-                    </div>
-                </section>
+        <div class="page-header">
+            <h1>Belphegor <span>Sinnercell</span></h1>
+            <p>Tormentors &amp; Berserkers of the Forbidden Legacy</p>
+            <div class="divider"></div>
+        </div>
+        <div class="carousel" id="portrait-carousel">
+            <div class="carousel-track" id="carousel-track">
+                <div class="carousel-slide"><img src="00. lysander - sentinel.png" alt="Lysander"><div class="carousel-caption"><span class="caption-name">Lysander</span><span class="caption-rank">Tormentor · Sentinel</span></div></div>
+                <div class="carousel-slide"><img src="00. mai - sentinel.png" alt="Mai"><div class="carousel-caption"><span class="caption-name">Mai</span><span class="caption-rank">Tormentor · Sentinel</span></div></div>
+                <div class="carousel-slide"><img src="00. rxaizse - igniter.png" alt="Rxaizse"><div class="carousel-caption"><span class="caption-name">Rxaizse</span><span class="caption-rank">Tormentor · Igniter</span></div></div>
+                <div class="carousel-slide"><img src="00. starri - archivist.jpg" alt="Starri"><div class="carousel-caption"><span class="caption-name">Starri</span><span class="caption-rank">Tormentor · Archivist</span></div></div>
+                <div class="carousel-slide"><img src="01. eisa - inferno.png" alt="Eisa"><div class="carousel-caption"><span class="caption-name">Eisa</span><span class="caption-rank">Berserker · Inferno</span></div></div>
+                <div class="carousel-slide"><img src="02. zilva - viz inferno.jpg" alt="Zilva"><div class="carousel-caption"><span class="caption-name">Zilva</span><span class="caption-rank">Berserker · Viz Inferno</span></div></div>
+                <div class="carousel-slide"><img src="03. keilani - sinister.jpg" alt="Keilani"><div class="carousel-caption"><span class="caption-name">Keilani</span><span class="caption-rank">Berserker · Sinister</span></div></div>
+                <div class="carousel-slide"><img src="04. airies - cerberus.jpg" alt="Airies"><div class="carousel-caption"><span class="caption-name">Airies</span><span class="caption-rank">Berserker · Cerberus</span></div></div>
+                <div class="carousel-slide"><img src="05. caedmone - centaur.jpg" alt="Caedmone"><div class="carousel-caption"><span class="caption-name">Caedmone</span><span class="caption-rank">Berserker · Centaurus</span></div></div>
+                <div class="carousel-slide"><img src="05. wisdom - centaur.jpg" alt="Wisdom"><div class="carousel-caption"><span class="caption-name">Wisdom</span><span class="caption-rank">Berserker · Centaurus</span></div></div>
             </div>
-
-            <footer class="footer">
-                <img src="download.png" alt="Infernal Emblem" class="footer-logo" onerror="this.style.display='none'">
-                <p>ESTABLISHED BY THE MEMBERS OF THE UNIVERSITY</p>
-                <p class="credit">ESTABLISHED BY THE MEPHISTOPHELES</p>
-            </footer>
-
+            <button class="carousel-btn prev" id="prev-btn">&#10094;</button>
+            <button class="carousel-btn next" id="next-btn">&#10095;</button>
+            <div class="carousel-dots" id="carousel-dots"></div>
+        </div>
+        <div class="achievements">
+            <h2>Legacy <span>Achievements</span></h2>
+            <div class="achievements-sub">Markers of devotion & mastery within the Forbidden Legacy</div>
+            <div class="under-construction">
+                <span class="emoji">⚙️🚧⚙️</span>
+                <p><strong>Under Construction</strong></p>
+                <p>Achievements will be revealed soon. Return when your deeds are worthy.</p>
+            </div>
         </div>
     </main>
 
-    <div class="back-to-top" id="back-to-top"><svg class="icon"><use href="#icon-arrow-up"/></svg></div>
+    <footer class="footer">
+        <img src="download.png" alt="Belphegor Emblem" class="footer-logo" onerror="this.style.display='none'">
+        <p>ESTABLISHED BY THE MEMBERS OF THE UNIVERSITY</p>
+        <p class="credit">CREATED BY BELPHEGOR BERSERKERS</p>
+    </footer>
 
     <script>
-        function initDarkMode() {
-            const stored = localStorage.getItem('mcu_dark_mode');
-            if (stored === 'true') document.body.classList.add('dark');
-            updateDarkIcon();
-            document.getElementById('dark-toggle').addEventListener('click', () => {
-                const isDark = document.body.classList.toggle('dark');
-                localStorage.setItem('mcu_dark_mode', isDark ? 'true' : 'false');
-                updateDarkIcon();
-            });
-        }
+        // Loading overlay: minimum 3 seconds
+        window.addEventListener('load', function() {
+            const overlay = document.getElementById('loading-overlay');
+            const startTime = performance.now();
+            const remaining = Math.max(0, 3000 - (performance.now() - startTime));
+            setTimeout(() => {
+                overlay.classList.add('hide');
+                setTimeout(() => overlay.style.display = 'none', 500);
+            }, remaining);
+        });
+
+        // Dark mode
+        const darkToggle = document.getElementById('dark-toggle');
+        const darkIcon = darkToggle.querySelector('use');
         function updateDarkIcon() {
-            const use = document.querySelector('#dark-toggle use');
-            use.setAttribute('href', document.body.classList.contains('dark') ? '#icon-sun' : '#icon-moon');
+            darkIcon.setAttribute('href', document.body.classList.contains('dark') ? '#icon-sun' : '#icon-moon');
         }
-        const backBtn = document.getElementById('back-to-top');
-        window.addEventListener('scroll', () => backBtn.classList.toggle('visible', window.scrollY > 500));
-        backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-        initDarkMode();
+        if (localStorage.getItem('mcu_dark_mode') === 'true') document.body.classList.add('dark');
+        updateDarkIcon();
+        darkToggle.addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark');
+            localStorage.setItem('mcu_dark_mode', isDark);
+            updateDarkIcon();
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            menuOverlay.classList.remove('active');
+        }
+
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            menuOverlay.classList.add('active');
+        }
+
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (mobileMenu.classList.contains('open')) closeMenu();
+            else openMenu();
+        });
+
+        menuOverlay.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
+        });
+
+        // Carousel
+        const track = document.getElementById('carousel-track');
+        const slides = Array.from(track.children);
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const dotsContainer = document.getElementById('carousel-dots');
+        let currentIndex = 0;
+        slides.forEach((_, idx) => {
+            const dot = document.createElement('button');
+            dot.classList.add('dot');
+            if (idx === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => updateSlide(idx));
+            dotsContainer.appendChild(dot);
+        });
+        const dots = Array.from(dotsContainer.children);
+        function updateSlide(index) {
+            track.style.transform = `translateX(-${index * 100}%)`;
+            dots.forEach(d => d.classList.remove('active'));
+            dots[index].classList.add('active');
+            currentIndex = index;
+        }
+        function nextSlide() { updateSlide((currentIndex + 1) % slides.length); }
+        function prevSlide() { updateSlide((currentIndex - 1 + slides.length) % slides.length); }
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        document.addEventListener('keydown', e => { if (e.key === 'ArrowRight') nextSlide(); if (e.key === 'ArrowLeft') prevSlide(); });
+        let touchStartX = 0;
+        track.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+        track.addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) diff > 0 ? nextSlide() : prevSlide();
+        });
     </script>
 </body>
 </html>

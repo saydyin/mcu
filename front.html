@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fiendspire Sanctuary — Forbidden Legacy MCU">
+    <title>Fiendspire Sanctuary | MCU</title>
+    <style>
+        :root {
+            --emerald-500: #10b981;
+            --emerald-600: #059669;
+            --emerald-700: #047857;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #475569;
+            --border: #e2e8f0;
+            --shadow: 0 4px 12px rgba(0,0,0,0.04);
+            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-serif: 'Times New Roman', Times, serif;
+        }
+        body.dark {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+            --shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .icon { width: 1em; height: 1em; display: inline-block; vertical-align: -0.125em; fill: currentColor; }
+
+        /* ----- Top bar (centered brand, hamburger, dark toggle) ----- */
+        .top-bar {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .brand .icon { color: var(--emerald-500); font-size: 1.3rem; }
+        .right-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: auto;
+        }
+        .dark-toggle {
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            transition: 0.2s;
+        }
+        .dark-toggle:hover { background: rgba(0,0,0,0.05); color: var(--text); }
+        /* Hamburger icon */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 24px;
+            cursor: pointer;
+            z-index: 101;
+        }
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: var(--text);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        /* Mobile menu (slide-out drawer) */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100%;
+            background: var(--card-bg);
+            border-left: 1px solid var(--border);
+            box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+            z-index: 200;
+            transition: right 0.3s ease;
+            padding: 5rem 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .mobile-menu.open {
+            right: 0;
+        }
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 150;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.3s, opacity 0.3s;
+        }
+        .menu-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .mobile-nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            font-weight: 500;
+            color: var(--text);
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .mobile-nav-btn:hover {
+            background: var(--border);
+        }
+        .mobile-nav-btn.active {
+            background: var(--emerald-500);
+            color: #fff;
+        }
+
+        /* Main content */
+        .main-content {
+            flex: 1;
+            padding: 2rem 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .footer {
+            text-align: center;
+            padding: 2rem 0 2rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+            background: var(--card-bg);
+        }
+        .footer-logo {
+            max-width: 70px;
+            height: auto;
+            margin-bottom: 0.75rem;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .footer-logo:hover { opacity: 1; }
+        .footer p {
+            font-size: 0.75rem;
+            letter-spacing: 0.06em;
+            color: var(--text-secondary);
+        }
+        .footer .credit {
+            font-weight: 600;
+            color: var(--emerald-500);
+            margin-top: 0.25rem;
+        }
+
+        /* Page wrapper (hidden initially) */
+        #page-wrapper {
+            display: none;
+        }
+        #page-wrapper.visible {
+            display: block;
+        }
+
+        /* Login Gate */
+        .login-gate {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        .login-container {
+            position: relative;
+            perspective: 1000px;
+            width: 280px;
+            margin: 0 auto;
+        }
+        .login-card {
+            position: relative;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(135deg, var(--emerald-500), var(--emerald-700));
+            border: 4px solid var(--text);
+            box-shadow: 8px 8px 0 var(--text), 16px 16px 0 rgba(16, 185, 129, 0.3);
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-style: preserve-3d;
+        }
+        .login-card:hover {
+            height: 220px;
+            transform: translateZ(20px) rotateX(5deg) rotateY(-5deg);
+            box-shadow: 12px 12px 0 var(--text), 24px 24px 0 rgba(16, 185, 129, 0.4), 0 0 50px rgba(16, 185, 129, 0.6);
+        }
+        .login-title {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: inherit;
+            transition: all 0.4s ease;
+        }
+        .login-text {
+            color: var(--text);
+            font-weight: 800;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.4s ease;
+        }
+        .login-card:hover .login-text {
+            opacity: 0;
+            transform: translateY(-30px) scale(0.8);
+        }
+        .login-form {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(30px) scale(0.8);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .login-card:hover .login-form {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .input-group {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .login-input {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--text);
+            font-weight: 600;
+            color: #000;
+            box-shadow: 4px 4px 0 var(--text);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-radius: 0;
+        }
+        .login-input:focus {
+            outline: none;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 var(--text);
+        }
+        .login-input::placeholder {
+            color: #333;
+            opacity: 0.7;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            background: var(--text);
+            color: #fff;
+            border: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .login-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 rgba(255, 255, 255, 0.3);
+            background: #333;
+        }
+        .login-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .login-card:hover::before {
+            left: 100%;
+        }
+        .login-card::after {
+            content: "";
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 20px;
+            height: 20px;
+            background: var(--text);
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
+            transition: all 0.6s ease;
+        }
+        .login-card:hover::after {
+            transform: scale(1) rotate(0deg);
+            background: var(--emerald-500);
+        }
+        .login-container::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+        .login-card:hover ~ .login-container::before,
+        .login-container:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+        .error-message {
+            color: #ef4444;
+            font-size: 0.75rem;
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        .demon-name {
+            text-align: center;
+            margin-top: 1rem;
+            font-family: var(--font-serif);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Page content styles (sanctuaries, terminology) */
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.02em;
+        }
+        .page-header h1 span {
+            color: var(--emerald-500);
+        }
+        .page-header p {
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            font-family: var(--font-serif);
+            font-size: 0.95rem;
+        }
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--emerald-500);
+            margin: 0.5rem auto 1.5rem;
+            border-radius: 2px;
+        }
+        .sanctuary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .sanctuary-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.2rem;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            box-shadow: var(--shadow);
+        }
+        .sanctuary-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--emerald-500);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        }
+        .sanctuary-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--emerald-500);
+            margin-bottom: 0.5rem;
+        }
+        .sanctuary-link {
+            display: inline-block;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            word-break: break-all;
+            margin-bottom: 0.75rem;
+            text-decoration: none;
+            border-bottom: 1px dotted var(--border);
+        }
+        .sanctuary-link:hover {
+            color: var(--emerald-500);
+            border-bottom-color: var(--emerald-500);
+        }
+        .sanctuary-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+        .terminology {
+            margin-top: 2rem;
+        }
+        .terminology h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text);
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+        .terminology h2 span {
+            color: var(--emerald-500);
+        }
+        .role-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .role-section h3 {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--emerald-500);
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--emerald-500);
+            padding-left: 0.75rem;
+        }
+        .role-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .role-list li {
+            font-size: 0.9rem;
+            color: var(--text);
+            position: relative;
+            padding-left: 1.2rem;
+            line-height: 1.4;
+        }
+        .role-list li::before {
+            content: "⛧";
+            position: absolute;
+            left: 0;
+            color: var(--emerald-500);
+            font-size: 0.7rem;
+        }
+        .role-list strong {
+            font-weight: 700;
+            color: var(--text);
+        }
+        .term-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .term-item {
+            background: var(--card-bg);
+            padding: 0.6rem 0.8rem;
+            border-radius: 12px;
+            border-left: 3px solid var(--emerald-500);
+        }
+        .term-name {
+            font-weight: 700;
+            color: var(--text);
+            font-size: 0.85rem;
+            display: inline;
+        }
+        .term-desc {
+            font-weight: 400;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-left: 0.25rem;
+            display: inline;
+        }
+        .sub-section {
+            margin-top: 1.5rem;
+        }
+        .sub-section h4 {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--emerald-500);
+            margin-bottom: 0.75rem;
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+        .loading-overlay.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .capybaraloader { width: 14em; height: 10em; position: relative; z-index: 1; --color: rgb(204,125,45); --color2: rgb(83,56,28); transform: scale(0.75); }
+        .capybara { width:100%; height:7.5em; position:relative; z-index:1; }
+        .loader { width:100%; height:2.5em; position:relative; z-index:1; overflow:hidden; }
+        .capy { width:85%; height:100%; background:linear-gradient(var(--color),90%,var(--color2)); border-radius:45%; position:relative; z-index:1; animation:movebody 1s linear infinite; }
+        .capyhead { width:7.5em; height:7em; bottom:0; right:0; position:absolute; background-color:var(--color); z-index:3; border-radius:3.5em; box-shadow:-1em 0 var(--color2); animation:movebody 1s linear infinite; }
+        .capyear { width:2em; height:2em; background:linear-gradient(-45deg,var(--color),90%,var(--color2)); top:0; left:0; border-radius:100%; position:absolute; overflow:hidden; z-index:3; }
+        .capyear:nth-child(2) { left:5em; background:linear-gradient(25deg,var(--color),90%,var(--color2)); }
+        .capyear2 { width:100%; height:1em; background-color:var(--color2); bottom:0; left:0.5em; border-radius:100%; position:absolute; transform:rotate(-45deg); }
+        .capymouth { width:3.5em; height:2em; background-color:var(--color2); position:absolute; bottom:0; left:2.5em; border-radius:50%; display:flex; justify-content:space-around; align-items:center; padding:0.5em; }
+        .capylips { width:0.25em; height:0.75em; border-radius:100%; transform:rotate(-45deg); background-color:var(--color); }
+        .capylips:nth-child(2) { transform:rotate(45deg); }
+        .capyeye { width:2em; height:0.5em; background-color:var(--color2); position:absolute; bottom:3.5em; left:1.5em; border-radius:5em; transform:rotate(45deg); }
+        .capyeye:nth-child(4) { transform:rotate(-45deg); left:5.5em; width:1.75em; }
+        .capyleg { width:6em; height:5em; bottom:0; left:0; position:absolute; background:linear-gradient(var(--color),95%,var(--color2)); z-index:2; border-radius:2em; animation:movebody 1s linear infinite; }
+        .capyleg2 { width:1.75em; height:3em; bottom:0; left:3.25em; position:absolute; background:linear-gradient(var(--color),80%,var(--color2)); z-index:2; border-radius:0.75em; box-shadow:inset 0 -0.5em var(--color2); animation:moveleg 1s linear infinite; }
+        .capyleg2:nth-child(3) { width:1.25em; left:0.5em; height:2em; animation:moveleg2 1s linear infinite 0.075s; }
+        @keyframes moveleg { 0% { transform:rotate(-45deg) translateX(-5%); } 50% { transform:rotate(45deg) translateX(5%); } 100% { transform:rotate(-45deg) translateX(-5%); } }
+        @keyframes moveleg2 { 0% { transform:rotate(45deg); } 50% { transform:rotate(-45deg); } 100% { transform:rotate(45deg); } }
+        @keyframes movebody { 0% { transform:translateX(0%); } 50% { transform:translateX(2%); } 100% { transform:translateX(0%); } }
+        .loaderline { width:50em; height:0.5em; border-top:0.5em dashed var(--color2); animation:moveline 10s linear infinite; }
+        @keyframes moveline { 0% { transform:translateX(0%); opacity:0%; } 5% { opacity:100%; } 95% { opacity:100%; } 100% { opacity:0%; transform:translateX(-70%); } }
+        .loading-text { font-size:1.2rem; font-weight:500; color:var(--emerald-500); letter-spacing:0.2em; margin-top:1.5rem; animation:pulse 1.2s infinite; }
+        @keyframes pulse { 0%,100% { opacity:0.6; text-shadow:0 0 2px var(--emerald-500); } 50% { opacity:1; text-shadow:0 0 12px var(--emerald-500); } }
+        @media (max-width:700px) { .sanctuary-grid, .term-grid { grid-template-columns:1fr; } .capybaraloader { transform:scale(0.5); } }
+    </style>
+</head>
+<body>
+    <svg style="display:none;">
+        <defs>
+            <symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 23c-3.6 0-8-2.4-8-7.7 0-3.5 2-6.3 3.5-8.2.4-.5 1.2-.3 1.3.3.3 1.5.9 3.2 2.2 4.3.2-.8.5-1.7 1-2.6 1-2 2.5-3.5 3.3-4.3.4-.4 1.1-.2 1.2.3.5 2.5 2.5 5.5 2.5 9.2C18 20.6 15.6 23 12 23z"/></symbol>
+            <symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 4h16v2H4zm0 4h16v2H4zm0 4h16v2H4z"/><path d="M4 2h16v2H4zm0 18h16v2H4z"/></symbol>
+            <symbol id="icon-sword" viewBox="0 0 24 24"><path d="M15.9 2.1L14.5 .7 7.8 7.4l1.4 1.4-7.4 7.4 1.4 1.4 7.4-7.4 1.4 1.4 6.7-6.7-1.4-1.4z"/></symbol>
+            <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9 9 9 0 00-9-9z"/></symbol>
+            <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.2 4.2l1.4 1.4m12.8 12.8l1.4 1.4M1 12h2m18 0h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></symbol>
+            <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20v-2c0-2.2 3.6-4 8-4s8 1.8 8 4v2"/><path d="M19 3c1.1 0 2 .9 2 2s-.9 2-2 2"/><path d="M5 3c-1.1 0-2 .9-2 2s.9 2 2 2"/></symbol>
+        </defs>
+    </svg>
+
+    <!-- Loading overlay (capybara, 3 seconds) -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="capybaraloader">
+            <div class="capybara">
+                <div class="capyhead">
+                    <div class="capyear"><div class="capyear2"></div></div>
+                    <div class="capyear"><div class="capyear2"></div></div>
+                    <div class="capymouth">
+                        <div class="capylips"></div>
+                        <div class="capylips"></div>
+                    </div>
+                    <div class="capyeye"></div>
+                    <div class="capyeye"></div>
+                </div>
+                <div class="capyleg"></div>
+                <div class="capyleg2"></div>
+                <div class="capyleg2"></div>
+                <div class="capy"></div>
+            </div>
+            <div class="loader"><div class="loaderline"></div></div>
+        </div>
+        <div class="loading-text">SUMMONING THE LEGACY...</div>
+    </div>
+    <script>
+        (function() {
+            const overlay = document.getElementById('loading-overlay');
+            const pageStart = performance.now();
+            window.addEventListener('load', function() {
+                const elapsed = performance.now() - pageStart;
+                const remaining = Math.max(0, 3000 - elapsed);
+                setTimeout(() => {
+                    overlay.classList.add('hide');
+                    setTimeout(() => overlay.style.display = 'none', 500);
+                }, remaining);
+            });
+        })();
+    </script>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-title">
+                    <span class="login-text">RECITE THE CODE</span>
+                </div>
+                <div class="login-form">
+                    <div class="input-group">
+                        <input type="text" id="code-input" class="login-input" placeholder="⛧ Enter the sacred code ⛧" autocomplete="off">
+                    </div>
+                    <button class="login-btn" id="submit-code">ENTER SANCTUARY</button>
+                    <div id="login-error" class="error-message"></div>
+                </div>
+            </div>
+            <div class="demon-name">⚡ A random demon watches: <span id="random-demon">Mephistopheles</span> ⚡</div>
+        </div>
+    </div>
+
+    <!-- WRAPPER FOR EVERYTHING ELSE -->
+    <div id="page-wrapper">
+        <header class="top-bar">
+            <a href="#" class="brand"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
+            <div class="right-actions">
+                <button class="dark-toggle" id="dark-toggle"><svg class="icon"><use href="#icon-moon"/></svg></button>
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Slide-out menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="index.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
+            <a href="codex.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-book"/></svg> Codex</a>
+            <a href="quiz.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-sword"/></svg> Quiz</a>
+            <a href="students.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-users"/></svg> Students</a>
+            <a href="#" class="mobile-nav-btn active"><svg class="icon"><use href="#icon-flame"/></svg> Sanctuaries</a>
+        </div>
+        <div class="menu-overlay" id="menu-overlay"></div>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1>Fiendspire <span>Sanctuary</span></h1>
+                <p>The unholy domains of the Forbidden Legacy</p>
+                <div class="divider"></div>
+            </div>
+
+            <!-- SANCTUARY LINKS -->
+            <div class="sanctuary-grid">
+                <div class="sanctuary-card">
+                    <div class="sanctuary-title">Ꮚ. MCU - FIENDSPIRE SANCTUARY</div>
+                    <a href="https://www.facebook.com/groups/1990019005732669/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/1990019005732669/</a>
+                    <div class="sanctuary-desc">➛ This contains all the university announcements and information.</div>
+                </div>
+                <div class="sanctuary-card">
+                    <div class="sanctuary-title">Ꮚ. MCU - NEFARIOUS SANCTUARY</div>
+                    <a href="https://www.facebook.com/groups/2232201527313883/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/2232201527313883/</a>
+                    <div class="sanctuary-desc">➛ This contains all the university's convergences, covenants, gamblings, cryptworks, and unholy sovereignty.</div>
+                </div>
+                <div class="sanctuary-card">
+                    <div class="sanctuary-title">Ꮚ. MCU - DEMONOLOGY SANCTUARY</div>
+                    <a href="https://www.facebook.com/share/g/17Fa2nShau/" target="_blank" class="sanctuary-link">https://www.facebook.com/share/g/17Fa2nShau/</a>
+                    <div class="sanctuary-desc">➛ This contains all the university's abyssal rhetorics.</div>
+                </div>
+                <div class="sanctuary-card">
+                    <div class="sanctuary-title">Ꮚ. MCU - NEATHERBOARD SANCTUARY</div>
+                    <a href="https://www.facebook.com/groups/1277055980538434/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/1277055980538434/</a>
+                    <div class="sanctuary-desc">➛ This contains all the university members' links to their covenants.</div>
+                </div>
+                <div class="sanctuary-card">
+                    <div class="sanctuary-title">Ꮚ. MCU - PANDEMONIUM SANCTUARY</div>
+                    <a href="https://www.facebook.com/groups/588264037077534/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/588264037077534/</a>
+                    <div class="sanctuary-desc">➛ It serves as freedom wall for all university members.</div>
+                </div>
+                <div class="sanctuary-card">
+                    <div class="sanctuary-title">Ꮚ. MCU - HELLFIRE SANCTUARY</div>
+                    <a href="https://www.facebook.com/groups/1279291150973210/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/1279291150973210/</a>
+                    <div class="sanctuary-desc">➛ This contains all the university events.</div>
+                </div>
+                <div class="sanctuary-card">
+                    <div class="sanctuary-title">Ꮚ. MCU - BELPHEGOR</div>
+                    <a href="https://facebook.com/groups/2259171634618441/" target="_blank" class="sanctuary-link">https://facebook.com/groups/2259171634618441/</a>
+                    <div class="sanctuary-desc">➛ This is our official group page</div>
+                </div>
+            </div>
+
+            <!-- TERMINOLOGIES -->
+            <div class="terminology">
+                <h2>〘 <span>TERMINOLOGIES</span> 〙</h2>
+                <div class="role-section">
+                    <h3>₪ MEPHISTOPHELES :: EXECUTIVES</h3>
+                    <ul class="role-list">
+                        <li><strong>Chancellor</strong> — Founder</li>
+                        <li><strong>Provost</strong> — Principal</li>
+                        <li><strong>Infernal</strong> — Dean</li>
+                        <li><strong>Malefic Infernal</strong> — Assistant Dean</li>
+                        <li><strong>Scorchscribe</strong> — Artistic Coordinator</li>
+                        <li><strong>Archivist</strong> — Record Keeper</li>
+                        <li><strong>Abyss Syndicates</strong> — Board of Directors</li>
+                    </ul>
+                </div>
+                <div class="role-section">
+                    <h3>₪ TORMENTORS :: FACULTY</h3>
+                    <ul class="role-list">
+                        <li><strong>Sentinels</strong> — Department Heads</li>
+                        <li><strong>Revenants</strong> — Professors</li>
+                        <li><strong>Sentinels’ Archivists</strong> — Departments’ Record Keeper</li>
+                        <li><strong>Warden Curators</strong> — Club Handlers</li>
+                        <li><strong>Igniters</strong> — Editors</li>
+                    </ul>
+                </div>
+                <div class="role-section">
+                    <h3>₪ BERSERKERS :: OFFICERS</h3>
+                    <ul class="role-list">
+                        <li><strong>Inferno</strong> — President</li>
+                        <li><strong>Viz Inferno</strong> — Vice President</li>
+                        <li><strong>Sinister</strong> — Secretary</li>
+                        <li><strong>Cerberus</strong> — PIO</li>
+                        <li><strong>Centaurs</strong> — PO</li>
+                        <li><strong>Demons</strong> — Students</li>
+                    </ul>
+                </div>
+
+                <div class="role-section">
+                    <h3>° Cursed Lexicon — Official Terms</h3>
+                    <div class="term-grid">
+                        <div class="term-item"><span class="term-name">Cursed Timetable</span> <span class="term-desc">— Schedule</span></div>
+                        <div class="term-item"><span class="term-name">Convergence</span> <span class="term-desc">— Attendance</span></div>
+                        <div class="term-item"><span class="term-name">Covenant</span> <span class="term-desc">— Activity</span></div>
+                        <div class="term-item"><span class="term-name">Gambling</span> <span class="term-desc">— Games</span></div>
+                        <div class="term-item"><span class="term-name">Unholy Sovereignty</span> <span class="term-desc">— Debates &amp; Wars</span></div>
+                        <div class="term-item"><span class="term-name">Damned Legacy</span> <span class="term-desc">— Rules and Regulations</span></div>
+                        <div class="term-item"><span class="term-name">Forsaken Realm</span> <span class="term-desc">— Pointing System</span></div>
+                        <div class="term-item"><span class="term-name">Judgements</span> <span class="term-desc">— Punishments</span></div>
+                        <div class="term-item"><span class="term-name">Sinner Inquisition</span> <span class="term-desc">— Interview Sheets</span></div>
+                        <div class="term-item"><span class="term-name">Abyssal Rhetorics</span> <span class="term-desc">— Lectures</span></div>
+                        <div class="term-item"><span class="term-name">Demonology</span> <span class="term-desc">— Subjects</span></div>
+                        <div class="term-item"><span class="term-name">Crypts</span> <span class="term-desc">— Clubs</span></div>
+                        <div class="term-item"><span class="term-name">Cryptworks</span> <span class="term-desc">— Club Activities</span></div>
+                        <div class="term-item"><span class="term-name">Tribute Reckoning</span> <span class="term-desc">— Open Forum</span></div>
+                    </div>
+
+                    <div class="sub-section">
+                        <h4>Chambers &amp; Halls</h4>
+                        <div class="term-grid">
+                            <div class="term-item"><span class="term-name">Mephistopheles’ Chamber</span> <span class="term-desc">— Executives' Room</span></div>
+                            <div class="term-item"><span class="term-name">Tormentors’ Chamber</span> <span class="term-desc">— Faculty Room</span></div>
+                            <div class="term-item"><span class="term-name">Revenants’ Chamber</span> <span class="term-desc">— Professors' Room</span></div>
+                            <div class="term-item"><span class="term-name">Sentinels’ Chamber</span> <span class="term-desc">— Department Heads' Room</span></div>
+                            <div class="term-item"><span class="term-name">Archivists’ Chamber</span> <span class="term-desc">— Record Keepers' Room</span></div>
+                            <div class="term-item"><span class="term-name">Sentinels and Berserkers’ Chamber</span> <span class="term-desc">— Department Heads and Officers Room</span></div>
+                            <div class="term-item"><span class="term-name">Judgments’ Chamber</span> <span class="term-desc">— Punishments' Room</span></div>
+                            <div class="term-item"><span class="term-name">Demons’ Trial Chamber</span> <span class="term-desc">— Students' Interview Room</span></div>
+                            <div class="term-item"><span class="term-name">Tormentors’ Trial Chamber</span> <span class="term-desc">— Faculty Interview Room</span></div>
+                            <div class="term-item"><span class="term-name">Mephistopheles’ Trial Chamber</span> <span class="term-desc">— Executives' Interview Room</span></div>
+                            <div class="term-item"><span class="term-name">Fiendspire Sanctuary</span> <span class="term-desc">— Announcement Hall</span></div>
+                            <div class="term-item"><span class="term-name">Nefarious Sanctuary</span> <span class="term-desc">— Activity Hall</span></div>
+                            <div class="term-item"><span class="term-name">Demonology Sanctuary</span> <span class="term-desc">— Lecture Hall</span></div>
+                            <div class="term-item"><span class="term-name">Pandemonium Sanctuary</span> <span class="term-desc">— Entertainment Hall</span></div>
+                            <div class="term-item"><span class="term-name">Hellfire Sanctuary</span> <span class="term-desc">— Event Hall</span></div>
+                            <div class="term-item"><span class="term-name">Netherboard Sanctuary</span> <span class="term-desc">— Posting Hall</span></div>
+                            <div class="term-item"><span class="term-name">Pit of Judgments</span> <span class="term-desc">— Deduction Area</span></div>
+                            <div class="term-item"><span class="term-name">Tethers of Perditions</span> <span class="term-desc">— Record Links</span></div>
+                            <div class="term-item"><span class="term-name">Scroll of Damnation</span> <span class="term-desc">— Hiatus and Leave Forms</span></div>
+                            <div class="term-item"><span class="term-name">Realm of Eternal Judgments</span> <span class="term-desc">— Department and Individual Ranking</span></div>
+                            <div class="term-item"><span class="term-name">Scroll of Oblivions</span> <span class="term-desc">— Individual Records</span></div>
+                            <div class="term-item"><span class="term-name">Pandemonium Registry</span> <span class="term-desc">— Recruitment Form</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <img src="download.png" alt="Belphegor Emblem" class="footer-logo" onerror="this.style.display='none'">
+            <p>ESTABLISHED BY THE MEMBERS OF THE UNIVERSITY</p>
+            <p class="credit">CREATED BY BELPHEGOR BERSERKERS</p>
+        </footer>
+    </div>
+
+    <script>
+        // Random demon name
+        const demonNames = ["Mephistopheles", "Abaddon", "Azazel", "Belial", "Leviathan", "Asmodeus", "Beelzebub", "Paimon", "Mammon", "Lucifer", "Malphas", "Vassago", "Andras", "Furfur", "Marchosias"];
+        document.getElementById('random-demon').textContent = demonNames[Math.floor(Math.random() * demonNames.length)];
+
+        const correctCode = "BE1216857OR";
+        const loginGate = document.getElementById('login-gate');
+        const pageWrapper = document.getElementById('page-wrapper');
+
+        if (sessionStorage.getItem('sanctuary_authenticated') === 'true') {
+            loginGate.style.display = 'none';
+            pageWrapper.classList.add('visible');
+        } else {
+            loginGate.style.display = 'flex';
+            pageWrapper.classList.remove('visible');
+        }
+
+        const submitBtn = document.getElementById('submit-code');
+        const codeInput = document.getElementById('code-input');
+        const errorDiv = document.getElementById('login-error');
+
+        function unlockPage() {
+            loginGate.style.display = 'none';
+            pageWrapper.classList.add('visible');
+            sessionStorage.setItem('sanctuary_authenticated', 'true');
+        }
+
+        submitBtn.addEventListener('click', () => {
+            const entered = codeInput.value.trim();
+            if (entered === correctCode) {
+                errorDiv.textContent = '';
+                unlockPage();
+            } else {
+                errorDiv.textContent = '⛧ Incorrect code. The gates remain sealed. ⛧';
+                codeInput.value = '';
+                codeInput.focus();
+                const card = document.querySelector('.login-card');
+                if (card) {
+                    card.style.transform = 'translateZ(10px) rotateX(2deg) rotateY(2deg)';
+                    setTimeout(() => { card.style.transform = ''; }, 200);
+                }
+            }
+        });
+
+        codeInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') submitBtn.click();
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('menu-overlay');
+
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            overlay.classList.add('active');
+        }
+
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (mobileMenu.classList.contains('open')) closeMenu();
+            else openMenu();
+        });
+        overlay.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
+        });
+
+        // Dark mode toggle
+        const darkToggle = document.getElementById('dark-toggle');
+        const darkIcon = darkToggle.querySelector('use');
+        function updateDarkIcon() {
+            darkIcon.setAttribute('href', document.body.classList.contains('dark') ? '#icon-sun' : '#icon-moon');
+        }
+        if (localStorage.getItem('mcu_dark_mode') === 'true') document.body.classList.add('dark');
+        updateDarkIcon();
+        darkToggle.addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark');
+            localStorage.setItem('mcu_dark_mode', isDark);
+            updateDarkIcon();
+        });
+    </script>
+</body>
+</html>
