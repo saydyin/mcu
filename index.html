@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Fiendspire Sanctuary — Forbidden Legacy MCU">
     <title>Fiendspire Sanctuary | MCU</title>
+    <link rel="icon" type="image/x-icon" href="download.ico">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Metal+Mania&family=Special+Elite&display=swap" rel="stylesheet">
     <style>
         :root {
             --emerald-500: #10b981;
@@ -17,7 +19,8 @@
             --border: #e2e8f0;
             --shadow: 0 4px 12px rgba(0,0,0,0.04);
             --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            --font-serif: 'Times New Roman', Times, serif;
+            --font-serif: "Special Elite", Georgia, "Times New Roman", serif;
+            --font-demonic: 'UnifrakturMaguntia', 'Metal Mania', cursive;
         }
         body.dark {
             --bg: #0f172a;
@@ -27,11 +30,7 @@
             --border: #334155;
             --shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family: var(--font-sans);
             background: var(--bg);
@@ -57,11 +56,12 @@
             z-index: 100;
         }
         .brand {
-            font-weight: 700;
+            font-family: var(--font-demonic);
+            font-weight: 900;
             font-size: 1.5rem;
             color: var(--text);
             text-decoration: none;
-            letter-spacing: -0.01em;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -90,8 +90,7 @@
             height: 36px;
             transition: 0.2s;
         }
-        .dark-toggle:hover { background: rgba(0,0,0,0.05); color: var(--text); }
-        /* Hamburger icon */
+        .dark-toggle:hover { background: var(--slate-100); color: var(--text); }
         .hamburger {
             display: flex;
             flex-direction: column;
@@ -109,7 +108,6 @@
             border-radius: 3px;
             transition: all 0.3s ease;
         }
-        /* Mobile menu (slide-out drawer) */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -118,7 +116,7 @@
             height: 100%;
             background: var(--card-bg);
             border-left: 1px solid var(--border);
-            box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
             z-index: 200;
             transition: right 0.3s ease;
             padding: 5rem 1.5rem 2rem;
@@ -126,16 +124,14 @@
             flex-direction: column;
             gap: 1rem;
         }
-        .mobile-menu.open {
-            right: 0;
-        }
+        .mobile-menu.open { right: 0; }
         .menu-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 150;
             visibility: hidden;
             opacity: 0;
@@ -151,20 +147,21 @@
             gap: 0.75rem;
             padding: 0.75rem 1rem;
             border-radius: 12px;
+            font-family: var(--font-sans);
             font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: normal;
             color: var(--text);
             text-decoration: none;
             transition: background 0.2s;
         }
-        .mobile-nav-btn:hover {
-            background: var(--border);
-        }
+        .mobile-nav-btn:hover { background: var(--border); }
         .mobile-nav-btn.active {
             background: var(--emerald-500);
             color: #fff;
         }
 
-        /* Main content */
+        /* Main content (hidden until code correct) */
         .main-content {
             flex: 1;
             padding: 2rem 1.5rem;
@@ -188,13 +185,15 @@
         }
         .footer-logo:hover { opacity: 1; }
         .footer p {
+            font-family: var(--font-serif);
             font-size: 0.75rem;
             letter-spacing: 0.06em;
             color: var(--text-secondary);
         }
         .footer .credit {
-            font-weight: 600;
+            font-family: 'Metal Mania', cursive;
             color: var(--emerald-500);
+            font-weight: bold;
             margin-top: 0.25rem;
         }
 
@@ -387,16 +386,17 @@
             color: var(--text-secondary);
         }
 
-        /* Page content styles (sanctuaries, terminology) */
+        /* ========== SANCTUARY CONTENT (Facebook links + terminology) ========== */
         .page-header {
             text-align: center;
             margin-bottom: 2rem;
         }
         .page-header h1 {
+            font-family: var(--font-demonic);
             font-size: 2.5rem;
-            font-weight: 700;
+            font-weight: 900;
             color: var(--text);
-            letter-spacing: -0.02em;
+            letter-spacing: 2px;
         }
         .page-header h1 span {
             color: var(--emerald-500);
@@ -414,6 +414,7 @@
             margin: 0.5rem auto 1.5rem;
             border-radius: 2px;
         }
+
         .sanctuary-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -457,6 +458,7 @@
             color: var(--text-secondary);
             line-height: 1.4;
         }
+
         .terminology {
             margin-top: 2rem;
         }
@@ -467,6 +469,7 @@
             text-align: center;
             margin-bottom: 1rem;
             letter-spacing: -0.01em;
+            font-family: var(--font-demonic);
         }
         .terminology h2 span {
             color: var(--emerald-500);
@@ -545,7 +548,7 @@
             margin-bottom: 0.75rem;
         }
 
-        /* Loading overlay */
+        /* CAPYBARA LOADING OVERLAY (full) */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -564,30 +567,186 @@
             opacity: 0;
             visibility: hidden;
         }
-        .capybaraloader { width: 14em; height: 10em; position: relative; z-index: 1; --color: rgb(204,125,45); --color2: rgb(83,56,28); transform: scale(0.75); }
-        .capybara { width:100%; height:7.5em; position:relative; z-index:1; }
-        .loader { width:100%; height:2.5em; position:relative; z-index:1; overflow:hidden; }
-        .capy { width:85%; height:100%; background:linear-gradient(var(--color),90%,var(--color2)); border-radius:45%; position:relative; z-index:1; animation:movebody 1s linear infinite; }
-        .capyhead { width:7.5em; height:7em; bottom:0; right:0; position:absolute; background-color:var(--color); z-index:3; border-radius:3.5em; box-shadow:-1em 0 var(--color2); animation:movebody 1s linear infinite; }
-        .capyear { width:2em; height:2em; background:linear-gradient(-45deg,var(--color),90%,var(--color2)); top:0; left:0; border-radius:100%; position:absolute; overflow:hidden; z-index:3; }
-        .capyear:nth-child(2) { left:5em; background:linear-gradient(25deg,var(--color),90%,var(--color2)); }
-        .capyear2 { width:100%; height:1em; background-color:var(--color2); bottom:0; left:0.5em; border-radius:100%; position:absolute; transform:rotate(-45deg); }
-        .capymouth { width:3.5em; height:2em; background-color:var(--color2); position:absolute; bottom:0; left:2.5em; border-radius:50%; display:flex; justify-content:space-around; align-items:center; padding:0.5em; }
-        .capylips { width:0.25em; height:0.75em; border-radius:100%; transform:rotate(-45deg); background-color:var(--color); }
-        .capylips:nth-child(2) { transform:rotate(45deg); }
-        .capyeye { width:2em; height:0.5em; background-color:var(--color2); position:absolute; bottom:3.5em; left:1.5em; border-radius:5em; transform:rotate(45deg); }
-        .capyeye:nth-child(4) { transform:rotate(-45deg); left:5.5em; width:1.75em; }
-        .capyleg { width:6em; height:5em; bottom:0; left:0; position:absolute; background:linear-gradient(var(--color),95%,var(--color2)); z-index:2; border-radius:2em; animation:movebody 1s linear infinite; }
-        .capyleg2 { width:1.75em; height:3em; bottom:0; left:3.25em; position:absolute; background:linear-gradient(var(--color),80%,var(--color2)); z-index:2; border-radius:0.75em; box-shadow:inset 0 -0.5em var(--color2); animation:moveleg 1s linear infinite; }
-        .capyleg2:nth-child(3) { width:1.25em; left:0.5em; height:2em; animation:moveleg2 1s linear infinite 0.075s; }
-        @keyframes moveleg { 0% { transform:rotate(-45deg) translateX(-5%); } 50% { transform:rotate(45deg) translateX(5%); } 100% { transform:rotate(-45deg) translateX(-5%); } }
-        @keyframes moveleg2 { 0% { transform:rotate(45deg); } 50% { transform:rotate(-45deg); } 100% { transform:rotate(45deg); } }
-        @keyframes movebody { 0% { transform:translateX(0%); } 50% { transform:translateX(2%); } 100% { transform:translateX(0%); } }
-        .loaderline { width:50em; height:0.5em; border-top:0.5em dashed var(--color2); animation:moveline 10s linear infinite; }
-        @keyframes moveline { 0% { transform:translateX(0%); opacity:0%; } 5% { opacity:100%; } 95% { opacity:100%; } 100% { opacity:0%; transform:translateX(-70%); } }
-        .loading-text { font-size:1.2rem; font-weight:500; color:var(--emerald-500); letter-spacing:0.2em; margin-top:1.5rem; animation:pulse 1.2s infinite; }
-        @keyframes pulse { 0%,100% { opacity:0.6; text-shadow:0 0 2px var(--emerald-500); } 50% { opacity:1; text-shadow:0 0 12px var(--emerald-500); } }
-        @media (max-width:700px) { .sanctuary-grid, .term-grid { grid-template-columns:1fr; } .capybaraloader { transform:scale(0.5); } }
+        .capybaraloader {
+            width: 14em;
+            height: 10em;
+            position: relative;
+            z-index: 1;
+            --color: rgb(204, 125, 45);
+            --color2: rgb(83, 56, 28);
+            transform: scale(0.75);
+        }
+        .capybara {
+            width: 100%;
+            height: 7.5em;
+            position: relative;
+            z-index: 1;
+        }
+        .loader {
+            width: 100%;
+            height: 2.5em;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .capy {
+            width: 85%;
+            height: 100%;
+            background: linear-gradient(var(--color), 90%, var(--color2));
+            border-radius: 45%;
+            position: relative;
+            z-index: 1;
+            animation: movebody 1s linear infinite;
+        }
+        .capyhead {
+            width: 7.5em;
+            height: 7em;
+            bottom: 0em;
+            right: 0em;
+            position: absolute;
+            background-color: var(--color);
+            z-index: 3;
+            border-radius: 3.5em;
+            box-shadow: -1em 0em var(--color2);
+            animation: movebody 1s linear infinite;
+        }
+        .capyear {
+            width: 2em;
+            height: 2em;
+            background: linear-gradient(-45deg, var(--color), 90%, var(--color2));
+            top: 0em;
+            left: 0em;
+            border-radius: 100%;
+            position: absolute;
+            overflow: hidden;
+            z-index: 3;
+        }
+        .capyear:nth-child(2) {
+            left: 5em;
+            background: linear-gradient(25deg, var(--color), 90%, var(--color2));
+        }
+        .capyear2 {
+            width: 100%;
+            height: 1em;
+            background-color: var(--color2);
+            bottom: 0em;
+            left: 0.5em;
+            border-radius: 100%;
+            position: absolute;
+            transform: rotate(-45deg);
+        }
+        .capymouth {
+            width: 3.5em;
+            height: 2em;
+            background-color: var(--color2);
+            position: absolute;
+            bottom: 0em;
+            left: 2.5em;
+            border-radius: 50%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0.5em;
+        }
+        .capylips {
+            width: 0.25em;
+            height: 0.75em;
+            border-radius: 100%;
+            transform: rotate(-45deg);
+            background-color: var(--color);
+        }
+        .capylips:nth-child(2) {
+            transform: rotate(45deg);
+        }
+        .capyeye {
+            width: 2em;
+            height: 0.5em;
+            background-color: var(--color2);
+            position: absolute;
+            bottom: 3.5em;
+            left: 1.5em;
+            border-radius: 5em;
+            transform: rotate(45deg);
+        }
+        .capyeye:nth-child(4) {
+            transform: rotate(-45deg);
+            left: 5.5em;
+            width: 1.75em;
+        }
+        .capyleg {
+            width: 6em;
+            height: 5em;
+            bottom: 0em;
+            left: 0em;
+            position: absolute;
+            background: linear-gradient(var(--color), 95%, var(--color2));
+            z-index: 2;
+            border-radius: 2em;
+            animation: movebody 1s linear infinite;
+        }
+        .capyleg2 {
+            width: 1.75em;
+            height: 3em;
+            bottom: 0em;
+            left: 3.25em;
+            position: absolute;
+            background: linear-gradient(var(--color), 80%, var(--color2));
+            z-index: 2;
+            border-radius: 0.75em;
+            box-shadow: inset 0em -0.5em var(--color2);
+            animation: moveleg 1s linear infinite;
+        }
+        .capyleg2:nth-child(3) {
+            width: 1.25em;
+            left: 0.5em;
+            height: 2em;
+            animation: moveleg2 1s linear infinite 0.075s;
+        }
+        @keyframes moveleg {
+            0% { transform: rotate(-45deg) translateX(-5%); }
+            50% { transform: rotate(45deg) translateX(5%); }
+            100% { transform: rotate(-45deg) translateX(-5%); }
+        }
+        @keyframes moveleg2 {
+            0% { transform: rotate(45deg); }
+            50% { transform: rotate(-45deg); }
+            100% { transform: rotate(45deg); }
+        }
+        @keyframes movebody {
+            0% { transform: translateX(0%); }
+            50% { transform: translateX(2%); }
+            100% { transform: translateX(0%); }
+        }
+        .loaderline {
+            width: 50em;
+            height: 0.5em;
+            border-top: 0.5em dashed var(--color2);
+            animation: moveline 10s linear infinite;
+        }
+        @keyframes moveline {
+            0% { transform: translateX(0%); opacity: 0%; }
+            5% { opacity: 100%; }
+            95% { opacity: 100%; }
+            100% { opacity: 0%; transform: translateX(-70%); }
+        }
+        .loading-text {
+            font-family: var(--font-sans);
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--emerald-500);
+            letter-spacing: 0.2em;
+            margin-top: 1.5rem;
+            animation: pulse 1.2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; text-shadow: 0 0 2px var(--emerald-500); }
+            50% { opacity: 1; text-shadow: 0 0 12px var(--emerald-500); }
+        }
+
+        @media (max-width:700px) {
+            .sanctuary-grid, .term-grid { grid-template-columns:1fr; }
+            .capybaraloader { transform: scale(0.5); }
+        }
     </style>
 </head>
 <body>
@@ -602,7 +761,7 @@
         </defs>
     </svg>
 
-    <!-- Loading overlay (capybara, 3 seconds) -->
+    <!-- CAPYBARA LOADING OVERLAY (full) -->
     <div id="loading-overlay" class="loading-overlay">
         <div class="capybaraloader">
             <div class="capybara">
@@ -659,25 +818,22 @@
         </div>
     </div>
 
-    <!-- WRAPPER FOR EVERYTHING ELSE -->
+    <!-- MAIN CONTENT (Sanctuaries & Terminology) - hidden until code correct -->
     <div id="page-wrapper">
         <header class="top-bar">
             <a href="#" class="brand"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
             <div class="right-actions">
                 <button class="dark-toggle" id="dark-toggle"><svg class="icon"><use href="#icon-moon"/></svg></button>
-                <div class="hamburger" id="hamburger">
-                    <span></span><span></span><span></span>
-                </div>
+                <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
             </div>
         </header>
 
-        <!-- Slide-out menu -->
         <div class="mobile-menu" id="mobile-menu">
-            <a href="index.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
+            <a href="#" class="mobile-nav-btn active"><svg class="icon"><use href="#icon-flame"/></svg> Sanctuaries</a>
+            <a href="front.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
             <a href="codex.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-book"/></svg> Codex</a>
             <a href="quiz.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-sword"/></svg> Quiz</a>
             <a href="students.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-users"/></svg> Students</a>
-            <a href="#" class="mobile-nav-btn active"><svg class="icon"><use href="#icon-flame"/></svg> Sanctuaries</a>
         </div>
         <div class="menu-overlay" id="menu-overlay"></div>
 
@@ -688,82 +844,32 @@
                 <div class="divider"></div>
             </div>
 
-            <!-- SANCTUARY LINKS -->
+            <!-- SANCTUARY LINKS (full list) -->
             <div class="sanctuary-grid">
-                <div class="sanctuary-card">
-                    <div class="sanctuary-title">Ꮚ. MCU - FIENDSPIRE SANCTUARY</div>
-                    <a href="https://www.facebook.com/groups/1990019005732669/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/1990019005732669/</a>
-                    <div class="sanctuary-desc">➛ This contains all the university announcements and information.</div>
-                </div>
-                <div class="sanctuary-card">
-                    <div class="sanctuary-title">Ꮚ. MCU - NEFARIOUS SANCTUARY</div>
-                    <a href="https://www.facebook.com/groups/2232201527313883/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/2232201527313883/</a>
-                    <div class="sanctuary-desc">➛ This contains all the university's convergences, covenants, gamblings, cryptworks, and unholy sovereignty.</div>
-                </div>
-                <div class="sanctuary-card">
-                    <div class="sanctuary-title">Ꮚ. MCU - DEMONOLOGY SANCTUARY</div>
-                    <a href="https://www.facebook.com/share/g/17Fa2nShau/" target="_blank" class="sanctuary-link">https://www.facebook.com/share/g/17Fa2nShau/</a>
-                    <div class="sanctuary-desc">➛ This contains all the university's abyssal rhetorics.</div>
-                </div>
-                <div class="sanctuary-card">
-                    <div class="sanctuary-title">Ꮚ. MCU - NEATHERBOARD SANCTUARY</div>
-                    <a href="https://www.facebook.com/groups/1277055980538434/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/1277055980538434/</a>
-                    <div class="sanctuary-desc">➛ This contains all the university members' links to their covenants.</div>
-                </div>
-                <div class="sanctuary-card">
-                    <div class="sanctuary-title">Ꮚ. MCU - PANDEMONIUM SANCTUARY</div>
-                    <a href="https://www.facebook.com/groups/588264037077534/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/588264037077534/</a>
-                    <div class="sanctuary-desc">➛ It serves as freedom wall for all university members.</div>
-                </div>
-                <div class="sanctuary-card">
-                    <div class="sanctuary-title">Ꮚ. MCU - HELLFIRE SANCTUARY</div>
-                    <a href="https://www.facebook.com/groups/1279291150973210/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/1279291150973210/</a>
-                    <div class="sanctuary-desc">➛ This contains all the university events.</div>
-                </div>
-                <div class="sanctuary-card">
-                    <div class="sanctuary-title">Ꮚ. MCU - BELPHEGOR</div>
-                    <a href="https://facebook.com/groups/2259171634618441/" target="_blank" class="sanctuary-link">https://facebook.com/groups/2259171634618441/</a>
-                    <div class="sanctuary-desc">➛ This is our official group page</div>
-                </div>
+                <div class="sanctuary-card"><div class="sanctuary-title">Ꮚ. MCU - FIENDSPIRE SANCTUARY</div><a href="https://www.facebook.com/groups/1990019005732669/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/1990019005732669/</a><div class="sanctuary-desc">➛ This contains all the university announcements and information.</div></div>
+                <div class="sanctuary-card"><div class="sanctuary-title">Ꮚ. MCU - NEFARIOUS SANCTUARY</div><a href="https://www.facebook.com/groups/2232201527313883/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/2232201527313883/</a><div class="sanctuary-desc">➛ This contains all the university's convergences, covenants, gamblings, cryptworks, and unholy sovereignty.</div></div>
+                <div class="sanctuary-card"><div class="sanctuary-title">Ꮚ. MCU - DEMONOLOGY SANCTUARY</div><a href="https://www.facebook.com/share/g/17Fa2nShau/" target="_blank" class="sanctuary-link">https://www.facebook.com/share/g/17Fa2nShau/</a><div class="sanctuary-desc">➛ This contains all the university's abyssal rhetorics.</div></div>
+                <div class="sanctuary-card"><div class="sanctuary-title">Ꮚ. MCU - NEATHERBOARD SANCTUARY</div><a href="https://www.facebook.com/groups/1277055980538434/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/1277055980538434/</a><div class="sanctuary-desc">➛ This contains all the university members' links to their covenants.</div></div>
+                <div class="sanctuary-card"><div class="sanctuary-title">Ꮚ. MCU - PANDEMONIUM SANCTUARY</div><a href="https://www.facebook.com/groups/588264037077534/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/588264037077534/</a><div class="sanctuary-desc">➛ It serves as freedom wall for all university members.</div></div>
+                <div class="sanctuary-card"><div class="sanctuary-title">Ꮚ. MCU - HELLFIRE SANCTUARY</div><a href="https://www.facebook.com/groups/1279291150973210/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-link">https://www.facebook.com/groups/1279291150973210/</a><div class="sanctuary-desc">➛ This contains all the university events.</div></div>
+                <div class="sanctuary-card"><div class="sanctuary-title">Ꮚ. MCU - BELPHEGOR</div><a href="https://facebook.com/groups/2259171634618441/" target="_blank" class="sanctuary-link">https://facebook.com/groups/2259171634618441/</a><div class="sanctuary-desc">➛ This is our official group page</div></div>
             </div>
 
-            <!-- TERMINOLOGIES -->
+            <!-- TERMINOLOGIES (full) -->
             <div class="terminology">
                 <h2>〘 <span>TERMINOLOGIES</span> 〙</h2>
                 <div class="role-section">
                     <h3>₪ MEPHISTOPHELES :: EXECUTIVES</h3>
-                    <ul class="role-list">
-                        <li><strong>Chancellor</strong> — Founder</li>
-                        <li><strong>Provost</strong> — Principal</li>
-                        <li><strong>Infernal</strong> — Dean</li>
-                        <li><strong>Malefic Infernal</strong> — Assistant Dean</li>
-                        <li><strong>Scorchscribe</strong> — Artistic Coordinator</li>
-                        <li><strong>Archivist</strong> — Record Keeper</li>
-                        <li><strong>Abyss Syndicates</strong> — Board of Directors</li>
-                    </ul>
+                    <ul class="role-list"><li><strong>Chancellor</strong> — Founder</li><li><strong>Provost</strong> — Principal</li><li><strong>Infernal</strong> — Dean</li><li><strong>Malefic Infernal</strong> — Assistant Dean</li><li><strong>Scorchscribe</strong> — Artistic Coordinator</li><li><strong>Archivist</strong> — Record Keeper</li><li><strong>Abyss Syndicates</strong> — Board of Directors</li></ul>
                 </div>
                 <div class="role-section">
                     <h3>₪ TORMENTORS :: FACULTY</h3>
-                    <ul class="role-list">
-                        <li><strong>Sentinels</strong> — Department Heads</li>
-                        <li><strong>Revenants</strong> — Professors</li>
-                        <li><strong>Sentinels’ Archivists</strong> — Departments’ Record Keeper</li>
-                        <li><strong>Warden Curators</strong> — Club Handlers</li>
-                        <li><strong>Igniters</strong> — Editors</li>
-                    </ul>
+                    <ul class="role-list"><li><strong>Sentinels</strong> — Department Heads</li><li><strong>Revenants</strong> — Professors</li><li><strong>Sentinels’ Archivists</strong> — Departments’ Record Keeper</li><li><strong>Warden Curators</strong> — Club Handlers</li><li><strong>Igniters</strong> — Editors</li></ul>
                 </div>
                 <div class="role-section">
                     <h3>₪ BERSERKERS :: OFFICERS</h3>
-                    <ul class="role-list">
-                        <li><strong>Inferno</strong> — President</li>
-                        <li><strong>Viz Inferno</strong> — Vice President</li>
-                        <li><strong>Sinister</strong> — Secretary</li>
-                        <li><strong>Cerberus</strong> — PIO</li>
-                        <li><strong>Centaurs</strong> — PO</li>
-                        <li><strong>Demons</strong> — Students</li>
-                    </ul>
+                    <ul class="role-list"><li><strong>Inferno</strong> — President</li><li><strong>Viz Inferno</strong> — Vice President</li><li><strong>Sinister</strong> — Secretary</li><li><strong>Cerberus</strong> — PIO</li><li><strong>Centaurs</strong> — PO</li><li><strong>Demons</strong> — Students</li></ul>
                 </div>
-
                 <div class="role-section">
                     <h3>° Cursed Lexicon — Official Terms</h3>
                     <div class="term-grid">
@@ -782,7 +888,6 @@
                         <div class="term-item"><span class="term-name">Cryptworks</span> <span class="term-desc">— Club Activities</span></div>
                         <div class="term-item"><span class="term-name">Tribute Reckoning</span> <span class="term-desc">— Open Forum</span></div>
                     </div>
-
                     <div class="sub-section">
                         <h4>Chambers &amp; Halls</h4>
                         <div class="term-grid">
@@ -824,7 +929,8 @@
     <script>
         // Random demon name
         const demonNames = ["Mephistopheles", "Abaddon", "Azazel", "Belial", "Leviathan", "Asmodeus", "Beelzebub", "Paimon", "Mammon", "Lucifer", "Malphas", "Vassago", "Andras", "Furfur", "Marchosias"];
-        document.getElementById('random-demon').textContent = demonNames[Math.floor(Math.random() * demonNames.length)];
+        const randomDemonSpan = document.getElementById('random-demon');
+        if (randomDemonSpan) randomDemonSpan.textContent = demonNames[Math.floor(Math.random() * demonNames.length)];
 
         const correctCode = "BE1216857OR";
         const loginGate = document.getElementById('login-gate');
@@ -848,52 +954,31 @@
             sessionStorage.setItem('sanctuary_authenticated', 'true');
         }
 
-        submitBtn.addEventListener('click', () => {
-            const entered = codeInput.value.trim();
-            if (entered === correctCode) {
-                errorDiv.textContent = '';
-                unlockPage();
-            } else {
-                errorDiv.textContent = '⛧ Incorrect code. The gates remain sealed. ⛧';
-                codeInput.value = '';
-                codeInput.focus();
-                const card = document.querySelector('.login-card');
-                if (card) {
-                    card.style.transform = 'translateZ(10px) rotateX(2deg) rotateY(2deg)';
-                    setTimeout(() => { card.style.transform = ''; }, 200);
+        if (submitBtn) {
+            submitBtn.addEventListener('click', () => {
+                const entered = codeInput.value.trim();
+                if (entered === correctCode) {
+                    errorDiv.textContent = '';
+                    unlockPage();
+                } else {
+                    errorDiv.textContent = '⛧ Incorrect code. The gates remain sealed. ⛧';
+                    codeInput.value = '';
+                    codeInput.focus();
+                    const card = document.querySelector('.login-card');
+                    if (card) {
+                        card.style.transform = 'translateZ(10px) rotateX(2deg) rotateY(2deg)';
+                        setTimeout(() => { card.style.transform = ''; }, 200);
+                    }
                 }
-            }
-        });
-
-        codeInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') submitBtn.click();
-        });
-
-        // Hamburger menu toggle
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const overlay = document.getElementById('menu-overlay');
-
-        function closeMenu() {
-            mobileMenu.classList.remove('open');
-            overlay.classList.remove('active');
+            });
         }
-        function openMenu() {
-            mobileMenu.classList.add('open');
-            overlay.classList.add('active');
+        if (codeInput) {
+            codeInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && submitBtn) submitBtn.click();
+            });
         }
 
-        hamburger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (mobileMenu.classList.contains('open')) closeMenu();
-            else openMenu();
-        });
-        overlay.addEventListener('click', closeMenu);
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
-        });
-
-        // Dark mode toggle
+        // Dark mode
         const darkToggle = document.getElementById('dark-toggle');
         const darkIcon = darkToggle.querySelector('use');
         function updateDarkIcon() {
@@ -905,6 +990,34 @@
             const isDark = document.body.classList.toggle('dark');
             localStorage.setItem('mcu_dark_mode', isDark);
             updateDarkIcon();
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            menuOverlay.classList.remove('active');
+        }
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            menuOverlay.classList.add('active');
+        }
+
+        if (hamburger) {
+            hamburger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (mobileMenu.classList.contains('open')) closeMenu();
+                else openMenu();
+            });
+        }
+        if (menuOverlay) {
+            menuOverlay.addEventListener('click', closeMenu);
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
         });
     </script>
 </body>

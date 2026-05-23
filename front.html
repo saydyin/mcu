@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Belphegor Sinnercell — Forbidden Legacy MCU">
     <title>Belphegor Sinnercell</title>
+    <link rel="icon" type="image/x-icon" href="download.ico">
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Metal+Mania&family=Special+Elite&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -42,12 +43,7 @@
             --slate-800: #e2e8f0;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family: var(--font-sans);
             background: var(--bg);
@@ -58,14 +54,7 @@
             display: flex;
             flex-direction: column;
         }
-
-        .icon {
-            width: 1em;
-            height: 1em;
-            display: inline-block;
-            vertical-align: -0.125em;
-            fill: currentColor;
-        }
+        .icon { width:1em; height:1em; display:inline-block; vertical-align:-0.125em; fill:currentColor; }
 
         /* ----- Top bar (centered brand, hamburger, dark toggle) ----- */
         .top-bar {
@@ -79,7 +68,6 @@
             top: 0;
             z-index: 100;
         }
-
         .brand {
             font-family: var(--font-demonic);
             font-weight: 900;
@@ -94,19 +82,13 @@
             left: 50%;
             transform: translateX(-50%);
         }
-
-        .brand .icon {
-            color: var(--emerald-500);
-            font-size: 1.3rem;
-        }
-
+        .brand .icon { color: var(--emerald-500); font-size: 1.3rem; }
         .right-actions {
             display: flex;
             align-items: center;
             gap: 0.5rem;
             margin-left: auto;
         }
-
         .dark-toggle {
             padding: 0.5rem;
             border: 1px solid var(--border);
@@ -121,13 +103,7 @@
             height: 36px;
             transition: 0.2s;
         }
-
-        .dark-toggle:hover {
-            background: var(--slate-100);
-            color: var(--text);
-        }
-
-        /* Hamburger icon */
+        .dark-toggle:hover { background: var(--slate-100); color: var(--text); }
         .hamburger {
             display: flex;
             flex-direction: column;
@@ -137,7 +113,6 @@
             cursor: pointer;
             z-index: 101;
         }
-
         .hamburger span {
             display: block;
             height: 3px;
@@ -146,8 +121,6 @@
             border-radius: 3px;
             transition: all 0.3s ease;
         }
-
-        /* Slide-out mobile menu */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -164,11 +137,7 @@
             flex-direction: column;
             gap: 1rem;
         }
-
-        .mobile-menu.open {
-            right: 0;
-        }
-
+        .mobile-menu.open { right: 0; }
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -181,13 +150,10 @@
             opacity: 0;
             transition: visibility 0.3s, opacity 0.3s;
         }
-
         .menu-overlay.active {
             visibility: visible;
             opacity: 1;
         }
-
-        /* Mobile nav buttons – using system font (same as front.html) */
         .mobile-nav-btn {
             display: flex;
             align-items: center;
@@ -202,17 +168,13 @@
             text-decoration: none;
             transition: background 0.2s;
         }
-
-        .mobile-nav-btn:hover {
-            background: var(--border);
-        }
-
+        .mobile-nav-btn:hover { background: var(--border); }
         .mobile-nav-btn.active {
             background: var(--emerald-500);
             color: #fff;
         }
 
-        /* Main content (unchanged) */
+        /* Main content */
         .main-content {
             flex: 1;
             padding: 2rem 1.5rem;
@@ -220,12 +182,10 @@
             margin: 0 auto;
             width: 100%;
         }
-
         .page-header {
             text-align: center;
             margin-bottom: 2rem;
         }
-
         .page-header h1 {
             font-family: var(--font-demonic);
             font-size: 2.8rem;
@@ -233,17 +193,8 @@
             color: var(--text);
             letter-spacing: 2px;
         }
-
-        .page-header h1 span {
-            color: var(--emerald-500);
-        }
-
-        .page-header p {
-            color: var(--text-secondary);
-            margin-top: 0.5rem;
-            font-family: var(--font-serif);
-        }
-
+        .page-header h1 span { color: var(--emerald-500); }
+        .page-header p { color: var(--text-secondary); margin-top: 0.5rem; font-family: var(--font-serif); }
         .divider {
             width: 60px;
             height: 3px;
@@ -251,7 +202,6 @@
             margin: 0.5rem auto 1.5rem;
             border-radius: 2px;
         }
-
         .carousel {
             position: relative;
             max-width: 500px;
@@ -260,113 +210,47 @@
             border-radius: 12px;
             box-shadow: var(--shadow);
         }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            box-sizing: border-box;
-            position: relative;
-        }
-
+        .carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
+        .carousel-slide { min-width: 100%; box-sizing: border-box; position: relative; }
         .carousel-slide img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            aspect-ratio: 9 / 16;
-            border-radius: 12px;
+            width: 100%; height: auto; display: block;
+            object-fit: cover; aspect-ratio: 9 / 16; border-radius: 12px;
         }
-
         .carousel-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            color: white;
-            padding: 2.5rem 1rem 1rem;
-            text-align: center;
-            pointer-events: none;
-            border-radius: 0 0 12px 12px;
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white; padding: 2.5rem 1rem 1rem; text-align: center;
+            pointer-events: none; border-radius: 0 0 12px 12px;
         }
-
         .caption-name {
-            display: block;
-            font-family: var(--font-demonic);
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: 0.03em;
+            display: block; font-family: var(--font-demonic);
+            font-size: 1.4rem; font-weight: 700; letter-spacing: 0.03em;
         }
-
-        .caption-rank {
-            display: block;
-            font-size: 0.9rem;
-            opacity: 0.85;
-            margin-top: 0.2rem;
-            font-family: var(--font-serif);
-        }
-
+        .caption-rank { display: block; font-size: 0.9rem; opacity: 0.85; margin-top: 0.2rem; font-family: var(--font-serif); }
         .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.4);
-            color: white;
-            border: none;
-            font-size: 2rem;
-            padding: 0.4rem 0.8rem;
-            cursor: pointer;
-            border-radius: 50%;
-            z-index: 10;
-            transition: background 0.2s;
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(0,0,0,0.4); color: white; border: none;
+            font-size: 2rem; padding: 0.4rem 0.8rem; cursor: pointer;
+            border-radius: 50%; z-index: 10; transition: background 0.2s;
         }
-
-        .carousel-btn:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        .prev {
-            left: 1rem;
-        }
-
-        .next {
-            right: 1rem;
-        }
-
+        .carousel-btn:hover { background: rgba(0,0,0,0.7); }
+        .prev { left: 1rem; }
+        .next { right: 1rem; }
         .carousel-dots {
-            position: absolute;
-            bottom: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 0.5rem;
-            z-index: 10;
+            position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 0.5rem; z-index: 10;
         }
-
         .carousel-dots .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            border: none;
-            cursor: pointer;
+            width: 10px; height: 10px; border-radius: 50%;
+            background: rgba(255,255,255,0.5); border: none; cursor: pointer;
             transition: background 0.2s;
         }
+        .carousel-dots .dot.active { background: white; }
 
-        .carousel-dots .dot.active {
-            background: white;
-        }
-
-        /* Achievements placeholder */
         .achievements {
             margin: 3rem auto 2rem;
             text-align: center;
         }
-
         .achievements h2 {
             font-family: var(--font-demonic);
             font-size: 2rem;
@@ -374,18 +258,13 @@
             letter-spacing: 2px;
             margin-bottom: 0.5rem;
         }
-
-        .achievements h2 span {
-            color: var(--emerald-500);
-        }
-
+        .achievements h2 span { color: var(--emerald-500); }
         .achievements-sub {
             font-family: var(--font-serif);
             color: var(--text-secondary);
             font-size: 0.9rem;
             margin-bottom: 2rem;
         }
-
         .under-construction {
             background: var(--card-bg);
             border: 1px dashed var(--emerald-500);
@@ -395,14 +274,12 @@
             margin: 0 auto;
             text-align: center;
         }
-
         .under-construction p {
             font-family: var(--font-serif);
             color: var(--text-secondary);
             font-size: 0.9rem;
             margin-bottom: 0.5rem;
         }
-
         .under-construction .emoji {
             font-size: 2rem;
             display: block;
@@ -417,7 +294,6 @@
             margin-top: 2rem;
             background: var(--card-bg);
         }
-
         .footer-logo {
             max-width: 70px;
             height: auto;
@@ -425,18 +301,13 @@
             opacity: 0.8;
             transition: opacity 0.2s;
         }
-
-        .footer-logo:hover {
-            opacity: 1;
-        }
-
+        .footer-logo:hover { opacity: 1; }
         .footer p {
             font-family: var(--font-serif);
             font-size: 0.75rem;
             letter-spacing: 0.06em;
             color: var(--text-secondary);
         }
-
         .footer .credit {
             font-family: 'Metal Mania', cursive;
             color: var(--emerald-500);
@@ -444,7 +315,7 @@
             margin-top: 0.25rem;
         }
 
-        /* Loading overlay – system font (matches front.html) */
+        /* CAPYBARA LOADING OVERLAY */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -459,12 +330,10 @@
             justify-content: center;
             transition: opacity 0.5s ease, visibility 0.5s;
         }
-
         .loading-overlay.hide {
             opacity: 0;
             visibility: hidden;
         }
-
         .capybaraloader {
             width: 14em;
             height: 10em;
@@ -474,14 +343,12 @@
             --color2: rgb(83, 56, 28);
             transform: scale(0.75);
         }
-
         .capybara {
             width: 100%;
             height: 7.5em;
             position: relative;
             z-index: 1;
         }
-
         .loader {
             width: 100%;
             height: 2.5em;
@@ -489,7 +356,6 @@
             z-index: 1;
             overflow: hidden;
         }
-
         .capy {
             width: 85%;
             height: 100%;
@@ -499,7 +365,6 @@
             z-index: 1;
             animation: movebody 1s linear infinite;
         }
-
         .capyhead {
             width: 7.5em;
             height: 7em;
@@ -512,7 +377,6 @@
             box-shadow: -1em 0em var(--color2);
             animation: movebody 1s linear infinite;
         }
-
         .capyear {
             width: 2em;
             height: 2em;
@@ -524,12 +388,10 @@
             overflow: hidden;
             z-index: 3;
         }
-
         .capyear:nth-child(2) {
             left: 5em;
             background: linear-gradient(25deg, var(--color), 90%, var(--color2));
         }
-
         .capyear2 {
             width: 100%;
             height: 1em;
@@ -540,7 +402,6 @@
             position: absolute;
             transform: rotate(-45deg);
         }
-
         .capymouth {
             width: 3.5em;
             height: 2em;
@@ -554,7 +415,6 @@
             align-items: center;
             padding: 0.5em;
         }
-
         .capylips {
             width: 0.25em;
             height: 0.75em;
@@ -562,11 +422,9 @@
             transform: rotate(-45deg);
             background-color: var(--color);
         }
-
         .capylips:nth-child(2) {
             transform: rotate(45deg);
         }
-
         .capyeye {
             width: 2em;
             height: 0.5em;
@@ -577,13 +435,11 @@
             border-radius: 5em;
             transform: rotate(45deg);
         }
-
         .capyeye:nth-child(4) {
             transform: rotate(-45deg);
             left: 5.5em;
             width: 1.75em;
         }
-
         .capyleg {
             width: 6em;
             height: 5em;
@@ -595,7 +451,6 @@
             border-radius: 2em;
             animation: movebody 1s linear infinite;
         }
-
         .capyleg2 {
             width: 1.75em;
             height: 3em;
@@ -608,83 +463,39 @@
             box-shadow: inset 0em -0.5em var(--color2);
             animation: moveleg 1s linear infinite;
         }
-
         .capyleg2:nth-child(3) {
             width: 1.25em;
             left: 0.5em;
             height: 2em;
             animation: moveleg2 1s linear infinite 0.075s;
         }
-
         @keyframes moveleg {
-            0% {
-                transform: rotate(-45deg) translateX(-5%);
-            }
-
-            50% {
-                transform: rotate(45deg) translateX(5%);
-            }
-
-            100% {
-                transform: rotate(-45deg) translateX(-5%);
-            }
+            0% { transform: rotate(-45deg) translateX(-5%); }
+            50% { transform: rotate(45deg) translateX(5%); }
+            100% { transform: rotate(-45deg) translateX(-5%); }
         }
-
         @keyframes moveleg2 {
-            0% {
-                transform: rotate(45deg);
-            }
-
-            50% {
-                transform: rotate(-45deg);
-            }
-
-            100% {
-                transform: rotate(45deg);
-            }
+            0% { transform: rotate(45deg); }
+            50% { transform: rotate(-45deg); }
+            100% { transform: rotate(45deg); }
         }
-
         @keyframes movebody {
-            0% {
-                transform: translateX(0%);
-            }
-
-            50% {
-                transform: translateX(2%);
-            }
-
-            100% {
-                transform: translateX(0%);
-            }
+            0% { transform: translateX(0%); }
+            50% { transform: translateX(2%); }
+            100% { transform: translateX(0%); }
         }
-
         .loaderline {
             width: 50em;
             height: 0.5em;
             border-top: 0.5em dashed var(--color2);
             animation: moveline 10s linear infinite;
         }
-
         @keyframes moveline {
-            0% {
-                transform: translateX(0%);
-                opacity: 0%;
-            }
-
-            5% {
-                opacity: 100%;
-            }
-
-            95% {
-                opacity: 100%;
-            }
-
-            100% {
-                opacity: 0%;
-                transform: translateX(-70%);
-            }
+            0% { transform: translateX(0%); opacity: 0%; }
+            5% { opacity: 100%; }
+            95% { opacity: 100%; }
+            100% { opacity: 0%; transform: translateX(-70%); }
         }
-
         .loading-text {
             font-family: var(--font-sans);
             font-size: 1.2rem;
@@ -694,42 +505,18 @@
             margin-top: 1.5rem;
             animation: pulse 1.2s infinite;
         }
-
         @keyframes pulse {
-            0%, 100% {
-                opacity: 0.6;
-                text-shadow: 0 0 2px var(--emerald-500);
-            }
-            50% {
-                opacity: 1;
-                text-shadow: 0 0 12px var(--emerald-500);
-            }
+            0%, 100% { opacity: 0.6; text-shadow: 0 0 2px var(--emerald-500); }
+            50% { opacity: 1; text-shadow: 0 0 12px var(--emerald-500); }
         }
 
         @media (max-width: 600px) {
-            .top-bar {
-                padding: 0.5rem 1rem;
-            }
-
-            .main-content {
-                padding: 1rem;
-            }
-
-            .page-header h1 {
-                font-size: 2rem;
-            }
-
-            .achievements h2 {
-                font-size: 1.6rem;
-            }
-
-            .capybaraloader {
-                transform: scale(0.5);
-            }
-
-            .brand {
-                font-size: 1.2rem;
-            }
+            .top-bar { padding: 0.5rem 1rem; }
+            .main-content { padding: 1rem; }
+            .page-header h1 { font-size: 2rem; }
+            .achievements h2 { font-size: 1.6rem; }
+            .capybaraloader { transform: scale(0.5); }
+            .brand { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -739,14 +526,13 @@
             <symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 23c-3.6 0-8-2.4-8-7.7 0-3.5 2-6.3 3.5-8.2.4-.5 1.2-.3 1.3.3.3 1.5.9 3.2 2.2 4.3.2-.8.5-1.7 1-2.6 1-2 2.5-3.5 3.3-4.3.4-.4 1.1-.2 1.2.3.5 2.5 2.5 5.5 2.5 9.2C18 20.6 15.6 23 12 23z"/></symbol>
             <symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 4h16v2H4zm0 4h16v2H4zm0 4h16v2H4z"/><path d="M4 2h16v2H4zm0 18h16v2H4z"/></symbol>
             <symbol id="icon-sword" viewBox="0 0 24 24"><path d="M15.9 2.1L14.5 .7 7.8 7.4l1.4 1.4-7.4 7.4 1.4 1.4 7.4-7.4 1.4 1.4 6.7-6.7-1.4-1.4z"/></symbol>
-            <symbol id="icon-gavel" viewBox="0 0 24 24"><path d="M2 21h20v-2H2v2zm2.3-8.3l2.8-2.8L9 11.8 6.2 14.6l-1.9-1.9zm6.3-6.3l7.1 7.1-2.8 2.8-7.1-7.1 2.8-2.8zm4.2-4.2l2.8 2.8-1.4 1.4-2.8-2.8 1.4-1.4z"/></symbol>
             <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9 9 9 0 00-9-9z"/></symbol>
             <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.2 4.2l1.4 1.4m12.8 12.8l1.4 1.4M1 12h2m18 0h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></symbol>
             <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20v-2c0-2.2 3.6-4 8-4s8 1.8 8 4v2"/><path d="M19 3c1.1 0 2 .9 2 2s-.9 2-2 2"/><path d="M5 3c-1.1 0-2 .9-2 2s.9 2 2 2"/></symbol>
         </defs>
     </svg>
 
-    <!-- Loading overlay (3 seconds) -->
+    <!-- CAPYBARA LOADING OVERLAY (minimum 3 seconds) -->
     <div id="loading-overlay" class="loading-overlay">
         <div class="capybaraloader">
             <div class="capybara">
@@ -769,24 +555,36 @@
         </div>
         <div class="loading-text">SUMMONING THE LEGACY...</div>
     </div>
+    <script>
+        (function() {
+            const overlay = document.getElementById('loading-overlay');
+            const pageStart = performance.now();
+            window.addEventListener('load', function() {
+                const elapsed = performance.now() - pageStart;
+                const remaining = Math.max(0, 3000 - elapsed);
+                setTimeout(() => {
+                    overlay.classList.add('hide');
+                    setTimeout(() => overlay.style.display = 'none', 500);
+                }, remaining);
+            });
+        })();
+    </script>
 
     <header class="top-bar">
-        <a href="#" class="brand"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
+        <a href="front.html" class="brand"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
         <div class="right-actions">
-            <button class="dark-toggle" id="dark-toggle" aria-label="Toggle dark mode"><svg class="icon"><use href="#icon-moon"/></svg></button>
-            <div class="hamburger" id="hamburger">
-                <span></span><span></span><span></span>
-            </div>
+            <button class="dark-toggle" id="dark-toggle"><svg class="icon"><use href="#icon-moon"/></svg></button>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
         </div>
     </header>
 
-    <!-- Slide-out mobile menu -->
+    <!-- Hamburger menu - ordered: Sanctuaries, Belphegor (active), Codex, Trial, Students -->
     <div class="mobile-menu" id="mobile-menu">
-        <a href="#" class="mobile-nav-btn active"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
+        <a href="index.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-flame"/></svg> Sanctuaries</a>
+        <a href="front.html" class="mobile-nav-btn active"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
         <a href="codex.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-book"/></svg> Codex</a>
-        <a href="quiz.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-sword"/></svg> Quiz</a>
+        <a href="quiz.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-sword"/></svg> Trial</a>
         <a href="students.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-users"/></svg> Students</a>
-        <a href="front.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-flame"/></svg> Sanctuaries</a>
     </div>
     <div class="menu-overlay" id="menu-overlay"></div>
 
@@ -831,17 +629,6 @@
     </footer>
 
     <script>
-        // Loading overlay: minimum 3 seconds
-        window.addEventListener('load', function() {
-            const overlay = document.getElementById('loading-overlay');
-            const startTime = performance.now();
-            const remaining = Math.max(0, 3000 - (performance.now() - startTime));
-            setTimeout(() => {
-                overlay.classList.add('hide');
-                setTimeout(() => overlay.style.display = 'none', 500);
-            }, remaining);
-        });
-
         // Dark mode
         const darkToggle = document.getElementById('dark-toggle');
         const darkIcon = darkToggle.querySelector('use');
@@ -865,7 +652,6 @@
             mobileMenu.classList.remove('open');
             menuOverlay.classList.remove('active');
         }
-
         function openMenu() {
             mobileMenu.classList.add('open');
             menuOverlay.classList.add('active');
@@ -876,7 +662,6 @@
             if (mobileMenu.classList.contains('open')) closeMenu();
             else openMenu();
         });
-
         menuOverlay.addEventListener('click', closeMenu);
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
