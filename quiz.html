@@ -4,130 +4,472 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Test your knowledge of the Forbidden Legacy - Sinnercell Edition">
-    <title>Sinnercell Trial - Forbidden Legacy MCU</title>
+    <title>Sinnercell Trial — Forbidden Legacy MCU</title>
+    <!-- Demonic / Gothic font import + green hellfire vibe (mirroring index) -->
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Metal+Mania&family=Special+Elite&display=swap" rel="stylesheet">
     <style>
         :root {
-            --emerald-500: #10b981; --emerald-600: #059669; --emerald-700: #047857;
-            --slate-50: #f8fafc; --slate-100: #f1f5f9; --slate-200: #e2e8f0;
-            --slate-300: #cbd5e1; --slate-400: #94a3b8; --slate-500: #64748b;
-            --slate-600: #475569; --slate-700: #334155; --slate-800: #1e293b;
-            --slate-900: #0f172a;
-            --bg: #f8fafc; --card-bg: #ffffff; --text: #1e293b; --text-secondary: #475569;
-            --border: #e2e8f0; --option-bg: #f8fafc; --option-hover: #f1f5f9;
-            --selected-bg: #d1fae5; --selected-border: var(--emerald-500);
-            --correct-bg: #d1fae5; --incorrect-bg: #fee2e2; --incorrect-border: #ef4444;
-            --shadow: 0 4px 16px rgba(0,0,0,0.04);
-            --font-serif: Georgia, "Times New Roman", serif;
-            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
-        body.dark {
-            --bg: #0f172a; --card-bg: #1e293b; --text: #e2e8f0; --text-secondary: #94a3b8;
-            --border: #334155; --option-bg: #1e293b; --option-hover: #334155;
-            --selected-bg: #065f46; --selected-border: #10b981;
-            --correct-bg: #065f46; --incorrect-bg: #7f1d1d; --incorrect-border: #dc2626;
-            --shadow: 0 4px 20px rgba(0,0,0,0.3); --emerald-700: #6ee7b7; --slate-800: #e2e8f0;
+            /* Green hellfire palette – same as main codex */
+            --greenfire-500: #10b981;
+            --greenfire-600: #059669;
+            --greenfire-700: #047857;
+            --greenfire-glow: #34d399;
+            --dark-bg: #0a0507;
+            --card-bg: #130c0e;
+            --text: #ecd9c9;
+            --text-secondary: #b89a8a;
+            --border: #1e3a2f;
+            --option-bg: #0f1814;
+            --option-hover: #1b2a24;
+            --selected-bg: #0a2a1e;
+            --selected-border: var(--greenfire-500);
+            --correct-bg: #064e3b;
+            --incorrect-bg: #3b1a1a;
+            --incorrect-border: #b91c1c;
+            --shadow: 0 8px 20px rgba(0,0,0,0.6);
+            --font-serif: "Special Elite", "Times New Roman", serif;
+            --font-sans: "Segoe UI", system-ui, sans-serif;
+            --font-demonic: 'UnifrakturMaguntia', 'Metal Mania', cursive;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            font-family:var(--font-sans); background:var(--bg); color:var(--text);
-            line-height:1.6; min-height:100vh; display:flex; flex-direction:column;
-            transition:background 0.3s,color 0.3s;
+            background: radial-gradient(circle at 20% 30%, #0a1f1a, #020202);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s, color 0.3s;
+        }
+        body.dark {
+            background: radial-gradient(circle at 20% 30%, #071712, #000000);
         }
         .icon { width:1em; height:1em; display:inline-block; vertical-align:-0.125em; fill:currentColor; }
+
+        /* ── TOP BAR (demonic, MCU brand) ── */
         .top-bar {
-            background:var(--card-bg); border-bottom:1px solid var(--border);
-            padding:0.75rem 1.5rem; display:flex; align-items:center;
-            justify-content:space-between; position:sticky; top:0; z-index:50;
+            background: rgba(5, 12, 10, 0.9);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--greenfire-700);
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
         }
-        .brand { display:flex; align-items:center; gap:0.6rem; font-family:var(--font-serif); font-weight:900; font-size:1.2rem; color:var(--text); text-decoration:none; }
-        .brand .icon { color:var(--emerald-500); }
-        .top-actions { display:flex; align-items:center; gap:0.5rem; }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-demonic);
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: var(--greenfire-500);
+            text-shadow: 0 0 5px #064e3b;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        .brand .icon { color: var(--greenfire-500); }
+        .top-actions { display: flex; align-items: center; gap: 0.5rem; }
         .back-link, .dark-toggle {
-            display:flex; align-items:center; gap:0.4rem; color:var(--text-secondary);
-            text-decoration:none; font-weight:500; font-size:0.85rem;
-            padding:0.4rem 0.8rem; border-radius:6px; border:1px solid var(--border);
-            background:var(--card-bg); cursor:pointer; transition:0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #b8dfc8;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 0px;
+            border: 1px solid #1e4a3a;
+            background: #0f1e18;
+            cursor: pointer;
+            transition: all 0.25s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .back-link:hover, .dark-toggle:hover { background:var(--option-hover); color:var(--text); }
-        .quiz-wrapper { flex:1; display:flex; align-items:center; justify-content:center; padding:2rem 1.5rem; }
+        .back-link:hover, .dark-toggle:hover {
+            background: #0b2a20;
+            color: var(--greenfire-500);
+            border-color: var(--greenfire-500);
+        }
+        .quiz-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+        }
         .quiz-container { width:100%; max-width:720px; }
-        .start-screen, .result-screen, .quiz-card {
-            background:var(--card-bg); border:1px solid var(--border);
-            border-radius:20px; padding:3rem 2rem; box-shadow:var(--shadow);
-            animation: fadeInUp 0.5s ease-out; text-align:center;
+        .start-screen, .result-screen, .quiz-card, .review-screen {
+            background: rgba(10, 22, 18, 0.9);
+            backdrop-filter: blur(2px);
+            border: 1px solid var(--greenfire-700);
+            border-radius: 0px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6), inset 0 0 12px rgba(16,185,129,0.1);
+            animation: fadeInUp 0.5s ease-out;
+            text-align: center;
         }
-        .shield-icon { font-size:3.5rem; color:var(--emerald-500); margin-bottom:1.5rem; }
-        .start-screen h2, .result-screen h2 { font-family:var(--font-serif); font-size:2rem; font-weight:900; margin-bottom:0.75rem; }
-        .start-screen p { color:var(--text-secondary); margin-bottom:1.5rem; max-width:450px; margin-inline:auto; }
+        /* Goat head icon style */
+        .goat-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.2rem;
+            display: block;
+            filter: drop-shadow(0 0 6px var(--greenfire-500));
+        }
+        .goat-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--greenfire-500);
+        }
+        .start-screen h2, .result-screen h2 {
+            font-family: var(--font-demonic);
+            font-size: 2rem;
+            font-weight: 900;
+            color: #e6b422;
+            text-shadow: 2px 2px 0px #1a4a2a;
+            margin-bottom: 0.75rem;
+        }
+        .start-screen p {
+            color: #b89a8a;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-serif);
+        }
         .btn {
-            padding:0.8rem 2.2rem; background:var(--slate-800); color:#fff;
-            font-family:var(--font-serif); font-weight:700; text-transform:uppercase;
-            letter-spacing:0.06em; border:none; border-radius:10px; cursor:pointer;
-            transition:0.2s; display:inline-flex; align-items:center; gap:0.5rem;
+            padding: 0.7rem 2rem;
+            background: var(--greenfire-700);
+            color: #050a08;
+            font-family: 'Metal Mania', cursive;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border: 1px solid var(--greenfire-500);
+            border-radius: 0px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        .btn:hover { background:var(--slate-900); }
-        .btn:active { transform:scale(0.97); }
+        .btn:hover {
+            background: var(--greenfire-500);
+            color: #020202;
+            box-shadow: 0 0 10px var(--greenfire-500);
+            transform: scale(0.98);
+        }
         .btn-outline {
-            background:transparent; border:1px solid var(--border); color:var(--text);
-            font-family:var(--font-sans); font-weight:600; text-transform:none;
+            background: transparent;
+            border: 1px solid var(--greenfire-600);
+            color: var(--text-secondary);
+            font-family: var(--font-sans);
+            text-transform: none;
         }
-        .btn-outline:hover { background:var(--option-hover); }
-        .quiz-card { padding:2rem 2rem 1.5rem; text-align:left; }
-        .quiz-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:0.5rem; }
+        .btn-outline:hover {
+            background: #0b2a20;
+            color: var(--greenfire-500);
+            border-color: var(--greenfire-500);
+        }
+        .quiz-card {
+            text-align: left;
+            padding: 1.8rem 2rem 1.8rem;
+        }
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
         .decree-badge {
-            font-size:0.7rem; font-weight:700; text-transform:uppercase;
-            letter-spacing:0.08em; color:var(--emerald-700);
-            background:var(--correct-bg); padding:0.3rem 0.8rem; border-radius:20px;
+            font-family: 'Metal Mania', cursive;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #e6b422;
+            background: #0a2a1e;
+            border: 1px solid var(--greenfire-500);
+            padding: 0.3rem 0.8rem;
         }
-        .progress { font-family:monospace; font-size:0.85rem; color:var(--text-secondary); }
-        .progress span { font-weight:700; color:var(--text); }
-        .quiz-scenario { font-style:italic; color:var(--text-secondary); border-left:4px solid var(--border); padding-left:1rem; margin-bottom:1.8rem; }
-        .quiz-question { font-family:var(--font-serif); font-size:1.25rem; font-weight:700; margin-bottom:1.8rem; }
-        .options-group { display:flex; flex-direction:column; gap:0.75rem; margin-bottom:1.5rem; }
+        .quiz-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .streak-display {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #f59e0b;
+        }
+        .streak-display.zero { color: #5a8a74; opacity: 0.6; }
+        .progress {
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #b89a8a;
+        }
+        .progress span { font-weight: 700; color: var(--greenfire-500); }
+        .timer-track {
+            height: 4px;
+            background: #1e3a2f;
+            margin-bottom: 1.25rem;
+            overflow: hidden;
+        }
+        .timer-bar {
+            height: 100%;
+            width: 100%;
+            background: var(--greenfire-500);
+            transition: width 0.1s linear;
+        }
+        .timer-bar.warning { background: #f59e0b; }
+        .timer-bar.danger { background: #ef4444; }
+        .quiz-scenario {
+            font-style: italic;
+            color: #cbb5a5;
+            border-left: 4px solid var(--greenfire-500);
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-serif);
+        }
+        .quiz-question {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ecd9c9;
+            margin-bottom: 1.5rem;
+        }
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
         .quiz-option {
-            display:flex; align-items:center; gap:1rem; padding:0.9rem 1.2rem;
-            background:var(--option-bg); border:1px solid var(--border); border-radius:10px;
-            cursor:pointer; transition:all 0.2s; text-align:left; font-size:0.95rem; outline:none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1.2rem;
+            background: #0f1814;
+            border: 1px solid #2a4a3a;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            font-size: 0.9rem;
+            outline: none;
+            color: #cbb5a5;
         }
-        .quiz-option:hover, .quiz-option:focus-visible { background:var(--option-hover); border-color:var(--text-secondary); }
-        .quiz-option[aria-checked="true"] { background:var(--selected-bg); border-color:var(--selected-border); font-weight:500; }
-        .quiz-option.correct-feedback { background:var(--correct-bg); border-color:var(--emerald-500); }
-        .quiz-option.incorrect-feedback { background:var(--incorrect-bg); border-color:var(--incorrect-border); }
-        .option-circle { width:22px; height:22px; border:2px solid var(--text-secondary); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:0.7rem; color:transparent; transition:0.2s; }
-        .quiz-option[aria-checked="true"] .option-circle { border-color:var(--selected-border); color:var(--selected-border); background:#fff; }
-        .quiz-option.correct-feedback .option-circle { border-color:var(--emerald-500); color:var(--emerald-500); }
-        .quiz-option.incorrect-feedback .option-circle { border-color:var(--incorrect-border); color:var(--incorrect-border); }
-        .quiz-actions { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-        .feedback-message { font-size:0.85rem; font-weight:500; min-height:1.5em; color:var(--emerald-600); flex:1; }
-        .feedback-message.error { color:#dc2626; }
+        .quiz-option:hover, .quiz-option:focus-visible {
+            background: #1b2a24;
+            border-color: var(--greenfire-500);
+        }
+        .quiz-option[aria-checked="true"] {
+            background: #0a2a1e;
+            border-color: var(--greenfire-500);
+            color: #e6fffa;
+        }
+        .quiz-option.correct-feedback {
+            background: #064e3b;
+            border-color: #10b981;
+        }
+        .quiz-option.incorrect-feedback {
+            background: #3b1a1a;
+            border-color: #b91c1c;
+        }
+        .option-circle {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #5a8a74;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: transparent;
+        }
+        .quiz-option[aria-checked="true"] .option-circle {
+            border-color: var(--greenfire-500);
+            color: var(--greenfire-500);
+            background: #00000033;
+        }
+        .quiz-option.correct-feedback .option-circle {
+            border-color: #10b981;
+            color: #10b981;
+        }
+        .quiz-option.incorrect-feedback .option-circle {
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+        .quiz-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .feedback-message {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--greenfire-500);
+            flex: 1;
+        }
+        .feedback-message.error { color: #ef4444; }
         .next-btn {
-            padding:0.7rem 1.8rem; background:var(--slate-800); color:#fff;
-            font-family:var(--font-serif); font-weight:700; text-transform:uppercase;
-            letter-spacing:0.05em; border:none; border-radius:8px; cursor:pointer;
-            display:flex; align-items:center; gap:0.5rem; transition:0.2s;
+            padding: 0.6rem 1.5rem;
+            background: var(--greenfire-700);
+            color: #050a08;
+            font-family: 'Metal Mania', cursive;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 1px solid var(--greenfire-500);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
         }
-        .next-btn:disabled { opacity:0.5; cursor:not-allowed; background:var(--text-secondary); }
-        .next-btn:not(:disabled):hover { background:var(--slate-900); }
-        .result-screen { text-align:center; }
-        .result-icon { font-size:3.5rem; color:var(--emerald-500); margin-bottom:1.2rem; }
-        .result-title { font-family:var(--font-serif); font-size:1.8rem; font-weight:900; margin-bottom:0.5rem; }
-        .result-subtitle { color:var(--text-secondary); margin-bottom:2rem; }
+        .next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #2a4a3a;
+        }
+        .next-btn:not(:disabled):hover {
+            background: var(--greenfire-500);
+            box-shadow: 0 0 8px var(--greenfire-500);
+        }
+        .result-screen .result-icon {
+            margin-bottom: 1rem;
+        }
         .score-circle {
-            display:inline-flex; flex-direction:column; align-items:center; justify-content:center;
-            width:120px; height:120px; border-radius:50%; background:var(--option-bg);
-            border:4px solid var(--emerald-500); margin:1rem auto 2rem;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 120px;
+            border-radius: 0%;
+            background: #0f1814;
+            border: 3px solid var(--greenfire-500);
+            margin: 1rem auto 1.5rem;
         }
-        .score-value { font-family:var(--font-serif); font-size:2.5rem; font-weight:900; }
-        .score-total { font-size:0.85rem; color:var(--text-secondary); margin-top:-5px; }
-        .result-message { max-width:320px; margin:0 auto 2rem; color:var(--text-secondary); }
-        .result-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
-        @keyframes fadeInUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+        .score-value { font-family: var(--font-demonic); font-size: 2.5rem; font-weight: 900; color: #e6b422; }
+        .score-total { font-size: 0.8rem; color: #b89a8a; }
+        .decree-breakdown {
+            text-align: left;
+            background: #0f1814;
+            border: 1px solid #1e4a3a;
+            padding: 1.2rem 1.4rem;
+            margin: 0 auto 2rem;
+            max-width: 420px;
+        }
+        .decree-breakdown h4 {
+            font-family: 'Metal Mania', cursive;
+            font-size: 0.7rem;
+            color: var(--greenfire-500);
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.1em;
+        }
+        .breakdown-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+        .breakdown-label { flex: 1; color: #b89a8a; }
+        .breakdown-bar-track {
+            width: 80px;
+            height: 6px;
+            background: #1e3a2f;
+            overflow: hidden;
+        }
+        .breakdown-bar-fill {
+            height: 100%;
+            background: var(--greenfire-500);
+            transition: width 0.6s ease;
+        }
+        .breakdown-bar-fill.zero { background: #5a8a74; opacity: 0.4; }
+        .breakdown-score { font-weight: 700; color: var(--greenfire-500); width: 2.5rem; text-align: right; }
+        .result-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+        .review-screen {
+            text-align: left;
+        }
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .review-header h2 {
+            font-family: var(--font-demonic);
+            color: #e6b422;
+            font-size: 1.5rem;
+        }
+        .review-item {
+            border: 1px solid #2a4a3a;
+            padding: 1.2rem 1.4rem;
+            margin-bottom: 1rem;
+            background: #0f1814;
+        }
+        .review-item.correct-item { border-left: 4px solid var(--greenfire-500); }
+        .review-item.incorrect-item { border-left: 4px solid #ef4444; }
+        .ri-decree {
+            font-family: 'Metal Mania', cursive;
+            font-size: 0.7rem;
+            color: var(--greenfire-500);
+            margin-bottom: 0.4rem;
+        }
+        .ri-scenario { font-style: italic; color: #b89a8a; font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .ri-question { font-family: var(--font-serif); font-weight: 700; margin-bottom: 0.75rem; }
+        .ri-option {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.4rem 0.6rem;
+            margin-bottom: 0.3rem;
+            font-size: 0.85rem;
+        }
+        .ri-option.user-correct { background: #064e3b; }
+        .ri-option.user-incorrect { background: #3b1a1a; }
+        .ri-option.show-correct { background: #064e3b; }
+        .ri-marker {
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            border: 1px solid currentColor;
+        }
+        .ri-option.user-correct .ri-marker { color: #10b981; }
+        .ri-option.user-incorrect .ri-marker { color: #ef4444; }
+        .ri-option.show-correct .ri-marker { color: #10b981; }
+        .ri-explanation {
+            margin-top: 0.6rem;
+            font-size: 0.8rem;
+            color: #b89a8a;
+            padding-top: 0.6rem;
+            border-top: 1px solid #2a4a3a;
+        }
+        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); opacity:0; } }
+        @keyframes fadeInUp { from{ opacity:0; transform:translateY(20px); } to{ opacity:1; transform:translateY(0); } }
         @media (max-width:600px) {
-            .quiz-card, .start-screen, .result-screen { padding:1.5rem 1.2rem; }
-            .quiz-question { font-size:1.1rem; }
-            .next-btn { width:100%; justify-content:center; }
-            .quiz-actions { flex-direction:column; align-items:stretch; }
-            .result-actions { flex-direction:column; align-items:center; }
+            .quiz-card, .start-screen, .result-screen, .review-screen { padding: 1.5rem 1.2rem; }
+            .quiz-question { font-size: 1.1rem; }
+            .next-btn { width: 100%; justify-content: center; }
+            .quiz-actions { flex-direction: column; align-items: stretch; }
+            .result-actions { flex-direction: column; align-items: center; }
+            .goat-icon { width: 60px; height: 60px; }
         }
     </style>
 </head>
@@ -136,18 +478,29 @@
         <defs>
             <symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 4h16v2H4zm0 4h16v2H4zm0 4h16v2H4z"/><path d="M4 2h16v2H4zm0 18h16v2H4z"/></symbol>
             <symbol id="icon-sword" viewBox="0 0 24 24"><path d="M15.9 2.1L14.5 .7 7.8 7.4l1.4 1.4-7.4 7.4 1.4 1.4 7.4-7.4 1.4 1.4 6.7-6.7-1.4-1.4z"/></symbol>
-            <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm0 2.2l7 3.1V11c0 4.6-2.9 8.9-7 10-4.1-1.1-7-5.4-7-10V6.3l7-3.1z"/></symbol>
+            <!-- Goat head SVG symbol (front face) -->
+            <symbol id="icon-goat" viewBox="0 0 100 100">
+                <path d="M50,15 C40,15 32,22 30,32 C28,28 22,26 18,28 C14,30 12,36 14,42 C16,48 22,52 28,52 C30,52 32,50 34,48 C36,54 42,58 50,58 C58,58 64,54 66,48 C68,50 70,52 72,52 C78,52 84,48 86,42 C88,36 86,30 82,28 C78,26 72,28 70,32 C68,22 60,15 50,15 Z M38,38 C40,38 42,40 42,42 C42,44 40,46 38,46 C36,46 34,44 34,42 C34,40 36,38 38,38 Z M62,38 C64,38 66,40 66,42 C66,44 64,46 62,46 C60,46 58,44 58,42 C58,40 60,38 62,38 Z M45,68 C48,65 52,65 55,68 C56,69 56,71 55,72 C52,75 48,75 45,72 C44,71 44,69 45,68 Z M50,62 C45,62 40,64 37,68 C35,70 36,73 38,74 C42,77 58,77 62,74 C64,73 65,70 63,68 C60,64 55,62 50,62 Z"/>
+                <path d="M50,15 C40,15 32,22 30,32 C28,28 22,26 18,28 C14,30 12,36 14,42 C16,48 22,52 28,52 C30,52 32,50 34,48 C36,54 42,58 50,58 C58,58 64,54 66,48 C68,50 70,52 72,52 C78,52 84,48 86,42 C88,36 86,30 82,28 C78,26 72,28 70,32 C68,22 60,15 50,15 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                <!-- horns -->
+                <path d="M30,28 L22,12 L28,10 L34,22" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M70,28 L78,12 L72,10 L66,22" fill="none" stroke="currentColor" stroke-width="2"/>
+                <!-- beard -->
+                <path d="M50,58 L50,72 M45,68 L42,78 M55,68 L58,78" stroke="currentColor" stroke-width="2" fill="none"/>
+            </symbol>
             <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9 9 9 0 00-9-9z"/></symbol>
             <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.2 4.2l1.4 1.4m12.8 12.8l1.4 1.4M1 12h2m18 0h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></symbol>
             <symbol id="icon-arrow-left" viewBox="0 0 24 24"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20v-2z"/></symbol>
             <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M4 13h12.2l-5.6 5.6L12 20l8-8-8-8-1.4 1.4L16.2 11H4v2z"/></symbol>
             <symbol id="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
             <symbol id="icon-clock" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></symbol>
+            <symbol id="icon-fire" viewBox="0 0 24 24"><path d="M12 23c-3.6 0-8-2.4-8-7.7 0-3.5 2-6.3 3.5-8.2.4-.5 1.2-.3 1.3.3.3 1.5.9 3.2 2.2 4.3.2-.8.5-1.7 1-2.6 1-2 2.5-3.5 3.3-4.3.4-.4 1.1-.2 1.2.3.5 2.5 2.5 5.5 2.5 9.2C18 20.6 15.6 23 12 23z"/></symbol>
+            <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5c-1.7-4.4-6-7.5-11-7.5zm0 12.5c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5zm0-8c-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3-1.3-3-3-3z"/></symbol>
         </defs>
     </svg>
 
     <header class="top-bar">
-        <a href="index.html" class="brand"><svg class="icon"><use href="#icon-book"/></svg> Forbidden Legacy</a>
+        <a href="index.html" class="brand"><svg class="icon"><use href="#icon-book"/></svg> MCU</a>
         <div class="top-actions">
             <button class="dark-toggle" id="dark-toggle" aria-label="Toggle dark mode">
                 <svg class="icon"><use href="#icon-moon"/></svg> <span>Dark</span>
@@ -160,7 +513,6 @@
 
     <script>
         (function() {
-            // Rewritten questions: direct, personal, no fluff
             const FULL_QUESTION_BANK = [
                 { id:"I-1", decree:"Decree I, Section 1", scenario:"You lose your temper in an argument and start shouting insults at someone.", question:"What should you do instead?", choices:["Demand an apology first","Stay calm and control yourself","Leave the argument at once","Report the other person to a Tormentor"], correctIndex:1, explanation:"You are expected to stay calm and behave with respect and self-control." },
                 { id:"I-2", decree:"Decree I, Section 2", scenario:"Your ID badge is missing from your Facebook Featured Highlights. You already got a warning for this.", question:"What do you do now?", choices:["Use a friend's badge for the day","Upload the badge to Featured Highlights right away","Hope nobody checks","Explain the situation and ask for a replacement"], correctIndex:1, explanation:"Badges must appear in Featured Highlights at all times. A second offense leads to expulsion. Fix it immediately." },
@@ -183,55 +535,140 @@
             ];
 
             const app = document.getElementById('quiz-app');
-            const STORAGE_KEY_PROGRESS = 'mcu_quiz_progress_v5';
+            const STORAGE_KEY_PROGRESS = 'mcu_quiz_progress_v8';
+            const TIMER_DURATION = 20;
 
             let currentQuestion = 0, score = 0, quizCompleted = false, feedbackActive = false;
-            let selectedQuestions = [];
+            let selectedQuestions = [], userAnswers = [];
+            let currentStreak = 0, timerInterval = null, timeLeft = TIMER_DURATION;
+            let decreeStats = { I:{total:0,correct:0}, II:{total:0,correct:0}, III:{total:0,correct:0}, IV:{total:0,correct:0}, V:{total:0,correct:0} };
 
             function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
-            function saveProgress(){ const d={currentQuestion,score,quizCompleted,selectedIds:selectedQuestions.map(q=>q.id),timestamp:Date.now()}; localStorage.setItem(STORAGE_KEY_PROGRESS,JSON.stringify(d)); }
+            function saveProgress(){
+                const d={currentQuestion,score,quizCompleted,selectedIds:selectedQuestions.map(q=>q.id),userAnswers,currentStreak,timestamp:Date.now()};
+                localStorage.setItem(STORAGE_KEY_PROGRESS,JSON.stringify(d));
+            }
             function clearProgress(){ localStorage.removeItem(STORAGE_KEY_PROGRESS); }
 
+            function startTimer(){
+                clearInterval(timerInterval);
+                timeLeft = TIMER_DURATION;
+                const bar = document.getElementById('timer-bar');
+                if(bar){ bar.style.width='100%'; bar.className='timer-bar'; }
+                timerInterval = setInterval(()=>{
+                    timeLeft--;
+                    const pct = (timeLeft / TIMER_DURATION) * 100;
+                    if(bar){
+                        bar.style.width = pct + '%';
+                        if(timeLeft <= 5) bar.classList.add('danger');
+                        else if(timeLeft <= 10) bar.classList.add('warning');
+                    }
+                    if(timeLeft <= 0){
+                        clearInterval(timerInterval);
+                        if(!feedbackActive) autoSubmit();
+                    }
+                },1000);
+            }
+            function stopTimer(){ clearInterval(timerInterval); }
+            function autoSubmit(){
+                feedbackActive = true;
+                const nb = document.getElementById('next-btn');
+                const fb = document.getElementById('feedback-msg');
+                const q = selectedQuestions[currentQuestion];
+                userAnswers[currentQuestion] = null;
+                currentStreak = 0;
+                const opts = document.querySelectorAll('.quiz-option');
+                opts.forEach((o,i)=>{ o.setAttribute('aria-disabled','true'); if(i===q.correctIndex) o.classList.add('correct-feedback'); });
+                if(fb){ fb.textContent = 'Time ran out. ' + q.explanation; fb.classList.add('error'); }
+                if(nb) nb.disabled = true;
+                updateDecreeStats(q, false);
+                setTimeout(()=>{ currentQuestion++; saveProgress(); feedbackActive=false; renderQuestion(); }, 2000);
+            }
+            function updateDecreeStats(q, isCorrect){
+                const decreeNum = q.id.split('-')[0];
+                if(!decreeStats[decreeNum]) decreeStats[decreeNum] = {total:0,correct:0};
+                decreeStats[decreeNum].total++;
+                if(isCorrect) decreeStats[decreeNum].correct++;
+            }
+            function createConfetti(){
+                const colors = ['#10b981','#059669','#34d399','#6ee7b7'];
+                for(let i=0;i<60;i++){
+                    const conf = document.createElement('div');
+                    conf.style.cssText = `position:fixed;top:-10px;left:${Math.random()*100}vw;width:${Math.random()*8+4}px;height:${Math.random()*8+4}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>0.5?'50%':'2px'};animation:fall ${Math.random()*3+2}s linear forwards;z-index:1000;pointer-events:none;`;
+                    document.body.appendChild(conf);
+                    setTimeout(()=>conf.remove(),5000);
+                }
+            }
             function renderStartScreen(){
-                clearProgress(); quizCompleted=false; currentQuestion=0; score=0;
+                clearProgress(); quizCompleted=false; currentQuestion=0; score=0; userAnswers=[]; currentStreak=0;
+                decreeStats = { I:{total:0,correct:0}, II:{total:0,correct:0}, III:{total:0,correct:0}, IV:{total:0,correct:0}, V:{total:0,correct:0} };
                 selectedQuestions = shuffle([...FULL_QUESTION_BANK]).slice(0,10);
-                app.innerHTML = `<div class="quiz-container start-screen"><div class="shield-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div><h2>Sinnercell Trial</h2><p>This test is for Demons, the student members.<br>10 situations. Pick the right action.</p><button class="btn" id="start-btn"><svg class="icon"><use href="#icon-play"/></svg> Begin Trial</button></div>`;
+                app.innerHTML = `<div class="quiz-container start-screen"><div class="goat-icon"><svg><use href="#icon-goat"/></svg></div><h2>Sinnercell Trial</h2><p>This test is for Demons, the student members.<br>10 situations. Pick the right action.</p><p style="font-size:0.8rem;color:#b89a8a">Time limit: 20 seconds per question. Press 1-4 to select, Enter to submit.</p><button class="btn" id="start-btn"><svg class="icon"><use href="#icon-play"/></svg> Begin Trial</button></div>`;
                 document.getElementById('start-btn').addEventListener('click', ()=>{ startQuiz(); });
             }
-
-            function startQuiz(){ currentQuestion=0; score=0; quizCompleted=false; saveProgress(); renderQuestion(); }
-
+            function startQuiz(){ currentQuestion=0; score=0; quizCompleted=false; userAnswers=[]; currentStreak=0; decreeStats = { I:{total:0,correct:0}, II:{total:0,correct:0}, III:{total:0,correct:0}, IV:{total:0,correct:0}, V:{total:0,correct:0} }; saveProgress(); renderQuestion(); }
             function renderQuestion(){
                 if(currentQuestion>=selectedQuestions.length){ completeQuiz(); return; }
-                feedbackActive=false; const q=selectedQuestions[currentQuestion];
-                app.innerHTML = `<div class="quiz-container quiz-card" role="main"><div class="quiz-header"><span class="decree-badge">${q.decree}</span><span class="progress">Question <span>${currentQuestion+1}</span> / ${selectedQuestions.length}</span></div><div class="quiz-scenario">"${q.scenario}"</div><div class="quiz-question">${q.question}</div><div class="options-group" role="radiogroup">${q.choices.map((c,i)=>`<button class="quiz-option" role="radio" aria-checked="false" data-index="${i}" tabindex="${i===0?0:-1}"><div class="option-circle">&#10003;</div><span>${c}</span></button>`).join('')}</div><div class="quiz-actions"><div class="feedback-message" id="feedback-msg" aria-live="polite"></div><button class="next-btn" id="next-btn" disabled>${currentQuestion<selectedQuestions.length-1?'Next Scenario':'Submit Trial'} <svg class="icon"><use href="#icon-arrow-right"/></svg></button></div></div>`;
+                feedbackActive=false; stopTimer();
+                const q=selectedQuestions[currentQuestion];
+                const streakClass = currentStreak === 0 ? 'zero' : '';
+                app.innerHTML = `<div class="quiz-container quiz-card" role="main"><div class="timer-track"><div class="timer-bar" id="timer-bar"></div></div><div class="quiz-header"><span class="decree-badge">${q.decree}</span><div class="quiz-meta"><div class="streak-display ${streakClass}" id="streak-display"><svg class="icon"><use href="#icon-fire"/></svg> <span>${currentStreak}</span></div><span class="progress">Question <span>${currentQuestion+1}</span> / ${selectedQuestions.length}</span></div></div><div class="quiz-scenario">"${q.scenario}"</div><div class="quiz-question">${q.question}</div><div class="options-group" role="radiogroup">${q.choices.map((c,i)=>`<button class="quiz-option" role="radio" aria-checked="false" data-index="${i}" tabindex="${i===0?0:-1}"><div class="option-circle">${i+1}</div><span>${c}</span></button>`).join('')}</div><div class="quiz-actions"><div class="feedback-message" id="feedback-msg" aria-live="polite"></div><button class="next-btn" id="next-btn" disabled>${currentQuestion<selectedQuestions.length-1?'Next Scenario':'Submit Trial'} <svg class="icon"><use href="#icon-arrow-right"/></svg></button></div></div>`;
                 const opts=document.querySelectorAll('.quiz-option'), nb=document.getElementById('next-btn'), fb=document.getElementById('feedback-msg');
                 if(opts.length) opts[0].focus();
+                startTimer();
                 opts.forEach(o=>o.addEventListener('click',()=>{ if(feedbackActive)return; opts.forEach(x=>x.setAttribute('aria-checked','false')); o.setAttribute('aria-checked','true'); nb.disabled=false; fb.textContent=''; fb.classList.remove('error'); }));
-                nb.addEventListener('click',()=>{ if(feedbackActive)return; const sel=document.querySelector('.quiz-option[aria-checked="true"]'); if(!sel){ fb.textContent='Pick an answer first.'; fb.classList.add('error'); return; } const idx=parseInt(sel.dataset.index), correct=q.correctIndex, isCorrect=(idx===correct); opts.forEach((o,i)=>{ o.setAttribute('aria-disabled','true'); if(i===correct) o.classList.add('correct-feedback'); if(i===idx&&!isCorrect) o.classList.add('incorrect-feedback'); }); fb.textContent=isCorrect?`Correct. ${q.explanation}`:`Not right. ${q.explanation}`; fb.classList.toggle('error',!isCorrect); if(isCorrect) score++; feedbackActive=true; nb.disabled=true; setTimeout(()=>{ currentQuestion++; saveProgress(); feedbackActive=false; renderQuestion(); }, 2000); });
+                nb.addEventListener('click',()=>{ if(feedbackActive)return; stopTimer(); const sel=document.querySelector('.quiz-option[aria-checked="true"]'); if(!sel){ fb.textContent='Pick an answer first.'; fb.classList.add('error'); return; } const idx=parseInt(sel.dataset.index); userAnswers[currentQuestion]=idx; const correct=q.correctIndex, isCorrect=(idx===correct); opts.forEach((o,i)=>{ o.setAttribute('aria-disabled','true'); if(i===correct) o.classList.add('correct-feedback'); if(i===idx&&!isCorrect) o.classList.add('incorrect-feedback'); }); fb.textContent=isCorrect?`Correct. ${q.explanation}`:`Not right. ${q.explanation}`; fb.classList.toggle('error',!isCorrect); if(isCorrect){ score++; currentStreak++; } else { currentStreak=0; } updateDecreeStats(q,isCorrect); feedbackActive=true; nb.disabled=true; setTimeout(()=>{ currentQuestion++; saveProgress(); feedbackActive=false; renderQuestion(); }, 2000); });
                 document.querySelector('.options-group').addEventListener('keydown',e=>{ const cur=document.activeElement; if(!cur.classList.contains('quiz-option'))return; const o=Array.from(document.querySelectorAll('.quiz-option')), i=o.indexOf(cur); if(e.key==='ArrowDown'||e.key==='ArrowRight'){ e.preventDefault(); o[(i+1)%o.length].focus(); } else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){ e.preventDefault(); o[(i-1+o.length)%o.length].focus(); } else if(e.key===' '||e.key==='Enter'){ e.preventDefault(); cur.click(); } });
+                document.addEventListener('keydown', function numberSelect(e){ if(feedbackActive||quizCompleted)return; const opts2=document.querySelectorAll('.quiz-option'); if(['1','2','3','4'].includes(e.key)){ const idx=parseInt(e.key)-1; if(opts2[idx]){ opts2.forEach(o=>o.setAttribute('aria-checked','false')); opts2[idx].setAttribute('aria-checked','true'); nb.disabled=false; fb.textContent=''; fb.classList.remove('error'); } } if(e.key==='Enter'&&document.querySelector('.quiz-option[aria-checked="true"]')&&!nb.disabled){ nb.click(); } });
                 saveProgress();
             }
-
             function completeQuiz(){
-                quizCompleted=true; clearProgress(); const total=selectedQuestions.length, pct=Math.round((score/total)*100);
+                quizCompleted=true; clearProgress(); stopTimer();
+                const total=selectedQuestions.length, pct=Math.round((score/total)*100);
+                if(pct===100) setTimeout(createConfetti,300);
+                const decreeOrder = ['I','II','III','IV','V'];
+                const breakdownHTML = decreeOrder.map(d=>{
+                    const s = decreeStats[d]||{total:0,correct:0};
+                    const dpct = s.total>0?Math.round((s.correct/s.total)*100):0;
+                    return `<div class="breakdown-row"><span class="breakdown-label">Decree ${d}</span><div class="breakdown-bar-track"><div class="breakdown-bar-fill ${dpct===0?'zero':''}" style="width:${dpct}%"></div></div><span class="breakdown-score">${s.correct}/${s.total}</span></div>`;
+                }).join('');
                 let msg=pct===100?'Perfect. You know the Legacy.':pct>=70?'Good effort. A few decrees need review.':pct>=50?'You passed, barely. Read the Codex again.':'The Council says study harder.';
-                app.innerHTML = `<div class="quiz-container result-screen"><div class="result-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div><div class="result-title">Trial Done</div><div class="result-subtitle">Your Sinnercell rule knowledge has been checked.</div><div class="score-circle"><span class="score-value">${score}/${total}</span><span class="score-total">${pct}%</span></div><div class="result-message">${msg}</div><div class="result-actions"><button class="btn" id="retry-btn"><svg class="icon"><use href="#icon-sword"/></svg> Retry Trial</button><a href="index.html" class="btn btn-outline"><svg class="icon"><use href="#icon-book"/></svg> Codex</a></div></div>`;
+                app.innerHTML = `<div class="quiz-container result-screen"><div class="goat-icon" style="margin-bottom:1rem;"><svg><use href="#icon-goat"/></svg></div><div class="result-title">Trial Done</div><div class="result-subtitle">Your Sinnercell rule knowledge has been checked.</div><div class="score-circle"><span class="score-value">${score}/${total}</span><span class="score-total">${pct}%</span></div><div class="decree-breakdown"><h4>Performance by Decree</h4>${breakdownHTML}</div><div class="result-message">${msg}</div><div class="result-actions"><button class="btn" id="review-btn"><svg class="icon"><use href="#icon-eye"/></svg> Review Answers</button><button class="btn btn-outline" id="retry-btn"><svg class="icon"><use href="#icon-sword"/></svg> Retry Trial</button><button class="btn btn-outline" id="share-btn"><svg class="icon"><use href="#icon-book"/></svg> Share Results</button><a href="index.html" class="btn btn-outline"><svg class="icon"><use href="#icon-book"/></svg> Codex</a></div></div>`;
                 document.getElementById('retry-btn').addEventListener('click', renderStartScreen);
+                document.getElementById('review-btn').addEventListener('click', renderReview);
+                document.getElementById('share-btn').addEventListener('click',()=>{
+                    const text = `I scored ${score}/${total} (${pct}%) on the Sinnercell Trial.`;
+                    navigator.clipboard?.writeText(text).then(()=>{
+                        const btn=document.getElementById('share-btn'); btn.innerHTML='Copied!'; setTimeout(()=>btn.innerHTML='<svg class="icon"><use href="#icon-book"/></svg> Share Results',2000);
+                    });
+                });
             }
-
+            function renderReview(){
+                stopTimer();
+                const total=selectedQuestions.length;
+                app.innerHTML = `<div class="quiz-container review-screen"><div class="review-header"><h2>Trial Review</h2><span class="progress">${score}/${total} correct</span></div>${selectedQuestions.map((q,i)=>{ const ua=userAnswers[i]; const isCorrect=ua===q.correctIndex; return `<div class="review-item ${isCorrect?'correct-item':'incorrect-item'}"><div class="ri-decree">${q.decree}</div><div class="ri-scenario">"${q.scenario}"</div><div class="ri-question">${q.question}</div>${q.choices.map((c,j)=>{ let cls=''; if(j===ua&&isCorrect) cls='user-correct'; else if(j===ua&&!isCorrect) cls='user-incorrect'; else if(j===q.correctIndex&&!isCorrect) cls='show-correct'; return `<div class="ri-option ${cls}"><div class="ri-marker">${j===q.correctIndex?'✓':j===ua&&!isCorrect?'✗':''}</div><span>${c}</span></div>`; }).join('')}<div class="ri-explanation">${q.explanation}</div></div>`; }).join('')}<div class="result-actions" style="margin-top:1.5rem;"><button class="btn" id="back-to-results-btn">Back to Results</button><button class="btn btn-outline" id="retry-from-review-btn">Retry Trial</button></div></div>`;
+                document.getElementById('back-to-results-btn').addEventListener('click', ()=>{ completeQuiz(); });
+                document.getElementById('retry-from-review-btn').addEventListener('click', renderStartScreen);
+            }
             function initialize(){
                 const saved=JSON.parse(localStorage.getItem(STORAGE_KEY_PROGRESS)||'null');
-                if(saved&&!saved.quizCompleted&&saved.selectedIds?.length===10){ const rebuilt=saved.selectedIds.map(id=>FULL_QUESTION_BANK.find(q=>q.id===id)).filter(Boolean); if(rebuilt.length===10){ selectedQuestions=rebuilt; currentQuestion=saved.currentQuestion; score=saved.score; quizCompleted=saved.quizCompleted; app.innerHTML=`<div class="quiz-container start-screen"><div class="shield-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-clock"/></svg></div><h2>Unfinished Trial</h2><p>Question ${currentQuestion+1} of ${selectedQuestions.length}. Resume?</p><div style="display:flex;gap:1rem;justify-content:center;margin-top:1.5rem;"><button class="btn" id="resume-btn"><svg class="icon"><use href="#icon-play"/></svg> Resume</button><button class="btn btn-outline" id="restart-btn">Start Over</button></div></div>`; document.getElementById('resume-btn').addEventListener('click',()=>renderQuestion()); document.getElementById('restart-btn').addEventListener('click',renderStartScreen); return; } }
+                if(saved&&!saved.quizCompleted&&saved.selectedIds?.length===10){
+                    const rebuilt=saved.selectedIds.map(id=>FULL_QUESTION_BANK.find(q=>q.id===id)).filter(Boolean);
+                    if(rebuilt.length===10){
+                        selectedQuestions=rebuilt; currentQuestion=saved.currentQuestion; score=saved.score; userAnswers=saved.userAnswers||[]; currentStreak=saved.currentStreak||0; quizCompleted=saved.quizCompleted;
+                        app.innerHTML=`<div class="quiz-container start-screen"><div class="goat-icon"><svg><use href="#icon-goat"/></svg></div><h2>Unfinished Trial</h2><p>Question ${currentQuestion+1} of ${selectedQuestions.length}. Resume?</p><div style="display:flex;gap:1rem;justify-content:center;margin-top:1.5rem;"><button class="btn" id="resume-btn"><svg class="icon"><use href="#icon-play"/></svg> Resume</button><button class="btn btn-outline" id="restart-btn">Start Over</button></div></div>`;
+                        document.getElementById('resume-btn').addEventListener('click',()=>renderQuestion());
+                        document.getElementById('restart-btn').addEventListener('click',renderStartScreen);
+                        return;
+                    }
+                }
                 renderStartScreen();
             }
-
             function initDarkMode(){
                 const t=document.getElementById('dark-toggle'), i=t.querySelector('use'), s=t.querySelector('span');
                 if(localStorage.getItem('mcu_dark_mode')==='true'){ document.body.classList.add('dark'); i.setAttribute('href','#icon-sun'); s.textContent='Light'; }
                 t.addEventListener('click',()=>{ const d=document.body.classList.toggle('dark'); localStorage.setItem('mcu_dark_mode',d); i.setAttribute('href',d?'#icon-sun':'#icon-moon'); s.textContent=d?'Light':'Dark'; });
             }
-
             initDarkMode(); initialize();
         })();
     </script>
