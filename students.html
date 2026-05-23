@@ -5,31 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Legion — Belphegor Sinnercell</title>
     <link rel="icon" type="image/x-icon" href="download.ico">
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Metal+Mania&family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Metal+Mania&family=Special+Elite&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --emerald-500: #10b981;
             --emerald-600: #059669;
             --emerald-700: #047857;
-            --slate-50: #f8fafc;
-            --slate-100: #f1f5f9;
-            --slate-200: #e2e8f0;
-            --slate-300: #cbd5e1;
-            --slate-400: #94a3b8;
-            --slate-500: #64748b;
-            --slate-600: #475569;
-            --slate-700: #334155;
-            --slate-800: #1e293b;
-            --slate-900: #0f172a;
             --bg: #f8fafc;
             --card-bg: #ffffff;
             --text: #1e293b;
             --text-secondary: #475569;
             --border: #e2e8f0;
-            --shadow: 0 1px 3px rgba(0,0,0,0.03);
-            --font-serif: "Special Elite", Georgia, "Times New Roman", serif;
-            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --font-demonic: 'UnifrakturMaguntia', 'Metal Mania', cursive;
+            --shadow: 0 4px 12px rgba(0,0,0,0.04);
+            --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-serif: Georgia, 'Special Elite', 'Times New Roman', serif;
+            --font-heading: 'Cinzel', 'Metal Mania', Georgia, 'Times New Roman', serif;
         }
         body.dark {
             --bg: #0f172a;
@@ -37,18 +27,23 @@
             --text: #e2e8f0;
             --text-secondary: #94a3b8;
             --border: #334155;
-            --shadow: 0 4px 12px rgba(0,0,0,0.25);
+            --shadow: 0 4px 20px rgba(0,0,0,0.3);
             --emerald-700: #6ee7b7;
-            --slate-800: #e2e8f0;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            font-family:var(--font-sans); background:var(--bg); color:var(--text);
-            line-height:1.6; min-height:100vh; transition:background 0.3s,color 0.3s;
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         .icon { width:1em; height:1em; display:inline-block; vertical-align:-0.125em; fill:currentColor; }
 
-        /* ----- Top bar (centered brand, hamburger, dark toggle) ----- */
+        /* Top bar */
         .top-bar {
             background: var(--card-bg);
             border-bottom: 1px solid var(--border);
@@ -61,12 +56,12 @@
             z-index: 100;
         }
         .brand {
-            font-family: var(--font-demonic);
-            font-weight: 900;
-            font-size: 1.5rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.4rem;
             color: var(--text);
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -95,7 +90,7 @@
             height: 36px;
             transition: 0.2s;
         }
-        .dark-toggle:hover { background: var(--slate-100); color: var(--text); }
+        .dark-toggle:hover { background: var(--border); color: var(--text); }
         .hamburger {
             display: flex;
             flex-direction: column;
@@ -154,7 +149,7 @@
             border-radius: 12px;
             font-family: var(--font-sans);
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.95rem;
             letter-spacing: normal;
             color: var(--text);
             text-decoration: none;
@@ -170,13 +165,13 @@
         .main-content { padding:2rem 1.5rem; max-width:960px; margin:0 auto; }
         .page-header { margin-bottom:2rem; text-align:center; }
         .page-header h1 {
-            font-family: var(--font-demonic);
-            font-size:2.5rem; font-weight:900;
+            font-family: var(--font-heading);
+            font-size:2.5rem; font-weight:700;
             color: var(--text);
             letter-spacing:2px;
         }
         .page-header h1 span { color:var(--emerald-500); }
-        .page-header p { font-family: var(--font-serif); color:var(--text-secondary); }
+        .page-header p { font-family: var(--font-serif); color:var(--text-secondary); font-size: 1rem; }
         .divider { width:60px; height:3px; background:var(--emerald-500); margin:0.5rem auto 1.5rem; }
 
         .roster-section {
@@ -184,25 +179,24 @@
             border-radius:12px; padding:1.5rem 2rem; margin-bottom:2rem; box-shadow:var(--shadow);
         }
         .roster-section h2 {
-            font-family: var(--font-serif);
-            font-size:1.5rem; font-weight:900;
+            font-family: var(--font-heading);
+            font-size:1.5rem; font-weight:700;
             margin-bottom:1.25rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);
             display: flex; align-items: center; gap: 0.5rem;
         }
         .roster-section h2 .rank-badge {
-            font-family: 'Metal Mania', cursive;
-            font-size:0.7rem; font-weight:700; text-transform:uppercase;
+            font-family: var(--font-heading);
+            font-size:0.7rem; font-weight:600; text-transform:uppercase;
             letter-spacing:0.08em; color:var(--emerald-700);
             background:#d1fae5; padding:0.25rem 0.7rem; border-radius:20px;
         }
         body.dark .roster-section h2 .rank-badge { background:#065f46; color:#6ee7b7; }
         .squad { margin-bottom:1rem; }
         .squad-title {
-            font-weight:700; color:var(--text-secondary); font-size:0.9rem;
+            font-weight:600; color:var(--text-secondary); font-size:0.9rem;
             text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.4rem;
-            font-family: 'Metal Mania', cursive;
+            font-family: var(--font-heading);
         }
-        /* Vertical member list (each name on its own line) */
         .member-list {
             list-style: none;
             display: flex;
@@ -236,7 +230,7 @@
             pointer-events:none; border-radius:0 0 12px 12px;
         }
         .caption-name {
-            display:block; font-family: var(--font-demonic);
+            display:block; font-family: var(--font-heading);
             font-size:1.4rem; font-weight:700; letter-spacing:0.03em;
         }
         .caption-rank { display:block; font-size:0.9rem; opacity:0.85; margin-top:0.2rem; font-family: var(--font-serif); }
@@ -262,7 +256,7 @@
         /* Footer */
         .footer {
             text-align: center;
-            padding: 2rem 0 2rem;
+            padding: 2rem 0;
             border-top: 1px solid var(--border);
             margin-top: 2rem;
             background: var(--card-bg);
@@ -277,210 +271,75 @@
         .footer-logo:hover { opacity: 1; }
         .footer p {
             font-family: var(--font-serif);
-            font-size: 0.75rem;
-            letter-spacing: 0.06em;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
             color: var(--text-secondary);
         }
         .footer .credit {
-            font-family: 'Metal Mania', cursive;
+            font-family: var(--font-heading);
+            font-weight: 600;
             color: var(--emerald-500);
-            font-weight: bold;
             margin-top: 0.25rem;
+            font-size: 0.85rem;
         }
 
-        /* CAPYBARA LOADING OVERLAY */
+        /* ========== VIDEO LOADING OVERLAY (light mode) ========== */
         .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--bg);
+            background: #f8fafc;
             z-index: 9999;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.5s ease, visibility 0.5s;
+            gap: 2rem;
+            transition: opacity 0.6s ease, visibility 0.6s;
         }
         .loading-overlay.hide {
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
         }
-        .capybaraloader {
-            width: 14em;
-            height: 10em;
+        .video-container {
             position: relative;
-            z-index: 1;
-            --color: rgb(204, 125, 45);
-            --color2: rgb(83, 56, 28);
-            transform: scale(0.75);
-        }
-        .capybara {
-            width: 100%;
-            height: 7.5em;
-            position: relative;
-            z-index: 1;
-        }
-        .loader {
-            width: 100%;
-            height: 2.5em;
-            position: relative;
-            z-index: 1;
+            width: min(400px, 85vw);
+            height: min(400px, 85vw);
+            max-width: 400px;
+            max-height: 400px;
+            border-radius: 20px;
             overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
         }
-        .capy {
-            width: 85%;
+        #loading-video {
+            width: 100%;
             height: 100%;
-            background: linear-gradient(var(--color), 90%, var(--color2));
-            border-radius: 45%;
-            position: relative;
-            z-index: 1;
-            animation: movebody 1s linear infinite;
-        }
-        .capyhead {
-            width: 7.5em;
-            height: 7em;
-            bottom: 0em;
-            right: 0em;
-            position: absolute;
-            background-color: var(--color);
-            z-index: 3;
-            border-radius: 3.5em;
-            box-shadow: -1em 0em var(--color2);
-            animation: movebody 1s linear infinite;
-        }
-        .capyear {
-            width: 2em;
-            height: 2em;
-            background: linear-gradient(-45deg, var(--color), 90%, var(--color2));
-            top: 0em;
-            left: 0em;
-            border-radius: 100%;
-            position: absolute;
-            overflow: hidden;
-            z-index: 3;
-        }
-        .capyear:nth-child(2) {
-            left: 5em;
-            background: linear-gradient(25deg, var(--color), 90%, var(--color2));
-        }
-        .capyear2 {
-            width: 100%;
-            height: 1em;
-            background-color: var(--color2);
-            bottom: 0em;
-            left: 0.5em;
-            border-radius: 100%;
-            position: absolute;
-            transform: rotate(-45deg);
-        }
-        .capymouth {
-            width: 3.5em;
-            height: 2em;
-            background-color: var(--color2);
-            position: absolute;
-            bottom: 0em;
-            left: 2.5em;
-            border-radius: 50%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 0.5em;
-        }
-        .capylips {
-            width: 0.25em;
-            height: 0.75em;
-            border-radius: 100%;
-            transform: rotate(-45deg);
-            background-color: var(--color);
-        }
-        .capylips:nth-child(2) {
-            transform: rotate(45deg);
-        }
-        .capyeye {
-            width: 2em;
-            height: 0.5em;
-            background-color: var(--color2);
-            position: absolute;
-            bottom: 3.5em;
-            left: 1.5em;
-            border-radius: 5em;
-            transform: rotate(45deg);
-        }
-        .capyeye:nth-child(4) {
-            transform: rotate(-45deg);
-            left: 5.5em;
-            width: 1.75em;
-        }
-        .capyleg {
-            width: 6em;
-            height: 5em;
-            bottom: 0em;
-            left: 0em;
-            position: absolute;
-            background: linear-gradient(var(--color), 95%, var(--color2));
-            z-index: 2;
-            border-radius: 2em;
-            animation: movebody 1s linear infinite;
-        }
-        .capyleg2 {
-            width: 1.75em;
-            height: 3em;
-            bottom: 0em;
-            left: 3.25em;
-            position: absolute;
-            background: linear-gradient(var(--color), 80%, var(--color2));
-            z-index: 2;
-            border-radius: 0.75em;
-            box-shadow: inset 0em -0.5em var(--color2);
-            animation: moveleg 1s linear infinite;
-        }
-        .capyleg2:nth-child(3) {
-            width: 1.25em;
-            left: 0.5em;
-            height: 2em;
-            animation: moveleg2 1s linear infinite 0.075s;
-        }
-        @keyframes moveleg {
-            0% { transform: rotate(-45deg) translateX(-5%); }
-            50% { transform: rotate(45deg) translateX(5%); }
-            100% { transform: rotate(-45deg) translateX(-5%); }
-        }
-        @keyframes moveleg2 {
-            0% { transform: rotate(45deg); }
-            50% { transform: rotate(-45deg); }
-            100% { transform: rotate(45deg); }
-        }
-        @keyframes movebody {
-            0% { transform: translateX(0%); }
-            50% { transform: translateX(2%); }
-            100% { transform: translateX(0%); }
-        }
-        .loaderline {
-            width: 50em;
-            height: 0.5em;
-            border-top: 0.5em dashed var(--color2);
-            animation: moveline 10s linear infinite;
-        }
-        @keyframes moveline {
-            0% { transform: translateX(0%); opacity: 0%; }
-            5% { opacity: 100%; }
-            95% { opacity: 100%; }
-            100% { opacity: 0%; transform: translateX(-70%); }
+            object-fit: cover;
+            display: block;
         }
         .loading-text {
-            font-family: var(--font-sans);
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--emerald-500);
-            letter-spacing: 0.2em;
-            margin-top: 1.5rem;
-            animation: pulse 1.2s infinite;
+            font-family: var(--font-heading);
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            font-weight: 600;
+            color: #059669;
+            letter-spacing: 0.25em;
+            text-align: center;
+            animation: pulse-light 1.5s infinite;
         }
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; text-shadow: 0 0 2px var(--emerald-500); }
-            50% { opacity: 1; text-shadow: 0 0 12px var(--emerald-500); }
+        @keyframes pulse-light {
+            0%, 100% {
+                opacity: 0.6;
+                text-shadow: 0 0 8px rgba(5, 150, 105, 0.2);
+            }
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 20px rgba(5, 150, 105, 0.5), 0 0 40px rgba(5, 150, 105, 0.2);
+            }
         }
 
         @media (max-width:600px) {
@@ -488,7 +347,16 @@
             .main-content { padding:1rem; }
             .roster-section { padding:1rem 1.2rem; }
             .member-list { gap:0.2rem; }
-            .capybaraloader { transform: scale(0.5); }
+            .video-container {
+                width: min(280px, 75vw);
+                height: min(280px, 75vw);
+            }
+        }
+        @media (min-width:601px) and (max-width:1024px) {
+            .video-container {
+                width: min(350px, 60vw);
+                height: min(350px, 60vw);
+            }
         }
     </style>
 </head>
@@ -504,53 +372,74 @@
         </defs>
     </svg>
 
-    <!-- CAPYBARA LOADING OVERLAY (minimum 3 seconds) -->
+    <!-- ========== VIDEO LOADING OVERLAY ========== -->
     <div id="loading-overlay" class="loading-overlay">
-        <div class="capybaraloader">
-            <div class="capybara">
-                <div class="capyhead">
-                    <div class="capyear"><div class="capyear2"></div></div>
-                    <div class="capyear"><div class="capyear2"></div></div>
-                    <div class="capymouth">
-                        <div class="capylips"></div>
-                        <div class="capylips"></div>
-                    </div>
-                    <div class="capyeye"></div>
-                    <div class="capyeye"></div>
-                </div>
-                <div class="capyleg"></div>
-                <div class="capyleg2"></div>
-                <div class="capyleg2"></div>
-                <div class="capy"></div>
-            </div>
-            <div class="loader"><div class="loaderline"></div></div>
+        <div class="video-container">
+            <video id="loading-video" autoplay muted loop playsinline preload="auto">
+                <source src="dragon1.mp4" type="video/mp4">
+            </video>
         </div>
         <div class="loading-text">SUMMONING THE LEGACY...</div>
     </div>
+
     <script>
         (function() {
             const overlay = document.getElementById('loading-overlay');
+            const video = document.getElementById('loading-video');
             const pageStart = performance.now();
-            window.addEventListener('load', function() {
-                const elapsed = performance.now() - pageStart;
-                const remaining = Math.max(0, 3000 - elapsed);
+            
+            function hideOverlay() {
+                overlay.classList.add('hide');
                 setTimeout(() => {
-                    overlay.classList.add('hide');
-                    setTimeout(() => overlay.style.display = 'none', 500);
+                    overlay.style.display = 'none';
+                    if (video) {
+                        video.pause();
+                        video.removeAttribute('src');
+                        video.load();
+                    }
+                }, 600);
+            }
+
+            const minDisplay = 3000;
+            
+            if (video) {
+                video.addEventListener('loadeddata', () => {
+                    const elapsed = performance.now() - pageStart;
+                    const remaining = Math.max(0, minDisplay - elapsed);
+                    setTimeout(hideOverlay, remaining);
+                });
+                
+                setTimeout(() => {
+                    const elapsed = performance.now() - pageStart;
+                    if (elapsed < minDisplay + 2000) {
+                        setTimeout(hideOverlay, Math.max(0, minDisplay - elapsed));
+                    }
+                }, 5000);
+            } else {
+                setTimeout(hideOverlay, minDisplay);
+            }
+
+            window.addEventListener('load', () => {
+                const elapsed = performance.now() - pageStart;
+                const remaining = Math.max(0, minDisplay - elapsed);
+                setTimeout(() => {
+                    if (overlay.style.display !== 'none') hideOverlay();
                 }, remaining);
             });
         })();
     </script>
 
     <header class="top-bar">
-        <a href="front.html" class="brand"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
+        <a href="https://www.facebook.com/profile.php?id=61570661907426" target="_blank" rel="noopener noreferrer" class="brand">
+            <svg class="icon"><use href="#icon-flame"/></svg> Belphegor
+        </a>
         <div class="right-actions">
             <button class="dark-toggle" id="dark-toggle"><svg class="icon"><use href="#icon-moon"/></svg></button>
             <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
         </div>
     </header>
 
-    <!-- Hamburger menu - ordered: Sanctuaries, Belphegor, Codex, Trial, Students (active) -->
+    <!-- Hamburger menu -->
     <div class="mobile-menu" id="mobile-menu">
         <a href="index.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-flame"/></svg> Sanctuaries</a>
         <a href="front.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
@@ -586,7 +475,7 @@
             <div class="carousel-dots" id="carousel-dots"></div>
         </div>
 
-        <!-- Static Roster (vertical lists) -->
+        <!-- BERSERKERS Roster -->
         <div class="roster-section">
             <h2><span class="rank-badge">006</span>  BERSERKERS</h2>
             <div class="squad">
@@ -611,8 +500,9 @@
             </div>
         </div>
 
+        <!-- DEMONS Roster -->
         <div class="roster-section">
-            <h2><span class="rank-badge">030</span>  DEMONS</h2>
+            <h2><span class="rank-badge">019</span>  DEMONS</h2>
             <div class="squad">
                 <div class="squad-title">▸ HE</div>
                 <ul class="member-list">
@@ -622,7 +512,6 @@
                     <li>004  Lucius Vayezid</li>
                     <li>005  Sethiel Xrm Kohner</li>
                     <li>006  Seve Vanharth</li>
-                    <li>007  Райли Норис Вълчев</li>
                 </ul>
             </div>
             <div class="squad">
@@ -637,15 +526,19 @@
                     <li>007  Nao Holmes</li>
                     <li>008  Psithurce</li>
                     <li>009  Rhyzoxien Soleil Radkovétti</li>
-                    <li>010  Soulstice Moonglade</li>
-                    <li>011  Zwyxé Heizn</li>
+                    <li>010  Saoirse Serenity MacKenzie</li>
+                    <li>011  Solanine Shikigami</li>
+                    <li>012  Soulstice Moonglade</li>
+                    <li>013  Zwyxé Heizn</li>
                 </ul>
             </div>
         </div>
     </main>
 
     <footer class="footer">
-        <img src="download.png" alt="Belphegor Emblem" class="footer-logo" onerror="this.style.display='none'">
+        <a href="https://www.facebook.com/profile.php?id=61570661907426" target="_blank" rel="noopener noreferrer">
+            <img src="download.png" alt="Belphegor Emblem" class="footer-logo" onerror="this.style.display='none'">
+        </a>
         <p>ESTABLISHED BY THE MEMBERS OF THE UNIVERSITY</p>
         <p class="credit">CREATED BY BELPHEGOR BERSERKERS</p>
     </footer>

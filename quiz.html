@@ -3,25 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Test your knowledge of the Forbidden Legacy - Sinnercell Edition">
-    <title>Sinnercell Trial - Forbidden Legacy MCU</title>
+    <meta name="description" content="Test your knowledge of the Forbidden Legacy - Sinnercell Edition (One Attempt Only)">
+    <title>Sinnercell Trial | Forbidden Legacy MCU</title>
     <link rel="icon" type="image/x-icon" href="download.ico">
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Metal+Mania&family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Metal+Mania&family=Special+Elite&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --emerald-500: #10b981;
             --emerald-600: #059669;
             --emerald-700: #047857;
-            --slate-50: #f8fafc;
-            --slate-100: #f1f5f9;
-            --slate-200: #e2e8f0;
-            --slate-300: #cbd5e1;
-            --slate-400: #94a3b8;
-            --slate-500: #64748b;
-            --slate-600: #475569;
-            --slate-700: #334155;
-            --slate-800: #1e293b;
-            --slate-900: #0f172a;
             --bg: #f8fafc;
             --card-bg: #ffffff;
             --text: #1e293b;
@@ -35,9 +25,9 @@
             --incorrect-bg: #fee2e2;
             --incorrect-border: #ef4444;
             --shadow: 0 4px 16px rgba(0,0,0,0.04);
-            --font-serif: "Special Elite", Georgia, "Times New Roman", serif;
-            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --font-demonic: 'UnifrakturMaguntia', 'Metal Mania', cursive;
+            --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-serif: Georgia, 'Special Elite', 'Times New Roman', serif;
+            --font-heading: 'Cinzel', 'Metal Mania', Georgia, 'Times New Roman', serif;
         }
         body.dark {
             --bg: #0f172a;
@@ -54,17 +44,23 @@
             --incorrect-border: #dc2626;
             --shadow: 0 4px 20px rgba(0,0,0,0.3);
             --emerald-700: #6ee7b7;
-            --slate-800: #e2e8f0;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            font-family:var(--font-sans); background:var(--bg); color:var(--text);
-            line-height:1.6; min-height:100vh; display:flex; flex-direction:column;
-            transition:background 0.3s,color 0.3s;
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s, color 0.3s;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         .icon { width:1em; height:1em; display:inline-block; vertical-align:-0.125em; fill:currentColor; }
 
-        /* ----- Top bar (centered brand, hamburger, dark toggle) ----- */
+        /* Top bar */
         .top-bar {
             background: var(--card-bg);
             border-bottom: 1px solid var(--border);
@@ -77,12 +73,12 @@
             z-index: 100;
         }
         .brand {
-            font-family: var(--font-demonic);
-            font-weight: 900;
-            font-size: 1.5rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.4rem;
             color: var(--text);
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -158,10 +154,7 @@
             opacity: 0;
             transition: visibility 0.3s, opacity 0.3s;
         }
-        .menu-overlay.active {
-            visibility: visible;
-            opacity: 1;
-        }
+        .menu-overlay.active { visibility: visible; opacity: 1; }
         .mobile-nav-btn {
             display: flex;
             align-items: center;
@@ -170,17 +163,14 @@
             border-radius: 12px;
             font-family: var(--font-sans);
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.95rem;
             letter-spacing: normal;
             color: var(--text);
             text-decoration: none;
             transition: background 0.2s;
         }
         .mobile-nav-btn:hover { background: var(--border); }
-        .mobile-nav-btn.active {
-            background: var(--emerald-500);
-            color: #fff;
-        }
+        .mobile-nav-btn.active { background: var(--emerald-500); color: #fff; }
 
         /* Quiz wrapper */
         .quiz-wrapper { flex:1; display:flex; align-items:center; justify-content:center; padding:2rem 1.5rem; }
@@ -192,20 +182,19 @@
         }
         .shield-icon { font-size:3.5rem; color:var(--emerald-500); margin-bottom:1.5rem; }
         .start-screen h2, .result-screen h2 {
-            font-family: var(--font-demonic);
-            font-size:2rem; font-weight:900; margin-bottom:0.75rem;
-            color: var(--text);
-            letter-spacing:1px;
+            font-family: var(--font-heading);
+            font-size:2rem; font-weight:700; margin-bottom:0.75rem;
+            color: var(--text); letter-spacing:1px;
         }
         .start-screen p { color:var(--text-secondary); margin-bottom:1.5rem; max-width:450px; margin-inline:auto; font-family: var(--font-serif); }
         .btn {
-            padding:0.8rem 2.2rem; background:var(--slate-800); color:#fff;
-            font-family: 'Metal Mania', cursive;
-            font-weight:700; text-transform:uppercase;
+            padding:0.8rem 2.2rem; background:var(--text); color:#fff;
+            font-family: var(--font-heading);
+            font-weight:600; text-transform:uppercase;
             letter-spacing:0.06em; border:none; border-radius:10px; cursor:pointer;
             transition:0.2s; display:inline-flex; align-items:center; gap:0.5rem;
         }
-        .btn:hover { background:var(--slate-900); }
+        .btn:hover { background: var(--emerald-700); }
         .btn:active { transform:scale(0.97); }
         .btn-outline {
             background:transparent; border:1px solid var(--border); color:var(--text);
@@ -215,30 +204,20 @@
         .quiz-card { padding:2rem 2rem 1.5rem; text-align:left; }
         .quiz-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem; }
         .decree-badge {
-            font-family: 'Metal Mania', cursive;
-            font-size:0.7rem; font-weight:700; text-transform:uppercase;
+            font-family: var(--font-heading);
+            font-size:0.7rem; font-weight:600; text-transform:uppercase;
             letter-spacing:0.08em; color:var(--emerald-700);
             background:var(--correct-bg); padding:0.3rem 0.8rem; border-radius:20px;
         }
         .quiz-meta { display:flex; align-items:center; gap:0.75rem; }
         .streak-display {
             display:flex; align-items:center; gap:0.25rem;
-            font-size:0.85rem; font-weight:700; color:#f59e0b;
+            font-size:0.85rem; font-weight:600; color:#f59e0b;
             transition:opacity 0.3s;
         }
         .streak-display.zero { color:var(--text-secondary); opacity:0.4; }
         .progress { font-family:monospace; font-size:0.85rem; color:var(--text-secondary); }
         .progress span { font-weight:700; color:var(--text); }
-        .timer-track {
-            height:4px; background:var(--border); border-radius:2px;
-            margin-bottom:1.25rem; overflow:hidden;
-        }
-        .timer-bar {
-            height:100%; width:100%; border-radius:2px;
-            background:var(--emerald-500); transition:width 0.1s linear, background 0.3s;
-        }
-        .timer-bar.warning { background:#f59e0b; }
-        .timer-bar.danger { background:#ef4444; }
         .quiz-scenario { font-style:italic; color:var(--text-secondary); border-left:4px solid var(--border); padding-left:1rem; margin-bottom:1.8rem; font-family: var(--font-serif); }
         .quiz-question { font-family:var(--font-serif); font-size:1.25rem; font-weight:700; color:var(--text); margin-bottom:1.8rem; }
         .options-group { display:flex; flex-direction:column; gap:0.75rem; margin-bottom:1.5rem; }
@@ -246,21 +225,14 @@
             display:flex; align-items:center; gap:1rem; padding:0.9rem 1.2rem;
             background:var(--option-bg); border:1px solid var(--border); border-radius:10px;
             cursor:pointer; transition:all 0.2s; text-align:left; font-size:0.95rem; outline:none;
-            color: var(--text);
+            color: var(--text); font-family: var(--font-sans);
         }
         .quiz-option:hover, .quiz-option:focus-visible { background:var(--option-hover); border-color:var(--text-secondary); }
         .quiz-option[aria-checked="true"] {
             background:var(--selected-bg); border-color:var(--selected-border); font-weight:500;
-            color: var(--text);
         }
-        .quiz-option.correct-feedback {
-            background:var(--correct-bg); border-color:var(--emerald-500);
-            color: var(--text);
-        }
-        .quiz-option.incorrect-feedback {
-            background:var(--incorrect-bg); border-color:var(--incorrect-border);
-            color: var(--text);
-        }
+        .quiz-option.correct-feedback { background:var(--correct-bg); border-color:var(--emerald-500); }
+        .quiz-option.incorrect-feedback { background:var(--incorrect-bg); border-color:var(--incorrect-border); }
         .option-circle {
             width:22px; height:22px; border:2px solid var(--text-secondary); border-radius:50%;
             display:flex; align-items:center; justify-content:center; flex-shrink:0;
@@ -269,29 +241,25 @@
         .quiz-option[aria-checked="true"] .option-circle {
             border-color:var(--selected-border); color:var(--selected-border); background:#fff;
         }
-        .quiz-option.correct-feedback .option-circle {
-            border-color:var(--emerald-500); color:var(--emerald-500);
-        }
-        .quiz-option.incorrect-feedback .option-circle {
-            border-color:var(--incorrect-border); color:var(--incorrect-border);
-        }
+        .quiz-option.correct-feedback .option-circle { border-color:var(--emerald-500); color:var(--emerald-500); }
+        .quiz-option.incorrect-feedback .option-circle { border-color:var(--incorrect-border); color:var(--incorrect-border); }
         .quiz-actions { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-        .feedback-message { font-size:0.85rem; font-weight:500; min-height:1.5em; color:var(--emerald-600); flex:1; }
+        .feedback-message { font-size:0.85rem; font-weight:500; min-height:1.5em; color:var(--emerald-600); flex:1; font-family: var(--font-sans); }
         .feedback-message.error { color:#dc2626; }
         .next-btn {
-            padding:0.7rem 1.8rem; background:var(--slate-800); color:#fff;
-            font-family: 'Metal Mania', cursive;
-            font-weight:700; text-transform:uppercase;
+            padding:0.7rem 1.8rem; background:var(--text); color:#fff;
+            font-family: var(--font-heading);
+            font-weight:600; text-transform:uppercase;
             letter-spacing:0.05em; border:none; border-radius:8px; cursor:pointer;
             display:flex; align-items:center; gap:0.5rem; transition:0.2s;
         }
         .next-btn:disabled { opacity:0.5; cursor:not-allowed; background:var(--text-secondary); }
-        .next-btn:not(:disabled):hover { background:var(--slate-900); }
+        .next-btn:not(:disabled):hover { background:var(--emerald-700); }
         .result-screen { text-align:center; }
         .result-icon { font-size:3.5rem; color:var(--emerald-500); margin-bottom:1.2rem; }
         .result-title {
-            font-family: var(--font-demonic);
-            font-size:1.8rem; font-weight:900; margin-bottom:0.5rem;
+            font-family: var(--font-heading);
+            font-size:1.8rem; font-weight:700; margin-bottom:0.5rem;
             color: var(--text);
         }
         .result-subtitle { color:var(--text-secondary); margin-bottom:2rem; font-family: var(--font-serif); }
@@ -300,7 +268,7 @@
             width:120px; height:120px; border-radius:50%; background:var(--option-bg);
             border:4px solid var(--emerald-500); margin:1rem auto 1.5rem;
         }
-        .score-value { font-family: var(--font-demonic); font-size:2.5rem; font-weight:900; color:var(--text); }
+        .score-value { font-family: var(--font-heading); font-size:2.5rem; font-weight:700; color:var(--text); }
         .score-total { font-size:0.85rem; color:var(--text-secondary); margin-top:-5px; }
         .result-message { max-width:320px; margin:0 auto 1.5rem; color:var(--text-secondary); font-family: var(--font-serif); }
         .decree-breakdown {
@@ -308,9 +276,9 @@
             border-radius:12px; padding:1.2rem 1.4rem; margin:0 auto 2rem; max-width:420px;
         }
         .decree-breakdown h4 {
-            font-size:0.7rem; font-weight:700; text-transform:uppercase;
+            font-size:0.7rem; font-weight:600; text-transform:uppercase;
             letter-spacing:0.08em; color:var(--text-secondary); margin-bottom:0.8rem;
-            font-family: 'Metal Mania', cursive;
+            font-family: var(--font-heading);
         }
         .breakdown-row {
             display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;
@@ -321,18 +289,16 @@
         .breakdown-bar-track {
             width:80px; height:6px; background:var(--border); border-radius:3px; overflow:hidden; flex-shrink:0;
         }
-        .breakdown-bar-fill {
-            height:100%; border-radius:3px; background:var(--emerald-500); transition:width 0.6s ease;
-        }
+        .breakdown-bar-fill { height:100%; border-radius:3px; background:var(--emerald-500); transition:width 0.6s ease; }
         .breakdown-bar-fill.zero { background:var(--text-secondary); opacity:0.3; }
-        .breakdown-score { font-weight:700; color:var(--text); width:2.5rem; text-align:right; flex-shrink:0; font-family: 'Metal Mania', monospace; }
-        .result-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+        .breakdown-score { font-weight:700; color:var(--text); width:2.5rem; text-align:right; flex-shrink:0; font-family:monospace; }
+        .result-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem; }
         .review-screen { text-align:left; }
         .review-header {
             display:flex; justify-content:space-between; align-items:center;
             margin-bottom:1.5rem; flex-wrap:wrap; gap:0.75rem;
         }
-        .review-header h2 { font-family: var(--font-demonic); font-size:1.4rem; font-weight:900; color: var(--text); }
+        .review-header h2 { font-family: var(--font-heading); font-size:1.4rem; font-weight:700; color: var(--text); }
         .review-item {
             border:1px solid var(--border); border-radius:12px; padding:1.2rem 1.4rem;
             margin-bottom:1rem; background:var(--option-bg);
@@ -340,8 +306,8 @@
         .review-item.correct-item { border-left:4px solid var(--emerald-500); }
         .review-item.incorrect-item { border-left:4px solid #ef4444; }
         .review-item .ri-decree {
-            font-family: 'Metal Mania', cursive;
-            font-size:0.7rem; font-weight:700; text-transform:uppercase;
+            font-family: var(--font-heading);
+            font-size:0.7rem; font-weight:600; text-transform:uppercase;
             letter-spacing:0.08em; color:var(--emerald-700); margin-bottom:0.4rem;
         }
         .review-item .ri-scenario { font-style:italic; color:var(--text-secondary); font-size:0.85rem; margin-bottom:0.5rem; font-family: var(--font-serif); }
@@ -349,7 +315,7 @@
         .review-item .ri-option {
             display:flex; align-items:center; gap:0.6rem; padding:0.4rem 0.6rem;
             border-radius:6px; margin-bottom:0.3rem; font-size:0.85rem;
-            color: var(--text);
+            color: var(--text); font-family: var(--font-sans);
         }
         .ri-option.user-correct { background:var(--correct-bg); font-weight:600; }
         .ri-option.user-incorrect { background:var(--incorrect-bg); font-weight:600; }
@@ -364,13 +330,13 @@
         .ri-option.show-correct .ri-marker { border-color:var(--emerald-500); color:var(--emerald-500); }
         .review-item .ri-explanation {
             margin-top:0.6rem; font-size:0.8rem; color:var(--text-secondary);
-            padding-top:0.6rem; border-top:1px solid var(--border);
+            padding-top:0.6rem; border-top:1px solid var(--border); font-family: var(--font-sans);
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            padding: 2rem 0 2rem;
+            padding: 2rem 0;
             border-top: 1px solid var(--border);
             margin-top: 2rem;
             background: var(--card-bg);
@@ -385,210 +351,75 @@
         .footer-logo:hover { opacity: 1; }
         .footer p {
             font-family: var(--font-serif);
-            font-size: 0.75rem;
-            letter-spacing: 0.06em;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
             color: var(--text-secondary);
         }
         .footer .credit {
-            font-family: 'Metal Mania', cursive;
+            font-family: var(--font-heading);
+            font-weight: 600;
             color: var(--emerald-500);
-            font-weight: bold;
             margin-top: 0.25rem;
+            font-size: 0.85rem;
         }
 
-        /* CAPYBARA LOADING OVERLAY */
+        /* ========== VIDEO LOADING OVERLAY (light mode) ========== */
         .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--bg);
+            background: #f8fafc;
             z-index: 9999;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.5s ease, visibility 0.5s;
+            gap: 2rem;
+            transition: opacity 0.6s ease, visibility 0.6s;
         }
         .loading-overlay.hide {
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
         }
-        .capybaraloader {
-            width: 14em;
-            height: 10em;
+        .video-container {
             position: relative;
-            z-index: 1;
-            --color: rgb(204, 125, 45);
-            --color2: rgb(83, 56, 28);
-            transform: scale(0.75);
-        }
-        .capybara {
-            width: 100%;
-            height: 7.5em;
-            position: relative;
-            z-index: 1;
-        }
-        .loader {
-            width: 100%;
-            height: 2.5em;
-            position: relative;
-            z-index: 1;
+            width: min(400px, 85vw);
+            height: min(400px, 85vw);
+            max-width: 400px;
+            max-height: 400px;
+            border-radius: 20px;
             overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
         }
-        .capy {
-            width: 85%;
+        #loading-video {
+            width: 100%;
             height: 100%;
-            background: linear-gradient(var(--color), 90%, var(--color2));
-            border-radius: 45%;
-            position: relative;
-            z-index: 1;
-            animation: movebody 1s linear infinite;
-        }
-        .capyhead {
-            width: 7.5em;
-            height: 7em;
-            bottom: 0em;
-            right: 0em;
-            position: absolute;
-            background-color: var(--color);
-            z-index: 3;
-            border-radius: 3.5em;
-            box-shadow: -1em 0em var(--color2);
-            animation: movebody 1s linear infinite;
-        }
-        .capyear {
-            width: 2em;
-            height: 2em;
-            background: linear-gradient(-45deg, var(--color), 90%, var(--color2));
-            top: 0em;
-            left: 0em;
-            border-radius: 100%;
-            position: absolute;
-            overflow: hidden;
-            z-index: 3;
-        }
-        .capyear:nth-child(2) {
-            left: 5em;
-            background: linear-gradient(25deg, var(--color), 90%, var(--color2));
-        }
-        .capyear2 {
-            width: 100%;
-            height: 1em;
-            background-color: var(--color2);
-            bottom: 0em;
-            left: 0.5em;
-            border-radius: 100%;
-            position: absolute;
-            transform: rotate(-45deg);
-        }
-        .capymouth {
-            width: 3.5em;
-            height: 2em;
-            background-color: var(--color2);
-            position: absolute;
-            bottom: 0em;
-            left: 2.5em;
-            border-radius: 50%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 0.5em;
-        }
-        .capylips {
-            width: 0.25em;
-            height: 0.75em;
-            border-radius: 100%;
-            transform: rotate(-45deg);
-            background-color: var(--color);
-        }
-        .capylips:nth-child(2) {
-            transform: rotate(45deg);
-        }
-        .capyeye {
-            width: 2em;
-            height: 0.5em;
-            background-color: var(--color2);
-            position: absolute;
-            bottom: 3.5em;
-            left: 1.5em;
-            border-radius: 5em;
-            transform: rotate(45deg);
-        }
-        .capyeye:nth-child(4) {
-            transform: rotate(-45deg);
-            left: 5.5em;
-            width: 1.75em;
-        }
-        .capyleg {
-            width: 6em;
-            height: 5em;
-            bottom: 0em;
-            left: 0em;
-            position: absolute;
-            background: linear-gradient(var(--color), 95%, var(--color2));
-            z-index: 2;
-            border-radius: 2em;
-            animation: movebody 1s linear infinite;
-        }
-        .capyleg2 {
-            width: 1.75em;
-            height: 3em;
-            bottom: 0em;
-            left: 3.25em;
-            position: absolute;
-            background: linear-gradient(var(--color), 80%, var(--color2));
-            z-index: 2;
-            border-radius: 0.75em;
-            box-shadow: inset 0em -0.5em var(--color2);
-            animation: moveleg 1s linear infinite;
-        }
-        .capyleg2:nth-child(3) {
-            width: 1.25em;
-            left: 0.5em;
-            height: 2em;
-            animation: moveleg2 1s linear infinite 0.075s;
-        }
-        @keyframes moveleg {
-            0% { transform: rotate(-45deg) translateX(-5%); }
-            50% { transform: rotate(45deg) translateX(5%); }
-            100% { transform: rotate(-45deg) translateX(-5%); }
-        }
-        @keyframes moveleg2 {
-            0% { transform: rotate(45deg); }
-            50% { transform: rotate(-45deg); }
-            100% { transform: rotate(45deg); }
-        }
-        @keyframes movebody {
-            0% { transform: translateX(0%); }
-            50% { transform: translateX(2%); }
-            100% { transform: translateX(0%); }
-        }
-        .loaderline {
-            width: 50em;
-            height: 0.5em;
-            border-top: 0.5em dashed var(--color2);
-            animation: moveline 10s linear infinite;
-        }
-        @keyframes moveline {
-            0% { transform: translateX(0%); opacity: 0%; }
-            5% { opacity: 100%; }
-            95% { opacity: 100%; }
-            100% { opacity: 0%; transform: translateX(-70%); }
+            object-fit: cover;
+            display: block;
         }
         .loading-text {
-            font-family: var(--font-sans);
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--emerald-500);
-            letter-spacing: 0.2em;
-            margin-top: 1.5rem;
-            animation: pulse 1.2s infinite;
+            font-family: var(--font-heading);
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            font-weight: 600;
+            color: #059669;
+            letter-spacing: 0.25em;
+            text-align: center;
+            animation: pulse-light 1.5s infinite;
         }
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; text-shadow: 0 0 2px var(--emerald-500); }
-            50% { opacity: 1; text-shadow: 0 0 12px var(--emerald-500); }
+        @keyframes pulse-light {
+            0%, 100% {
+                opacity: 0.6;
+                text-shadow: 0 0 8px rgba(5, 150, 105, 0.2);
+            }
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 20px rgba(5, 150, 105, 0.5), 0 0 40px rgba(5, 150, 105, 0.2);
+            }
         }
 
         @keyframes fadeInUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
@@ -601,7 +432,16 @@
             .quiz-actions { flex-direction:column; align-items:stretch; }
             .result-actions { flex-direction:column; align-items:center; }
             .decree-breakdown { max-width:100%; }
-            .capybaraloader { transform: scale(0.5); }
+            .video-container {
+                width: min(280px, 75vw);
+                height: min(280px, 75vw);
+            }
+        }
+        @media (min-width:601px) and (max-width:1024px) {
+            .video-container {
+                width: min(350px, 60vw);
+                height: min(350px, 60vw);
+            }
         }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration:0.01ms!important; transition-duration:0.01ms!important; }
@@ -625,53 +465,58 @@
         </defs>
     </svg>
 
-    <!-- CAPYBARA LOADING OVERLAY (minimum 3 seconds) -->
+    <!-- VIDEO LOADING OVERLAY (light mode, dragon1.mp4) -->
     <div id="loading-overlay" class="loading-overlay">
-        <div class="capybaraloader">
-            <div class="capybara">
-                <div class="capyhead">
-                    <div class="capyear"><div class="capyear2"></div></div>
-                    <div class="capyear"><div class="capyear2"></div></div>
-                    <div class="capymouth">
-                        <div class="capylips"></div>
-                        <div class="capylips"></div>
-                    </div>
-                    <div class="capyeye"></div>
-                    <div class="capyeye"></div>
-                </div>
-                <div class="capyleg"></div>
-                <div class="capyleg2"></div>
-                <div class="capyleg2"></div>
-                <div class="capy"></div>
-            </div>
-            <div class="loader"><div class="loaderline"></div></div>
+        <div class="video-container">
+            <video id="loading-video" autoplay muted loop playsinline preload="auto">
+                <source src="dragon1.mp4" type="video/mp4">
+            </video>
         </div>
         <div class="loading-text">SUMMONING THE LEGACY...</div>
     </div>
+
     <script>
         (function() {
             const overlay = document.getElementById('loading-overlay');
+            const video = document.getElementById('loading-video');
             const pageStart = performance.now();
-            window.addEventListener('load', function() {
-                const elapsed = performance.now() - pageStart;
-                const remaining = Math.max(0, 3000 - elapsed);
+            function hideOverlay() {
+                overlay.classList.add('hide');
                 setTimeout(() => {
-                    overlay.classList.add('hide');
-                    setTimeout(() => overlay.style.display = 'none', 500);
-                }, remaining);
+                    overlay.style.display = 'none';
+                    if (video) { video.pause(); video.removeAttribute('src'); video.load(); }
+                }, 600);
+            }
+            const minDisplay = 3000;
+            if (video) {
+                video.addEventListener('loadeddata', () => {
+                    const elapsed = performance.now() - pageStart;
+                    const remaining = Math.max(0, minDisplay - elapsed);
+                    setTimeout(hideOverlay, remaining);
+                });
+                setTimeout(() => {
+                    const elapsed = performance.now() - pageStart;
+                    if (elapsed < minDisplay + 2000) setTimeout(hideOverlay, Math.max(0, minDisplay - elapsed));
+                }, 5000);
+            } else setTimeout(hideOverlay, minDisplay);
+            window.addEventListener('load', () => {
+                const elapsed = performance.now() - pageStart;
+                const remaining = Math.max(0, minDisplay - elapsed);
+                setTimeout(() => { if (overlay.style.display !== 'none') hideOverlay(); }, remaining);
             });
         })();
     </script>
 
     <header class="top-bar">
-        <a href="front.html" class="brand"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
+        <a href="https://www.facebook.com/profile.php?id=61570661907426" target="_blank" rel="noopener noreferrer" class="brand">
+            <svg class="icon"><use href="#icon-flame"/></svg> Belphegor
+        </a>
         <div class="right-actions">
             <button class="dark-toggle" id="dark-toggle"><svg class="icon"><use href="#icon-moon"/></svg></button>
             <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
         </div>
     </header>
 
-    <!-- Hamburger menu - ordered: Sanctuaries, Belphegor, Codex, Trial (active), Students -->
     <div class="mobile-menu" id="mobile-menu">
         <a href="index.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-flame"/></svg> Sanctuaries</a>
         <a href="front.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
@@ -684,7 +529,9 @@
     <main class="quiz-wrapper" id="quiz-app"></main>
 
     <footer class="footer">
-        <img src="download.png" alt="Belphegor Emblem" class="footer-logo" onerror="this.style.display='none'">
+        <a href="https://www.facebook.com/profile.php?id=61570661907426" target="_blank" rel="noopener noreferrer">
+            <img src="download.png" alt="Belphegor Emblem" class="footer-logo" onerror="this.style.display='none'">
+        </a>
         <p>ESTABLISHED BY THE MEMBERS OF THE UNIVERSITY</p>
         <p class="credit">CREATED BY BELPHEGOR BERSERKERS</p>
     </footer>
@@ -713,12 +560,13 @@
             ];
 
             const app = document.getElementById('quiz-app');
-            const STORAGE_KEY_PROGRESS = 'mcu_quiz_progress_v6';
-            const TIMER_DURATION = 20;
+            const STORAGE_KEY_PROGRESS = 'mcu_quiz_progress_v7';
+            const FINISHED_KEY = 'mcu_quiz_finished';
+            const RESULT_KEY = 'mcu_quiz_result';
 
             let currentQuestion = 0, score = 0, quizCompleted = false, feedbackActive = false;
             let selectedQuestions = [], userAnswers = [];
-            let currentStreak = 0, timerInterval = null, timeLeft = TIMER_DURATION;
+            let currentStreak = 0;
             let decreeStats = { I:{total:0,correct:0}, II:{total:0,correct:0}, III:{total:0,correct:0}, IV:{total:0,correct:0}, V:{total:0,correct:0} };
 
             function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
@@ -727,6 +575,18 @@
                 localStorage.setItem(STORAGE_KEY_PROGRESS,JSON.stringify(d));
             }
             function clearProgress(){ localStorage.removeItem(STORAGE_KEY_PROGRESS); }
+
+            function saveFinalResult() {
+                const resultData = {
+                    score: score,
+                    total: selectedQuestions.length,
+                    decreeStats: decreeStats,
+                    selectedQuestions: selectedQuestions,
+                    userAnswers: userAnswers
+                };
+                localStorage.setItem(RESULT_KEY, JSON.stringify(resultData));
+                localStorage.setItem(FINISHED_KEY, 'true');
+            }
 
             function updateDecreeStats(q, isCorrect){
                 const decreeNum = q.id.split('-')[0];
@@ -745,74 +605,148 @@
                 }
             }
 
-            function startTimer(){
-                clearInterval(timerInterval);
-                timeLeft = TIMER_DURATION;
-                const bar = document.getElementById('timer-bar');
-                if(bar){ bar.style.width='100%'; bar.className='timer-bar'; }
-                timerInterval = setInterval(()=>{
-                    timeLeft--;
-                    const pct = (timeLeft / TIMER_DURATION) * 100;
-                    if(bar){
-                        bar.style.width = pct + '%';
-                        if(timeLeft <= 5) bar.classList.add('danger');
-                        else if(timeLeft <= 10) bar.classList.add('warning');
-                    }
-                    if(timeLeft <= 0){
-                        clearInterval(timerInterval);
-                        if(!feedbackActive) autoSubmit();
-                    }
-                },1000);
+            function renderPermanentResult(data) {
+                const {score, total, decreeStats, selectedQuestions, userAnswers} = data;
+                const pct = Math.round((score/total)*100);
+                const decreeOrder = ['I','II','III','IV','V'];
+                const breakdownHTML = decreeOrder.map(d=>{
+                    const s = decreeStats[d]||{total:0,correct:0};
+                    const dpct = s.total>0?Math.round((s.correct/s.total)*100):0;
+                    return `<div class="breakdown-row"><span class="breakdown-label">Decree ${d}</span><div class="breakdown-bar-track"><div class="breakdown-bar-fill ${dpct===0?'zero':''}" style="width:${dpct}%"></div></div><span class="breakdown-score">${s.correct}/${s.total}</span></div>`;
+                }).join('');
+                let msg = pct===100?'Perfect. You know the Legacy.':pct>=70?'Good effort. A few decrees need review.':pct>=50?'You passed, barely. Read the Codex again.':'The Council says study harder.';
+                app.innerHTML = `<div class="quiz-container result-screen">
+                    <div class="result-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div>
+                    <div class="result-title">Trial Completed</div>
+                    <div class="result-subtitle">You have already taken this trial. Results are final.</div>
+                    <div class="score-circle"><span class="score-value">${score}/${total}</span><span class="score-total">${pct}%</span></div>
+                    <div class="decree-breakdown"><h4>Performance by Decree</h4>${breakdownHTML}</div>
+                    <div class="result-message">${msg}</div>
+                    <div class="result-actions">
+                        <button class="btn" id="review-permanent-btn"><svg class="icon"><use href="#icon-eye"/></svg> Review Answers</button>
+                        <button class="btn btn-outline" id="share-permanent-btn"><svg class="icon"><use href="#icon-book"/></svg> Share Results</button>
+                        <a href="front.html" class="btn btn-outline"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
+                    </div>
+                </div>`;
+                document.getElementById('review-permanent-btn').addEventListener('click', ()=>{
+                    renderReviewFromData(selectedQuestions, userAnswers, score);
+                });
+                document.getElementById('share-permanent-btn').addEventListener('click', ()=>{
+                    const text = `I scored ${score}/${total} (${pct}%) on the Sinnercell Trial.`;
+                    navigator.clipboard?.writeText(text).then(()=>{
+                        const btn=document.getElementById('share-permanent-btn'); btn.innerHTML='Copied!'; setTimeout(()=>btn.innerHTML='<svg class="icon"><use href="#icon-book"/></svg> Share Results',2000);
+                    });
+                });
             }
 
-            function stopTimer(){ clearInterval(timerInterval); }
-
-            function autoSubmit(){
-                feedbackActive = true;
-                const nb = document.getElementById('next-btn');
-                const fb = document.getElementById('feedback-msg');
-                const q = selectedQuestions[currentQuestion];
-                userAnswers[currentQuestion] = null;
-                currentStreak = 0;
-                const opts = document.querySelectorAll('.quiz-option');
-                opts.forEach((o,i)=>{
-                    o.setAttribute('aria-disabled','true');
-                    if(i===q.correctIndex) o.classList.add('correct-feedback');
+            function renderReviewFromData(questions, answers, totalScore) {
+                app.innerHTML = `<div class="quiz-container review-screen">
+                    <div class="review-header"><h2>Trial Review</h2><span class="progress">${totalScore}/${questions.length} correct</span></div>
+                    ${questions.map((q,i)=>{ const ua=answers[i]; const isCorrect=ua===q.correctIndex; return `<div class="review-item ${isCorrect?'correct-item':'incorrect-item'}"><div class="ri-decree">${q.decree}</div><div class="ri-scenario">"${q.scenario}"</div><div class="ri-question">${q.question}</div>${q.choices.map((c,j)=>{ let cls=''; if(j===ua&&isCorrect) cls='user-correct'; else if(j===ua&&!isCorrect) cls='user-incorrect'; else if(j===q.correctIndex&&!isCorrect) cls='show-correct'; return `<div class="ri-option ${cls}"><div class="ri-marker">${j===q.correctIndex?'✓':j===ua&&!isCorrect?'✗':''}</div><span>${c}</span></div>`; }).join('')}<div class="ri-explanation">${q.explanation}</div></div>`; }).join('')}
+                    <div class="result-actions"><button class="btn" id="back-to-permanent-result">Back to Results</button></div>
+                </div>`;
+                document.getElementById('back-to-permanent-result').addEventListener('click', ()=>{
+                    const saved = JSON.parse(localStorage.getItem(RESULT_KEY));
+                    if (saved) renderPermanentResult(saved);
                 });
-                if(fb){ fb.textContent = 'Time ran out. ' + q.explanation; fb.classList.add('error'); }
-                if(nb) nb.disabled = true;
-                updateDecreeStats(q, false);
-                setTimeout(()=>{ currentQuestion++; saveProgress(); feedbackActive=false; renderQuestion(); }, 2000);
             }
 
             function renderStartScreen(){
-                clearProgress(); quizCompleted=false; currentQuestion=0; score=0; userAnswers=[]; currentStreak=0;
+                // Check if already finished
+                if (localStorage.getItem(FINISHED_KEY) === 'true') {
+                    const savedResult = localStorage.getItem(RESULT_KEY);
+                    if (savedResult) {
+                        try {
+                            const data = JSON.parse(savedResult);
+                            renderPermanentResult(data);
+                            return;
+                        } catch(e) {}
+                    }
+                }
+
+                // Check for in-progress quiz
+                const savedProgress = localStorage.getItem(STORAGE_KEY_PROGRESS);
+                if (savedProgress) {
+                    try {
+                        const prog = JSON.parse(savedProgress);
+                        if (!prog.quizCompleted && prog.selectedIds && prog.selectedIds.length > 0) {
+                            // Resume option
+                            app.innerHTML = `<div class="quiz-container start-screen">
+                                <div class="shield-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div>
+                                <h2>Sinnercell Trial</h2>
+                                <p>You have an unfinished trial. Continue where you left off or start a new one.</p>
+                                <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;">
+                                    <button class="btn" id="resume-btn"><svg class="icon"><use href="#icon-play"/></svg> Resume Trial</button>
+                                    <button class="btn btn-outline" id="new-btn">Start New Trial</button>
+                                </div>
+                            </div>`;
+                            document.getElementById('resume-btn').addEventListener('click', ()=>{
+                                loadProgress(prog);
+                            });
+                            document.getElementById('new-btn').addEventListener('click', ()=>{
+                                clearProgress();
+                                startNewQuiz();
+                            });
+                            return;
+                        }
+                    } catch(e) {}
+                }
+                // Default: new quiz
+                startNewQuiz();
+            }
+
+            function startNewQuiz() {
+                clearProgress();
+                quizCompleted=false; currentQuestion=0; score=0; userAnswers=[]; currentStreak=0;
                 decreeStats = { I:{total:0,correct:0}, II:{total:0,correct:0}, III:{total:0,correct:0}, IV:{total:0,correct:0}, V:{total:0,correct:0} };
                 selectedQuestions = shuffle([...FULL_QUESTION_BANK]).slice(0,10);
-                app.innerHTML = `<div class="quiz-container start-screen"><div class="shield-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div><h2>Sinnercell Trial</h2><p>This test is for Demons, the student members.<br>10 situations. Pick the right action.</p><p style="font-size:0.8rem;color:var(--text-secondary)">Time limit: 20 seconds per question. Press 1-4 to select, Enter to submit.</p><button class="btn" id="start-btn"><svg class="icon"><use href="#icon-play"/></svg> Begin Trial</button></div>`;
+                app.innerHTML = `<div class="quiz-container start-screen"><div class="shield-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div><h2>Sinnercell Trial</h2><p>This test is for Demons, the student members.<br>10 situations. Pick the right action.</p><p style="font-size:0.8rem;color:var(--text-secondary)">No time limit. One attempt only — results are final.</p><button class="btn" id="start-btn"><svg class="icon"><use href="#icon-play"/></svg> Begin Trial</button></div>`;
                 document.getElementById('start-btn').addEventListener('click', ()=>{ startQuiz(); });
+            }
+
+            function loadProgress(prog) {
+                selectedQuestions = FULL_QUESTION_BANK.filter(q => prog.selectedIds.includes(q.id));
+                currentQuestion = prog.currentQuestion;
+                score = prog.score;
+                userAnswers = prog.userAnswers;
+                currentStreak = prog.currentStreak || 0;
+                quizCompleted = false;
+                // Reset decree stats based on answered questions
+                decreeStats = { I:{total:0,correct:0}, II:{total:0,correct:0}, III:{total:0,correct:0}, IV:{total:0,correct:0}, V:{total:0,correct:0} };
+                for (let i=0; i<currentQuestion; i++) {
+                    const q = selectedQuestions[i];
+                    const ua = userAnswers[i];
+                    if (q && ua !== undefined) {
+                        const isCorrect = ua === q.correctIndex;
+                        const decreeNum = q.id.split('-')[0];
+                        if(!decreeStats[decreeNum]) decreeStats[decreeNum] = {total:0,correct:0};
+                        decreeStats[decreeNum].total++;
+                        if(isCorrect) decreeStats[decreeNum].correct++;
+                    }
+                }
+                renderQuestion();
             }
 
             function startQuiz(){ currentQuestion=0; score=0; quizCompleted=false; userAnswers=[]; currentStreak=0; decreeStats = { I:{total:0,correct:0}, II:{total:0,correct:0}, III:{total:0,correct:0}, IV:{total:0,correct:0}, V:{total:0,correct:0} }; saveProgress(); renderQuestion(); }
 
             function renderQuestion(){
                 if(currentQuestion>=selectedQuestions.length){ completeQuiz(); return; }
-                feedbackActive=false; stopTimer();
+                feedbackActive=false;
                 const q=selectedQuestions[currentQuestion];
                 const streakClass = currentStreak === 0 ? 'zero' : '';
-                app.innerHTML = `<div class="quiz-container quiz-card" role="main"><div class="timer-track"><div class="timer-bar" id="timer-bar"></div></div><div class="quiz-header"><span class="decree-badge">${q.decree}</span><div class="quiz-meta"><div class="streak-display ${streakClass}" id="streak-display"><svg class="icon"><use href="#icon-fire"/></svg> <span>${currentStreak}</span></div><span class="progress">Question <span>${currentQuestion+1}</span> / ${selectedQuestions.length}</span></div></div><div class="quiz-scenario">"${q.scenario}"</div><div class="quiz-question">${q.question}</div><div class="options-group" role="radiogroup">${q.choices.map((c,i)=>`<button class="quiz-option" role="radio" aria-checked="false" data-index="${i}" tabindex="${i===0?0:-1}"><div class="option-circle">${i+1}</div><span>${c}</span></button>`).join('')}</div><div class="quiz-actions"><div class="feedback-message" id="feedback-msg" aria-live="polite"></div><button class="next-btn" id="next-btn" disabled>${currentQuestion<selectedQuestions.length-1?'Next Scenario':'Submit Trial'} <svg class="icon"><use href="#icon-arrow-right"/></svg></button></div></div>`;
+                app.innerHTML = `<div class="quiz-container quiz-card" role="main"><div class="quiz-header"><span class="decree-badge">${q.decree}</span><div class="quiz-meta"><div class="streak-display ${streakClass}" id="streak-display"><svg class="icon"><use href="#icon-fire"/></svg> <span>${currentStreak}</span></div><span class="progress">Question <span>${currentQuestion+1}</span> / ${selectedQuestions.length}</span></div></div><div class="quiz-scenario">"${q.scenario}"</div><div class="quiz-question">${q.question}</div><div class="options-group" role="radiogroup">${q.choices.map((c,i)=>`<button class="quiz-option" role="radio" aria-checked="false" data-index="${i}" tabindex="${i===0?0:-1}"><div class="option-circle">${i+1}</div><span>${c}</span></button>`).join('')}</div><div class="quiz-actions"><div class="feedback-message" id="feedback-msg" aria-live="polite"></div><button class="next-btn" id="next-btn" disabled>${currentQuestion<selectedQuestions.length-1?'Next Scenario':'Submit Trial'} <svg class="icon"><use href="#icon-arrow-right"/></svg></button></div></div>`;
                 const opts=document.querySelectorAll('.quiz-option'), nb=document.getElementById('next-btn'), fb=document.getElementById('feedback-msg');
                 if(opts.length) opts[0].focus();
-                startTimer();
                 opts.forEach(o=>o.addEventListener('click',()=>{ if(feedbackActive)return; opts.forEach(x=>x.setAttribute('aria-checked','false')); o.setAttribute('aria-checked','true'); nb.disabled=false; fb.textContent=''; fb.classList.remove('error'); }));
-                nb.addEventListener('click',()=>{ if(feedbackActive)return; stopTimer(); const sel=document.querySelector('.quiz-option[aria-checked="true"]'); if(!sel){ fb.textContent='Pick an answer first.'; fb.classList.add('error'); return; } const idx=Number.parseInt(sel.dataset.index,10); userAnswers[currentQuestion]=idx; const correct=q.correctIndex, isCorrect=(idx===correct); opts.forEach((o,i)=>{ o.setAttribute('aria-disabled','true'); if(i===correct) o.classList.add('correct-feedback'); if(i===idx&&!isCorrect) o.classList.add('incorrect-feedback'); }); fb.textContent=isCorrect?`Correct. ${q.explanation}`:`Not right. ${q.explanation}`; fb.classList.toggle('error',!isCorrect); if(isCorrect){ score++; currentStreak++; } else { currentStreak=0; } updateDecreeStats(q,isCorrect); feedbackActive=true; nb.disabled=true; setTimeout(()=>{ currentQuestion++; saveProgress(); feedbackActive=false; renderQuestion(); }, 2000); });
+                nb.addEventListener('click',()=>{ if(feedbackActive)return; const sel=document.querySelector('.quiz-option[aria-checked="true"]'); if(!sel){ fb.textContent='Pick an answer first.'; fb.classList.add('error'); return; } const idx=Number.parseInt(sel.dataset.index,10); userAnswers[currentQuestion]=idx; const correct=q.correctIndex, isCorrect=(idx===correct); opts.forEach((o,i)=>{ o.setAttribute('aria-disabled','true'); if(i===correct) o.classList.add('correct-feedback'); if(i===idx&&!isCorrect) o.classList.add('incorrect-feedback'); }); fb.textContent=isCorrect?`Correct. ${q.explanation}`:`Not right. ${q.explanation}`; fb.classList.toggle('error',!isCorrect); if(isCorrect){ score++; currentStreak++; } else { currentStreak=0; } updateDecreeStats(q,isCorrect); feedbackActive=true; nb.disabled=true; setTimeout(()=>{ currentQuestion++; saveProgress(); feedbackActive=false; renderQuestion(); }, 2000); });
                 document.querySelector('.options-group').addEventListener('keydown',e=>{ const cur=document.activeElement; if(!cur.classList.contains('quiz-option'))return; const o=Array.from(document.querySelectorAll('.quiz-option')), i=o.indexOf(cur); if(e.key==='ArrowDown'||e.key==='ArrowRight'){ e.preventDefault(); o[(i+1)%o.length].focus(); } else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){ e.preventDefault(); o[(i-1+o.length)%o.length].focus(); } else if(e.key===' '||e.key==='Enter'){ e.preventDefault(); cur.click(); } });
                 document.addEventListener('keydown', function numberSelect(e){ if(feedbackActive||quizCompleted)return; const opts2=document.querySelectorAll('.quiz-option'); if(['1','2','3','4'].includes(e.key)){ const idx=Number.parseInt(e.key,10)-1; if(opts2[idx]){ opts2.forEach(o=>o.setAttribute('aria-checked','false')); opts2[idx].setAttribute('aria-checked','true'); nb.disabled=false; fb.textContent=''; fb.classList.remove('error'); } } if(e.key==='Enter'&&document.querySelector('.quiz-option[aria-checked="true"]')&&!nb.disabled){ nb.click(); } });
                 saveProgress();
             }
 
             function completeQuiz(){
-                quizCompleted=true; clearProgress(); stopTimer();
+                quizCompleted=true; clearProgress();
+                saveFinalResult(); // save for one-take lock
                 const total=selectedQuestions.length, pct=Math.round((score/total)*100);
                 if(pct===100) setTimeout(createConfetti,300);
                 const decreeOrder = ['I','II','III','IV','V'];
@@ -822,8 +756,7 @@
                     return `<div class="breakdown-row"><span class="breakdown-label">Decree ${d}</span><div class="breakdown-bar-track"><div class="breakdown-bar-fill ${dpct===0?'zero':''}" style="width:${dpct}%"></div></div><span class="breakdown-score">${s.correct}/${s.total}</span></div>`;
                 }).join('');
                 let msg=pct===100?'Perfect. You know the Legacy.':pct>=70?'Good effort. A few decrees need review.':pct>=50?'You passed, barely. Read the Codex again.':'The Council says study harder.';
-                app.innerHTML = `<div class="quiz-container result-screen"><div class="result-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div><div class="result-title">Trial Done</div><div class="result-subtitle">Your Sinnercell rule knowledge has been checked.</div><div class="score-circle"><span class="score-value">${score}/${total}</span><span class="score-total">${pct}%</span></div><div class="decree-breakdown"><h4>Performance by Decree</h4>${breakdownHTML}</div><div class="result-message">${msg}</div><div class="result-actions"><button class="btn" id="review-btn"><svg class="icon"><use href="#icon-eye"/></svg> Review Answers</button><button class="btn btn-outline" id="retry-btn"><svg class="icon"><use href="#icon-sword"/></svg> Retry Trial</button><button class="btn btn-outline" id="share-btn"><svg class="icon"><use href="#icon-book"/></svg> Share Results</button><a href="front.html" class="btn btn-outline"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a><a href="students.html" class="btn btn-outline"><svg class="icon"><use href="#icon-users"/></svg> Legion</a></div></div>`;
-                document.getElementById('retry-btn').addEventListener('click', renderStartScreen);
+                app.innerHTML = `<div class="quiz-container result-screen"><div class="result-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div><div class="result-title">Trial Done</div><div class="result-subtitle">Your results are final. This trial cannot be retaken.</div><div class="score-circle"><span class="score-value">${score}/${total}</span><span class="score-total">${pct}%</span></div><div class="decree-breakdown"><h4>Performance by Decree</h4>${breakdownHTML}</div><div class="result-message">${msg}</div><div class="result-actions"><button class="btn" id="review-btn"><svg class="icon"><use href="#icon-eye"/></svg> Review Answers</button><button class="btn btn-outline" id="share-btn"><svg class="icon"><use href="#icon-book"/></svg> Share Results</button><a href="front.html" class="btn btn-outline"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a><a href="students.html" class="btn btn-outline"><svg class="icon"><use href="#icon-users"/></svg> Legion</a></div></div>`;
                 document.getElementById('review-btn').addEventListener('click', renderReview);
                 document.getElementById('share-btn').addEventListener('click',()=>{
                     const text = `I scored ${score}/${total} (${pct}%) on the Sinnercell Trial.`;
@@ -834,11 +767,9 @@
             }
 
             function renderReview(){
-                stopTimer();
                 const total=selectedQuestions.length;
-                app.innerHTML = `<div class="quiz-container review-screen"><div class="review-header"><h2>Trial Review</h2><span class="progress">${score}/${total} correct</span></div>${selectedQuestions.map((q,i)=>{ const ua=userAnswers[i]; const isCorrect=ua===q.correctIndex; return `<div class="review-item ${isCorrect?'correct-item':'incorrect-item'}"><div class="ri-decree">${q.decree}</div><div class="ri-scenario">"${q.scenario}"</div><div class="ri-question">${q.question}</div>${q.choices.map((c,j)=>{ let cls=''; if(j===ua&&isCorrect) cls='user-correct'; else if(j===ua&&!isCorrect) cls='user-incorrect'; else if(j===q.correctIndex&&!isCorrect) cls='show-correct'; return `<div class="ri-option ${cls}"><div class="ri-marker">${j===q.correctIndex?'✓':j===ua&&!isCorrect?'✗':''}</div><span>${c}</span></div>`; }).join('')}<div class="ri-explanation">${q.explanation}</div></div>`; }).join('')}<div class="result-actions" style="margin-top:1.5rem;"><button class="btn" id="back-to-results-btn">Back to Results</button><button class="btn btn-outline" id="retry-from-review-btn">Retry Trial</button></div></div>`;
+                app.innerHTML = `<div class="quiz-container review-screen"><div class="review-header"><h2>Trial Review</h2><span class="progress">${score}/${total} correct</span></div>${selectedQuestions.map((q,i)=>{ const ua=userAnswers[i]; const isCorrect=ua===q.correctIndex; return `<div class="review-item ${isCorrect?'correct-item':'incorrect-item'}"><div class="ri-decree">${q.decree}</div><div class="ri-scenario">"${q.scenario}"</div><div class="ri-question">${q.question}</div>${q.choices.map((c,j)=>{ let cls=''; if(j===ua&&isCorrect) cls='user-correct'; else if(j===ua&&!isCorrect) cls='user-incorrect'; else if(j===q.correctIndex&&!isCorrect) cls='show-correct'; return `<div class="ri-option ${cls}"><div class="ri-marker">${j===q.correctIndex?'✓':j===ua&&!isCorrect?'✗':''}</div><span>${c}</span></div>`; }).join('')}<div class="ri-explanation">${q.explanation}</div></div>`; }).join('')}<div class="result-actions"><button class="btn" id="back-to-results-btn">Back to Results</button></div></div>`;
                 document.getElementById('back-to-results-btn').addEventListener('click', ()=>{ completeQuiz(); });
-                document.getElementById('retry-from-review-btn').addEventListener('click', renderStartScreen);
             }
 
             // Dark mode
@@ -855,30 +786,17 @@
                 updateDarkIcon();
             });
 
-            // Hamburger menu toggle
+            // Hamburger menu
             const hamburger = document.getElementById('hamburger');
             const mobileMenu = document.getElementById('mobile-menu');
             const menuOverlay = document.getElementById('menu-overlay');
-
-            function closeMenu() {
-                mobileMenu.classList.remove('open');
-                menuOverlay.classList.remove('active');
-            }
-            function openMenu() {
-                mobileMenu.classList.add('open');
-                menuOverlay.classList.add('active');
-            }
-
-            hamburger.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (mobileMenu.classList.contains('open')) closeMenu();
-                else openMenu();
-            });
+            function closeMenu() { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('active'); }
+            function openMenu() { mobileMenu.classList.add('open'); menuOverlay.classList.add('active'); }
+            hamburger.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.contains('open') ? closeMenu() : openMenu(); });
             menuOverlay.addEventListener('click', closeMenu);
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
-            });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu(); });
 
+            // Boot
             renderStartScreen();
         })();
     </script>

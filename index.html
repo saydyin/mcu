@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fiendspire Sanctuary — Forbidden Legacy MCU">
-    <title>Fiendspire Sanctuary | MCU</title>
+    <meta name="description" content="Purgatory Chamber — Forbidden Legacy MCU">
+    <title>Purgatory Chamber | MCU</title>
     <link rel="icon" type="image/x-icon" href="download.ico">
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Metal+Mania&family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Metal+Mania&family=Special+Elite&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --emerald-500: #10b981;
@@ -18,9 +18,9 @@
             --text-secondary: #475569;
             --border: #e2e8f0;
             --shadow: 0 4px 12px rgba(0,0,0,0.04);
-            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            --font-serif: "Special Elite", Georgia, "Times New Roman", serif;
-            --font-demonic: 'UnifrakturMaguntia', 'Metal Mania', cursive;
+            --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-serif: Georgia, 'Special Elite', 'Times New Roman', serif;
+            --font-heading: 'Cinzel', 'Metal Mania', Georgia, 'Times New Roman', serif;
         }
         body.dark {
             --bg: #0f172a;
@@ -30,20 +30,32 @@
             --border: #334155;
             --shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
-        * { margin:0; padding:0; box-sizing:border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: var(--font-sans);
             background: var(--bg);
             color: var(--text);
-            line-height: 1.5;
+            line-height: 1.6;
             min-height: 100vh;
             transition: background 0.3s, color 0.3s;
             display: flex;
             flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        .icon { width: 1em; height: 1em; display: inline-block; vertical-align: -0.125em; fill: currentColor; }
+        .icon {
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+            vertical-align: -0.125em;
+            fill: currentColor;
+        }
 
-        /* Top bar (centered brand, hamburger, dark toggle) */
+        /* Top bar */
         .top-bar {
             background: var(--card-bg);
             border-bottom: 1px solid var(--border);
@@ -56,12 +68,12 @@
             z-index: 100;
         }
         .brand {
-            font-family: var(--font-demonic);
-            font-weight: 900;
-            font-size: 1.5rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.4rem;
             color: var(--text);
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -69,7 +81,10 @@
             left: 50%;
             transform: translateX(-50%);
         }
-        .brand .icon { color: var(--emerald-500); font-size: 1.3rem; }
+        .brand .icon {
+            color: var(--emerald-500);
+            font-size: 1.3rem;
+        }
         .right-actions {
             display: flex;
             align-items: center;
@@ -90,7 +105,10 @@
             height: 36px;
             transition: 0.2s;
         }
-        .dark-toggle:hover { background: var(--slate-100); color: var(--text); }
+        .dark-toggle:hover {
+            background: var(--border);
+            color: var(--text);
+        }
         .hamburger {
             display: flex;
             flex-direction: column;
@@ -124,7 +142,9 @@
             flex-direction: column;
             gap: 1rem;
         }
-        .mobile-menu.open { right: 0; }
+        .mobile-menu.open {
+            right: 0;
+        }
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -149,19 +169,21 @@
             border-radius: 12px;
             font-family: var(--font-sans);
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.95rem;
             letter-spacing: normal;
             color: var(--text);
             text-decoration: none;
             transition: background 0.2s;
         }
-        .mobile-nav-btn:hover { background: var(--border); }
+        .mobile-nav-btn:hover {
+            background: var(--border);
+        }
         .mobile-nav-btn.active {
             background: var(--emerald-500);
             color: #fff;
         }
 
-        /* Main content (hidden until code correct) */
+        /* Main content */
         .main-content {
             flex: 1;
             padding: 2rem 1.5rem;
@@ -171,7 +193,7 @@
         }
         .footer {
             text-align: center;
-            padding: 2rem 0 2rem;
+            padding: 2rem 0;
             border-top: 1px solid var(--border);
             margin-top: 2rem;
             background: var(--card-bg);
@@ -183,18 +205,21 @@
             opacity: 0.8;
             transition: opacity 0.2s;
         }
-        .footer-logo:hover { opacity: 1; }
+        .footer-logo:hover {
+            opacity: 1;
+        }
         .footer p {
             font-family: var(--font-serif);
-            font-size: 0.75rem;
-            letter-spacing: 0.06em;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
             color: var(--text-secondary);
         }
         .footer .credit {
-            font-family: 'Metal Mania', cursive;
+            font-family: var(--font-heading);
+            font-weight: 600;
             color: var(--emerald-500);
-            font-weight: bold;
             margin-top: 0.25rem;
+            font-size: 0.85rem;
         }
 
         /* Page wrapper (hidden initially) */
@@ -251,10 +276,11 @@
         }
         .login-text {
             color: var(--text);
-            font-weight: 800;
-            font-size: 1rem;
+            font-weight: 700;
+            font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-family: var(--font-sans);
             text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.3);
             transition: all 0.4s ease;
         }
@@ -292,11 +318,13 @@
             padding: 10px;
             background: rgba(255, 255, 255, 0.9);
             border: 2px solid var(--text);
-            font-weight: 600;
+            font-weight: 500;
             color: #000;
+            font-family: var(--font-sans);
             box-shadow: 4px 4px 0 var(--text);
             transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             border-radius: 0;
+            font-size: 0.9rem;
         }
         .login-input:focus {
             outline: none;
@@ -313,12 +341,14 @@
             background: var(--text);
             color: #fff;
             border: none;
-            font-weight: 800;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
             cursor: pointer;
+            font-family: var(--font-sans);
             box-shadow: 4px 4px 0 rgba(255, 255, 255, 0.3);
             transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-size: 0.9rem;
         }
         .login-btn:hover {
             transform: translate(2px, 2px);
@@ -366,37 +396,39 @@
             transition: all 0.6s ease;
             z-index: -1;
         }
-        .login-card:hover ~ .login-container::before,
+        .login-card:hover~.login-container::before,
         .login-container:hover::before {
             width: 400px;
             height: 400px;
         }
         .error-message {
             color: #ef4444;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             margin-top: 1rem;
             text-align: center;
-            font-weight: 600;
+            font-weight: 500;
+            font-family: var(--font-sans);
         }
         .demon-name {
             text-align: center;
             margin-top: 1rem;
             font-family: var(--font-serif);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
         }
 
-        /* ========== SANCTUARY CONTENT (images instead of text links) ========== */
+        /* Sanctuary Grid */
         .page-header {
             text-align: center;
             margin-bottom: 2rem;
         }
         .page-header h1 {
-            font-family: var(--font-demonic);
-            font-size: 2.5rem;
-            font-weight: 900;
+            font-family: var(--font-heading);
+            font-size: 2.6rem;
+            font-weight: 700;
             color: var(--text);
             letter-spacing: 2px;
+            line-height: 1.2;
         }
         .page-header h1 span {
             color: var(--emerald-500);
@@ -405,7 +437,7 @@
             color: var(--text-secondary);
             margin-top: 0.5rem;
             font-family: var(--font-serif);
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
         .divider {
             width: 60px;
@@ -433,7 +465,7 @@
         .sanctuary-card:hover {
             transform: translateY(-4px);
             border-color: var(--emerald-500);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
         }
         .sanctuary-image {
             width: 100%;
@@ -450,15 +482,17 @@
             font-size: 1rem;
             color: var(--emerald-500);
             margin: 0.5rem 0 0.25rem;
+            font-family: var(--font-sans);
         }
         .sanctuary-desc {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-secondary);
-            line-height: 1.4;
+            line-height: 1.5;
             margin-top: 0.25rem;
+            font-family: var(--font-sans);
         }
 
-        /* Terminology (unchanged from original) */
+        /* Terminology */
         .terminology {
             margin-top: 2rem;
         }
@@ -468,8 +502,8 @@
             color: var(--text);
             text-align: center;
             margin-bottom: 1rem;
-            letter-spacing: -0.01em;
-            font-family: var(--font-demonic);
+            letter-spacing: 1px;
+            font-family: var(--font-heading);
         }
         .terminology h2 span {
             color: var(--emerald-500);
@@ -483,11 +517,13 @@
         }
         .role-section h3 {
             font-weight: 600;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: var(--emerald-500);
             margin-bottom: 1rem;
             border-left: 4px solid var(--emerald-500);
             padding-left: 0.75rem;
+            font-family: var(--font-heading);
+            letter-spacing: 0.5px;
         }
         .role-list {
             list-style: none;
@@ -500,7 +536,8 @@
             color: var(--text);
             position: relative;
             padding-left: 1.2rem;
-            line-height: 1.4;
+            line-height: 1.5;
+            font-family: var(--font-sans);
         }
         .role-list li::before {
             content: "⛧";
@@ -510,242 +547,129 @@
             font-size: 0.7rem;
         }
         .role-list strong {
-            font-weight: 700;
+            font-weight: 600;
             color: var(--text);
         }
         .term-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 0.75rem;
             margin-top: 1rem;
         }
         .term-item {
             background: var(--card-bg);
-            padding: 0.6rem 0.8rem;
+            padding: 0.7rem 0.9rem;
             border-radius: 12px;
             border-left: 3px solid var(--emerald-500);
         }
         .term-name {
-            font-weight: 700;
+            font-weight: 600;
             color: var(--text);
             font-size: 0.85rem;
             display: inline;
+            font-family: var(--font-sans);
         }
         .term-desc {
             font-weight: 400;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
             margin-left: 0.25rem;
             display: inline;
+            font-family: var(--font-sans);
         }
         .sub-section {
             margin-top: 1.5rem;
         }
         .sub-section h4 {
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--emerald-500);
             margin-bottom: 0.75rem;
+            font-family: var(--font-heading);
+            letter-spacing: 0.5px;
         }
 
-        /* CAPYBARA LOADING OVERLAY (full) */
+        /* ========== VIDEO LOADING OVERLAY (LIGHT MODE) ========== */
         .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--bg);
+            background: #f8fafc;
             z-index: 9999;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.5s ease, visibility 0.5s;
+            gap: 2rem;
+            transition: opacity 0.6s ease, visibility 0.6s;
         }
         .loading-overlay.hide {
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
         }
-        .capybaraloader {
-            width: 14em;
-            height: 10em;
+        .video-container {
             position: relative;
-            z-index: 1;
-            --color: rgb(204, 125, 45);
-            --color2: rgb(83, 56, 28);
-            transform: scale(0.75);
-        }
-        .capybara {
-            width: 100%;
-            height: 7.5em;
-            position: relative;
-            z-index: 1;
-        }
-        .loader {
-            width: 100%;
-            height: 2.5em;
-            position: relative;
-            z-index: 1;
+            width: min(400px, 85vw);
+            height: min(400px, 85vw);
+            max-width: 400px;
+            max-height: 400px;
+            border-radius: 20px;
             overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
         }
-        .capy {
-            width: 85%;
+        #loading-video {
+            width: 100%;
             height: 100%;
-            background: linear-gradient(var(--color), 90%, var(--color2));
-            border-radius: 45%;
-            position: relative;
-            z-index: 1;
-            animation: movebody 1s linear infinite;
-        }
-        .capyhead {
-            width: 7.5em;
-            height: 7em;
-            bottom: 0em;
-            right: 0em;
-            position: absolute;
-            background-color: var(--color);
-            z-index: 3;
-            border-radius: 3.5em;
-            box-shadow: -1em 0em var(--color2);
-            animation: movebody 1s linear infinite;
-        }
-        .capyear {
-            width: 2em;
-            height: 2em;
-            background: linear-gradient(-45deg, var(--color), 90%, var(--color2));
-            top: 0em;
-            left: 0em;
-            border-radius: 100%;
-            position: absolute;
-            overflow: hidden;
-            z-index: 3;
-        }
-        .capyear:nth-child(2) {
-            left: 5em;
-            background: linear-gradient(25deg, var(--color), 90%, var(--color2));
-        }
-        .capyear2 {
-            width: 100%;
-            height: 1em;
-            background-color: var(--color2);
-            bottom: 0em;
-            left: 0.5em;
-            border-radius: 100%;
-            position: absolute;
-            transform: rotate(-45deg);
-        }
-        .capymouth {
-            width: 3.5em;
-            height: 2em;
-            background-color: var(--color2);
-            position: absolute;
-            bottom: 0em;
-            left: 2.5em;
-            border-radius: 50%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 0.5em;
-        }
-        .capylips {
-            width: 0.25em;
-            height: 0.75em;
-            border-radius: 100%;
-            transform: rotate(-45deg);
-            background-color: var(--color);
-        }
-        .capylips:nth-child(2) {
-            transform: rotate(45deg);
-        }
-        .capyeye {
-            width: 2em;
-            height: 0.5em;
-            background-color: var(--color2);
-            position: absolute;
-            bottom: 3.5em;
-            left: 1.5em;
-            border-radius: 5em;
-            transform: rotate(45deg);
-        }
-        .capyeye:nth-child(4) {
-            transform: rotate(-45deg);
-            left: 5.5em;
-            width: 1.75em;
-        }
-        .capyleg {
-            width: 6em;
-            height: 5em;
-            bottom: 0em;
-            left: 0em;
-            position: absolute;
-            background: linear-gradient(var(--color), 95%, var(--color2));
-            z-index: 2;
-            border-radius: 2em;
-            animation: movebody 1s linear infinite;
-        }
-        .capyleg2 {
-            width: 1.75em;
-            height: 3em;
-            bottom: 0em;
-            left: 3.25em;
-            position: absolute;
-            background: linear-gradient(var(--color), 80%, var(--color2));
-            z-index: 2;
-            border-radius: 0.75em;
-            box-shadow: inset 0em -0.5em var(--color2);
-            animation: moveleg 1s linear infinite;
-        }
-        .capyleg2:nth-child(3) {
-            width: 1.25em;
-            left: 0.5em;
-            height: 2em;
-            animation: moveleg2 1s linear infinite 0.075s;
-        }
-        @keyframes moveleg {
-            0% { transform: rotate(-45deg) translateX(-5%); }
-            50% { transform: rotate(45deg) translateX(5%); }
-            100% { transform: rotate(-45deg) translateX(-5%); }
-        }
-        @keyframes moveleg2 {
-            0% { transform: rotate(45deg); }
-            50% { transform: rotate(-45deg); }
-            100% { transform: rotate(45deg); }
-        }
-        @keyframes movebody {
-            0% { transform: translateX(0%); }
-            50% { transform: translateX(2%); }
-            100% { transform: translateX(0%); }
-        }
-        .loaderline {
-            width: 50em;
-            height: 0.5em;
-            border-top: 0.5em dashed var(--color2);
-            animation: moveline 10s linear infinite;
-        }
-        @keyframes moveline {
-            0% { transform: translateX(0%); opacity: 0%; }
-            5% { opacity: 100%; }
-            95% { opacity: 100%; }
-            100% { opacity: 0%; transform: translateX(-70%); }
+            object-fit: cover;
+            display: block;
         }
         .loading-text {
-            font-family: var(--font-sans);
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--emerald-500);
-            letter-spacing: 0.2em;
-            margin-top: 1.5rem;
-            animation: pulse 1.2s infinite;
+            font-family: var(--font-heading);
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            font-weight: 600;
+            color: #059669;
+            letter-spacing: 0.25em;
+            text-align: center;
+            animation: pulse-light 1.5s infinite;
         }
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; text-shadow: 0 0 2px var(--emerald-500); }
-            50% { opacity: 1; text-shadow: 0 0 12px var(--emerald-500); }
+        @keyframes pulse-light {
+            0%, 100% { 
+                opacity: 0.6;
+                text-shadow: 0 0 8px rgba(5, 150, 105, 0.2);
+            }
+            50% { 
+                opacity: 1;
+                text-shadow: 0 0 20px rgba(5, 150, 105, 0.5), 0 0 40px rgba(5, 150, 105, 0.2);
+            }
         }
 
-        @media (max-width:700px) {
-            .sanctuary-grid, .term-grid { grid-template-columns:1fr; }
-            .capybaraloader { transform: scale(0.5); }
+        /* Mobile adjustments */
+        @media (max-width: 700px) {
+            .sanctuary-grid,
+            .term-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            .brand {
+                font-size: 1.1rem;
+            }
+            .video-container {
+                width: min(280px, 75vw);
+                height: min(280px, 75vw);
+            }
+        }
+        @media (min-width: 701px) and (max-width: 1024px) {
+            .video-container {
+                width: min(350px, 60vw);
+                height: min(350px, 60vw);
+            }
         }
     </style>
 </head>
@@ -761,45 +685,17 @@
         </defs>
     </svg>
 
-    <!-- CAPYBARA LOADING OVERLAY -->
+    <!-- ========== VIDEO LOADING OVERLAY (LIGHT MODE) ========== -->
     <div id="loading-overlay" class="loading-overlay">
-        <div class="capybaraloader">
-            <div class="capybara">
-                <div class="capyhead">
-                    <div class="capyear"><div class="capyear2"></div></div>
-                    <div class="capyear"><div class="capyear2"></div></div>
-                    <div class="capymouth">
-                        <div class="capylips"></div>
-                        <div class="capylips"></div>
-                    </div>
-                    <div class="capyeye"></div>
-                    <div class="capyeye"></div>
-                </div>
-                <div class="capyleg"></div>
-                <div class="capyleg2"></div>
-                <div class="capyleg2"></div>
-                <div class="capy"></div>
-            </div>
-            <div class="loader"><div class="loaderline"></div></div>
+        <div class="video-container">
+            <video id="loading-video" autoplay muted loop playsinline preload="auto">
+                <source src="dragon1.mp4" type="video/mp4">
+            </video>
         </div>
         <div class="loading-text">SUMMONING THE LEGACY...</div>
     </div>
-    <script>
-        (function() {
-            const overlay = document.getElementById('loading-overlay');
-            const pageStart = performance.now();
-            window.addEventListener('load', function() {
-                const elapsed = performance.now() - pageStart;
-                const remaining = Math.max(0, 3000 - elapsed);
-                setTimeout(() => {
-                    overlay.classList.add('hide');
-                    setTimeout(() => overlay.style.display = 'none', 500);
-                }, remaining);
-            });
-        })();
-    </script>
 
-    <!-- LOGIN GATE -->
+    <!-- Login Gate -->
     <div id="login-gate" class="login-gate">
         <div class="login-container">
             <div class="login-card">
@@ -818,10 +714,12 @@
         </div>
     </div>
 
-    <!-- MAIN CONTENT (Sanctuaries & Terminology) -->
+    <!-- Main Content -->
     <div id="page-wrapper">
         <header class="top-bar">
-            <a href="#" class="brand"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
+            <a href="https://www.facebook.com/profile.php?id=61570661907426" target="_blank" rel="noopener noreferrer" class="brand">
+                <svg class="icon"><use href="#icon-flame"/></svg> Belphegor
+            </a>
             <div class="right-actions">
                 <button class="dark-toggle" id="dark-toggle"><svg class="icon"><use href="#icon-moon"/></svg></button>
                 <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
@@ -839,14 +737,13 @@
 
         <main class="main-content">
             <div class="page-header">
-                <h1>Fiendspire <span>Sanctuary</span></h1>
+                <h1>Purgatory <span>Chamber</span></h1>
                 <p>The unholy domains of the Forbidden Legacy</p>
                 <div class="divider"></div>
             </div>
 
-            <!-- SANCTUARY GRID WITH IMAGES -->
+            <!-- Sanctuary Cards -->
             <div class="sanctuary-grid">
-                <!-- Fiendspire -->
                 <div class="sanctuary-card">
                     <a href="https://www.facebook.com/groups/1990019005732669/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-image-link">
                         <img src="MCU Fiendspire.jpg" alt="Fiendspire Sanctuary" class="sanctuary-image" onerror="this.style.opacity=0.5">
@@ -854,7 +751,6 @@
                     <div class="sanctuary-title">Ꮚ. MCU - FIENDSPIRE SANCTUARY</div>
                     <div class="sanctuary-desc">➛ This contains all the university announcements and information.</div>
                 </div>
-                <!-- Nefarious -->
                 <div class="sanctuary-card">
                     <a href="https://www.facebook.com/groups/2232201527313883/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-image-link">
                         <img src="MCU Nefarious.jpg" alt="Nefarious Sanctuary" class="sanctuary-image">
@@ -862,7 +758,6 @@
                     <div class="sanctuary-title">Ꮚ. MCU - NEFARIOUS SANCTUARY</div>
                     <div class="sanctuary-desc">➛ This contains all the university's convergences, covenants, gamblings, cryptworks, and unholy sovereignty.</div>
                 </div>
-                <!-- Demonology -->
                 <div class="sanctuary-card">
                     <a href="https://www.facebook.com/share/g/17Fa2nShau/" target="_blank" class="sanctuary-image-link">
                         <img src="MCU Demonology.jpg" alt="Demonology Sanctuary" class="sanctuary-image">
@@ -870,7 +765,6 @@
                     <div class="sanctuary-title">Ꮚ. MCU - DEMONOLOGY SANCTUARY</div>
                     <div class="sanctuary-desc">➛ This contains all the university's abyssal rhetorics.</div>
                 </div>
-                <!-- Neatherboard -->
                 <div class="sanctuary-card">
                     <a href="https://www.facebook.com/groups/1277055980538434/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-image-link">
                         <img src="MCU Neatherboard.jpg" alt="Neatherboard Sanctuary" class="sanctuary-image">
@@ -878,7 +772,6 @@
                     <div class="sanctuary-title">Ꮚ. MCU - NEATHERBOARD SANCTUARY</div>
                     <div class="sanctuary-desc">➛ This contains all the university members' links to their covenants.</div>
                 </div>
-                <!-- Pandemonium -->
                 <div class="sanctuary-card">
                     <a href="https://www.facebook.com/groups/588264037077534/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-image-link">
                         <img src="MCU Pandemonium.jpg" alt="Pandemonium Sanctuary" class="sanctuary-image">
@@ -886,7 +779,6 @@
                     <div class="sanctuary-title">Ꮚ. MCU - PANDEMONIUM SANCTUARY</div>
                     <div class="sanctuary-desc">➛ It serves as freedom wall for all university members.</div>
                 </div>
-                <!-- Hellfire -->
                 <div class="sanctuary-card">
                     <a href="https://www.facebook.com/groups/1279291150973210/?ref=share&mibextid=NSMWBT" target="_blank" class="sanctuary-image-link">
                         <img src="MCU Hellfire.jpg" alt="Hellfire Sanctuary" class="sanctuary-image">
@@ -894,7 +786,6 @@
                     <div class="sanctuary-title">Ꮚ. MCU - HELLFIRE SANCTUARY</div>
                     <div class="sanctuary-desc">➛ This contains all the university events.</div>
                 </div>
-                <!-- Belphegor official group -->
                 <div class="sanctuary-card">
                     <a href="https://facebook.com/groups/2259171634618441/" target="_blank" class="sanctuary-image-link">
                         <img src="MCU Belphegor.jpg" alt="Belphegor Official Group" class="sanctuary-image">
@@ -904,7 +795,7 @@
                 </div>
             </div>
 
-            <!-- TERMINOLOGIES (full list) -->
+            <!-- Terminology -->
             <div class="terminology">
                 <h2>〘 <span>TERMINOLOGIES</span> 〙</h2>
                 <div class="role-section">
@@ -924,7 +815,7 @@
                     <ul class="role-list">
                         <li><strong>Sentinels</strong> — Department Heads</li>
                         <li><strong>Revenants</strong> — Professors</li>
-                        <li><strong>Sentinels’ Archivists</strong> — Departments’ Record Keeper</li>
+                        <li><strong>Sentinels' Archivists</strong> — Departments' Record Keeper</li>
                         <li><strong>Warden Curators</strong> — Club Handlers</li>
                         <li><strong>Igniters</strong> — Editors</li>
                     </ul>
@@ -948,7 +839,7 @@
                         <div class="term-item"><span class="term-name">Convergence</span> <span class="term-desc">— Attendance</span></div>
                         <div class="term-item"><span class="term-name">Covenant</span> <span class="term-desc">— Activity</span></div>
                         <div class="term-item"><span class="term-name">Gambling</span> <span class="term-desc">— Games</span></div>
-                        <div class="term-item"><span class="term-name">Unholy Sovereignty</span> <span class="term-desc">— Debates &amp; Wars</span></div>
+                        <div class="term-item"><span class="term-name">Unholy Sovereignty</span> <span class="term-desc">— Debates & Wars</span></div>
                         <div class="term-item"><span class="term-name">Damned Legacy</span> <span class="term-desc">— Rules and Regulations</span></div>
                         <div class="term-item"><span class="term-name">Forsaken Realm</span> <span class="term-desc">— Pointing System</span></div>
                         <div class="term-item"><span class="term-name">Judgements</span> <span class="term-desc">— Punishments</span></div>
@@ -961,18 +852,18 @@
                     </div>
 
                     <div class="sub-section">
-                        <h4>Chambers &amp; Halls</h4>
+                        <h4>Chambers & Halls</h4>
                         <div class="term-grid">
-                            <div class="term-item"><span class="term-name">Mephistopheles’ Chamber</span> <span class="term-desc">— Executives' Room</span></div>
-                            <div class="term-item"><span class="term-name">Tormentors’ Chamber</span> <span class="term-desc">— Faculty Room</span></div>
-                            <div class="term-item"><span class="term-name">Revenants’ Chamber</span> <span class="term-desc">— Professors' Room</span></div>
-                            <div class="term-item"><span class="term-name">Sentinels’ Chamber</span> <span class="term-desc">— Department Heads' Room</span></div>
-                            <div class="term-item"><span class="term-name">Archivists’ Chamber</span> <span class="term-desc">— Record Keepers' Room</span></div>
-                            <div class="term-item"><span class="term-name">Sentinels and Berserkers’ Chamber</span> <span class="term-desc">— Department Heads and Officers Room</span></div>
-                            <div class="term-item"><span class="term-name">Judgments’ Chamber</span> <span class="term-desc">— Punishments' Room</span></div>
-                            <div class="term-item"><span class="term-name">Demons’ Trial Chamber</span> <span class="term-desc">— Students' Interview Room</span></div>
-                            <div class="term-item"><span class="term-name">Tormentors’ Trial Chamber</span> <span class="term-desc">— Faculty Interview Room</span></div>
-                            <div class="term-item"><span class="term-name">Mephistopheles’ Trial Chamber</span> <span class="term-desc">— Executives' Interview Room</span></div>
+                            <div class="term-item"><span class="term-name">Mephistopheles' Chamber</span> <span class="term-desc">— Executives' Room</span></div>
+                            <div class="term-item"><span class="term-name">Tormentors' Chamber</span> <span class="term-desc">— Faculty Room</span></div>
+                            <div class="term-item"><span class="term-name">Revenants' Chamber</span> <span class="term-desc">— Professors' Room</span></div>
+                            <div class="term-item"><span class="term-name">Sentinels' Chamber</span> <span class="term-desc">— Department Heads' Room</span></div>
+                            <div class="term-item"><span class="term-name">Archivists' Chamber</span> <span class="term-desc">— Record Keepers' Room</span></div>
+                            <div class="term-item"><span class="term-name">Sentinels and Berserkers' Chamber</span> <span class="term-desc">— Department Heads and Officers Room</span></div>
+                            <div class="term-item"><span class="term-name">Judgments' Chamber</span> <span class="term-desc">— Punishments' Room</span></div>
+                            <div class="term-item"><span class="term-name">Demons' Trial Chamber</span> <span class="term-desc">— Students' Interview Room</span></div>
+                            <div class="term-item"><span class="term-name">Tormentors' Trial Chamber</span> <span class="term-desc">— Faculty Interview Room</span></div>
+                            <div class="term-item"><span class="term-name">Mephistopheles' Trial Chamber</span> <span class="term-desc">— Executives' Interview Room</span></div>
                             <div class="term-item"><span class="term-name">Fiendspire Sanctuary</span> <span class="term-desc">— Announcement Hall</span></div>
                             <div class="term-item"><span class="term-name">Nefarious Sanctuary</span> <span class="term-desc">— Activity Hall</span></div>
                             <div class="term-item"><span class="term-name">Demonology Sanctuary</span> <span class="term-desc">— Lecture Hall</span></div>
@@ -992,13 +883,61 @@
         </main>
 
         <footer class="footer">
-            <img src="download.png" alt="Belphegor Emblem" class="footer-logo" onerror="this.style.display='none'">
+            <a href="https://www.facebook.com/profile.php?id=61570661907426" target="_blank" rel="noopener noreferrer">
+                <img src="download.png" alt="Belphegor Emblem" class="footer-logo" onerror="this.style.display='none'">
+            </a>
             <p>ESTABLISHED BY THE MEMBERS OF THE UNIVERSITY</p>
             <p class="credit">CREATED BY BELPHEGOR BERSERKERS</p>
         </footer>
     </div>
 
     <script>
+        // Video loading overlay
+        (function() {
+            const overlay = document.getElementById('loading-overlay');
+            const video = document.getElementById('loading-video');
+            const pageStart = performance.now();
+            
+            function hideOverlay() {
+                overlay.classList.add('hide');
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    if (video) {
+                        video.pause();
+                        video.removeAttribute('src');
+                        video.load();
+                    }
+                }, 600);
+            }
+
+            const minDisplay = 3000;
+            
+            if (video) {
+                video.addEventListener('loadeddata', () => {
+                    const elapsed = performance.now() - pageStart;
+                    const remaining = Math.max(0, minDisplay - elapsed);
+                    setTimeout(hideOverlay, remaining);
+                });
+                
+                setTimeout(() => {
+                    const elapsed = performance.now() - pageStart;
+                    if (elapsed < minDisplay + 2000) {
+                        setTimeout(hideOverlay, Math.max(0, minDisplay - elapsed));
+                    }
+                }, 5000);
+            } else {
+                setTimeout(hideOverlay, minDisplay);
+            }
+
+            window.addEventListener('load', () => {
+                const elapsed = performance.now() - pageStart;
+                const remaining = Math.max(0, minDisplay - elapsed);
+                setTimeout(() => {
+                    if (overlay.style.display !== 'none') hideOverlay();
+                }, remaining);
+            });
+        })();
+
         // Random demon name
         const demonNames = ["Mephistopheles", "Abaddon", "Azazel", "Belial", "Leviathan", "Asmodeus", "Beelzebub", "Paimon", "Mammon", "Lucifer", "Malphas", "Vassago", "Andras", "Furfur", "Marchosias"];
         const randomDemonSpan = document.getElementById('random-demon');
@@ -1064,7 +1003,7 @@
             updateDarkIcon();
         });
 
-        // Hamburger menu toggle
+        // Hamburger menu
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuOverlay = document.getElementById('menu-overlay');
@@ -1077,7 +1016,6 @@
             mobileMenu.classList.add('open');
             menuOverlay.classList.add('active');
         }
-
         if (hamburger) {
             hamburger.addEventListener('click', (e) => {
                 e.stopPropagation();
