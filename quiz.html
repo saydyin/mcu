@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Test your knowledge of the Forbidden Legacy - Sinnercell Edition (One Attempt Only)">
+    <meta name="description" content="Test your knowledge of the Forbidden Legacy - Sinnercell Edition (Retakable)">
     <title>Sinnercell Trial | Forbidden Legacy MCU</title>
     <link rel="icon" type="image/x-icon" href="download.ico">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Metal+Mania&family=Special+Elite&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -56,11 +56,9 @@
             flex-direction: column;
             transition: background 0.3s, color 0.3s;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
         .icon { width:1em; height:1em; display:inline-block; vertical-align:-0.125em; fill:currentColor; }
 
-        /* Top bar */
         .top-bar {
             background: var(--card-bg);
             border-bottom: 1px solid var(--border);
@@ -172,7 +170,6 @@
         .mobile-nav-btn:hover { background: var(--border); }
         .mobile-nav-btn.active { background: var(--emerald-500); color: #fff; }
 
-        /* Quiz wrapper */
         .quiz-wrapper { flex:1; display:flex; align-items:center; justify-content:center; padding:2rem 1.5rem; }
         .quiz-container { width:100%; max-width:720px; }
         .start-screen, .result-screen, .quiz-card, .review-screen {
@@ -284,7 +281,6 @@
             display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;
             font-size:0.85rem;
         }
-        .breakdown-row:last-child { margin-bottom:0; }
         .breakdown-label { flex:1; color:var(--text-secondary); min-width:0; font-family: var(--font-serif); }
         .breakdown-bar-track {
             width:80px; height:6px; background:var(--border); border-radius:3px; overflow:hidden; flex-shrink:0;
@@ -333,7 +329,6 @@
             padding-top:0.6rem; border-top:1px solid var(--border); font-family: var(--font-sans);
         }
 
-        /* Footer */
         .footer {
             text-align: center;
             padding: 2rem 0;
@@ -363,7 +358,6 @@
             font-size: 0.85rem;
         }
 
-        /* ========== VIDEO LOADING OVERLAY (light mode) ========== */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -392,7 +386,7 @@
             max-height: 400px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
             background: #ffffff;
             border: 2px solid #e2e8f0;
         }
@@ -408,136 +402,44 @@
             font-weight: 600;
             color: #059669;
             letter-spacing: 0.25em;
-            text-align: center;
             animation: pulse-light 1.5s infinite;
         }
         @keyframes pulse-light {
-            0%, 100% {
-                opacity: 0.6;
-                text-shadow: 0 0 8px rgba(5, 150, 105, 0.2);
-            }
-            50% {
-                opacity: 1;
-                text-shadow: 0 0 20px rgba(5, 150, 105, 0.5), 0 0 40px rgba(5, 150, 105, 0.2);
-            }
+            0%, 100% { opacity: 0.6; text-shadow: 0 0 8px rgba(5,150,105,0.2); }
+            50% { opacity: 1; text-shadow: 0 0 20px rgba(5,150,105,0.5); }
         }
-
         @keyframes fadeInUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
         @keyframes fall { to { transform: translateY(100vh) rotate(720deg); opacity:0; } }
-
         @media (max-width:600px) {
             .quiz-card, .start-screen, .result-screen, .review-screen { padding:1.5rem 1.2rem; }
             .quiz-question { font-size:1.1rem; }
             .next-btn { width:100%; justify-content:center; }
             .quiz-actions { flex-direction:column; align-items:stretch; }
             .result-actions { flex-direction:column; align-items:center; }
-            .decree-breakdown { max-width:100%; }
-            .video-container {
-                width: min(280px, 75vw);
-                height: min(280px, 75vw);
-            }
-        }
-        @media (min-width:601px) and (max-width:1024px) {
-            .video-container {
-                width: min(350px, 60vw);
-                height: min(350px, 60vw);
-            }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation-duration:0.01ms!important; transition-duration:0.01ms!important; }
+            .video-container { width: min(280px, 75vw); height: min(280px, 75vw); }
         }
     </style>
 </head>
 <body>
-    <svg style="display:none;">
-        <defs>
-            <symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 23c-3.6 0-8-2.4-8-7.7 0-3.5 2-6.3 3.5-8.2.4-.5 1.2-.3 1.3.3.3 1.5.9 3.2 2.2 4.3.2-.8.5-1.7 1-2.6 1-2 2.5-3.5 3.3-4.3.4-.4 1.1-.2 1.2.3.5 2.5 2.5 5.5 2.5 9.2C18 20.6 15.6 23 12 23z"/></symbol>
-            <symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 4h16v2H4zm0 4h16v2H4zm0 4h16v2H4z"/><path d="M4 2h16v2H4zm0 18h16v2H4z"/></symbol>
-            <symbol id="icon-sword" viewBox="0 0 24 24"><path d="M15.9 2.1L14.5 .7 7.8 7.4l1.4 1.4-7.4 7.4 1.4 1.4 7.4-7.4 1.4 1.4 6.7-6.7-1.4-1.4z"/></symbol>
-            <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm0 2.2l7 3.1V11c0 4.6-2.9 8.9-7 10-4.1-1.1-7-5.4-7-10V6.3l7-3.1z"/></symbol>
-            <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9 9 9 0 00-9-9z"/></symbol>
-            <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.2 4.2l1.4 1.4m12.8 12.8l1.4 1.4M1 12h2m18 0h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></symbol>
-            <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M4 13h12.2l-5.6 5.6L12 20l8-8-8-8-1.4 1.4L16.2 11H4v2z"/></symbol>
-            <symbol id="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
-            <symbol id="icon-fire" viewBox="0 0 24 24"><path d="M12 23c-3.6 0-8-2.4-8-7.7 0-3.5 2-6.3 3.5-8.2.4-.5 1.2-.3 1.3.3.3 1.5.9 3.2 2.2 4.3.2-.8.5-1.7 1-2.6 1-2 2.5-3.5 3.3-4.3.4-.4 1.1-.2 1.2.3.5 2.5 2.5 5.5 2.5 9.2C18 20.6 15.6 23 12 23z"/></symbol>
-            <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5c-1.7-4.4-6-7.5-11-7.5zm0 12.5c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5zm0-8c-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3-1.3-3-3-3z"/></symbol>
-            <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20v-2c0-2.2 3.6-4 8-4s8 1.8 8 4v2"/><path d="M19 3c1.1 0 2 .9 2 2s-.9 2-2 2"/><path d="M5 3c-1.1 0-2 .9-2 2s.9 2 2 2"/></symbol>
-        </defs>
-    </svg>
+    <svg style="display:none;"><defs><symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 23c-3.6 0-8-2.4-8-7.7 0-3.5 2-6.3 3.5-8.2.4-.5 1.2-.3 1.3.3.3 1.5.9 3.2 2.2 4.3.2-.8.5-1.7 1-2.6 1-2 2.5-3.5 3.3-4.3.4-.4 1.1-.2 1.2.3.5 2.5 2.5 5.5 2.5 9.2C18 20.6 15.6 23 12 23z"/></symbol><symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 4h16v2H4zm0 4h16v2H4zm0 4h16v2H4zM4 2h16v2H4zm0 18h16v2H4z"/></symbol><symbol id="icon-sword" viewBox="0 0 24 24"><path d="M15.9 2.1L14.5 .7 7.8 7.4l1.4 1.4-7.4 7.4 1.4 1.4 7.4-7.4 1.4 1.4 6.7-6.7-1.4-1.4z"/></symbol><symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4z"/></symbol><symbol id="icon-moon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9 9 9 0 00-9-9z"/></symbol><symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.2 4.2l1.4 1.4m12.8 12.8l1.4 1.4M1 12h2m18 0h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></symbol><symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M4 13h12.2l-5.6 5.6L12 20l8-8-8-8-1.4 1.4L16.2 11H4v2z"/></symbol><symbol id="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol><symbol id="icon-fire" viewBox="0 0 24 24"><path d="M12 23c-3.6 0-8-2.4-8-7.7 0-3.5 2-6.3 3.5-8.2.4-.5 1.2-.3 1.3.3.3 1.5.9 3.2 2.2 4.3.2-.8.5-1.7 1-2.6 1-2 2.5-3.5 3.3-4.3.4-.4 1.1-.2 1.2.3.5 2.5 2.5 5.5 2.5 9.2C18 20.6 15.6 23 12 23z"/></symbol><symbol id="icon-eye" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5c-1.7-4.4-6-7.5-11-7.5z"/></symbol><symbol id="icon-users" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20v-2c0-2.2 3.6-4 8-4s8 1.8 8 4v2"/></symbol></defs></svg>
 
-    <!-- VIDEO LOADING OVERLAY (light mode, dragon1.mp4) -->
     <div id="loading-overlay" class="loading-overlay">
-        <div class="video-container">
-            <video id="loading-video" autoplay muted loop playsinline preload="auto">
-                <source src="dragon1.mp4" type="video/mp4">
-            </video>
-        </div>
+        <div class="video-container"><video id="loading-video" autoplay muted loop playsinline preload="auto"><source src="dragon1.mp4" type="video/mp4"></video></div>
         <div class="loading-text">SUMMONING THE LEGACY...</div>
     </div>
-
-    <script>
-        (function() {
-            const overlay = document.getElementById('loading-overlay');
-            const video = document.getElementById('loading-video');
-            const pageStart = performance.now();
-            function hideOverlay() {
-                overlay.classList.add('hide');
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                    if (video) { video.pause(); video.removeAttribute('src'); video.load(); }
-                }, 600);
-            }
-            const minDisplay = 3000;
-            if (video) {
-                video.addEventListener('loadeddata', () => {
-                    const elapsed = performance.now() - pageStart;
-                    const remaining = Math.max(0, minDisplay - elapsed);
-                    setTimeout(hideOverlay, remaining);
-                });
-                setTimeout(() => {
-                    const elapsed = performance.now() - pageStart;
-                    if (elapsed < minDisplay + 2000) setTimeout(hideOverlay, Math.max(0, minDisplay - elapsed));
-                }, 5000);
-            } else setTimeout(hideOverlay, minDisplay);
-            window.addEventListener('load', () => {
-                const elapsed = performance.now() - pageStart;
-                const remaining = Math.max(0, minDisplay - elapsed);
-                setTimeout(() => { if (overlay.style.display !== 'none') hideOverlay(); }, remaining);
-            });
-        })();
-    </script>
+    <script>(function(){const o=document.getElementById('loading-overlay'),v=document.getElementById('loading-video'),start=performance.now();function hide(){o.classList.add('hide');setTimeout(()=>{o.style.display='none';if(v){v.pause();v.removeAttribute('src');v.load();}},600);}if(v){v.addEventListener('loadeddata',()=>{const elapsed=performance.now()-start;setTimeout(hide,Math.max(0,3000-elapsed));});setTimeout(()=>{if(performance.now()-start<5000)setTimeout(hide,Math.max(0,3000-(performance.now()-start)));},5000);}else setTimeout(hide,3000);window.addEventListener('load',()=>{setTimeout(()=>{if(o.style.display!=='none')hide();},Math.max(0,3000-(performance.now()-start)));});})();</script>
 
     <header class="top-bar">
-        <a href="https://www.facebook.com/profile.php?id=61570661907426" target="_blank" rel="noopener noreferrer" class="brand">
-            <svg class="icon"><use href="#icon-flame"/></svg> Belphegor
-        </a>
-        <div class="right-actions">
-            <button class="dark-toggle" id="dark-toggle"><svg class="icon"><use href="#icon-moon"/></svg></button>
-            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-        </div>
+        <a href="https://www.facebook.com/profile.php?id=61570661907426" target="_blank" rel="noopener noreferrer" class="brand"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
+        <div class="right-actions"><button class="dark-toggle" id="dark-toggle"><svg class="icon"><use href="#icon-moon"/></svg></button><div class="hamburger" id="hamburger"><span></span><span></span><span></span></div></div>
     </header>
-
-    <div class="mobile-menu" id="mobile-menu">
-        <a href="index.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-flame"/></svg> Sanctuaries</a>
-        <a href="front.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
-        <a href="codex.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-book"/></svg> Codex</a>
-        <a href="#" class="mobile-nav-btn active"><svg class="icon"><use href="#icon-sword"/></svg> Trial</a>
-        <a href="students.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-users"/></svg> Students</a>
-    </div>
+    <div class="mobile-menu" id="mobile-menu"><a href="index.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-flame"/></svg> Sanctuaries</a><a href="front.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a><a href="codex.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-book"/></svg> Codex</a><a href="#" class="mobile-nav-btn active"><svg class="icon"><use href="#icon-sword"/></svg> Trial</a><a href="students.html" class="mobile-nav-btn"><svg class="icon"><use href="#icon-users"/></svg> Students</a></div>
     <div class="menu-overlay" id="menu-overlay"></div>
-
     <main class="quiz-wrapper" id="quiz-app"></main>
-
-    <footer class="footer">
-        <a href="https://www.facebook.com/profile.php?id=61570661907426" target="_blank" rel="noopener noreferrer">
-            <img src="download.png" alt="Belphegor Emblem" class="footer-logo" onerror="this.style.display='none'">
-        </a>
-        <p>ESTABLISHED BY THE MEMBERS OF THE UNIVERSITY</p>
-        <p class="credit">CREATED BY BELPHEGOR BERSERKERS</p>
-    </footer>
+    <footer class="footer"><a href="https://www.facebook.com/profile.php?id=61570661907426" target="_blank"><img src="download.png" alt="Belphegor Emblem" class="footer-logo" onerror="this.style.display='none'"></a><p>ESTABLISHED BY THE MEMBERS OF THE UNIVERSITY</p><p class="credit">CREATED BY BELPHEGOR BERSERKERS</p></footer>
 
     <script>
-        (function() {
+        (function(){
             const FULL_QUESTION_BANK = [
                 { id:"I-1", decree:"Decree I, Section 1", scenario:"You lose your temper in an argument and start shouting insults at someone.", question:"What should you do instead?", choices:["Demand an apology first","Stay calm and control yourself","Leave the argument at once","Report the other person to a Tormentor"], correctIndex:1, explanation:"You are expected to stay calm and behave with respect and self-control." },
                 { id:"I-2", decree:"Decree I, Section 2", scenario:"Your ID badge is missing from your Facebook Featured Highlights. You already got a warning for this.", question:"What do you do now?", choices:["Use a friend's badge for the day","Upload the badge to Featured Highlights right away","Hope nobody checks","Explain the situation and ask for a replacement"], correctIndex:1, explanation:"Badges must appear in Featured Highlights at all times. A second offense leads to expulsion. Fix it immediately." },
@@ -560,10 +462,8 @@
             ];
 
             const app = document.getElementById('quiz-app');
-            const STORAGE_KEY_PROGRESS = 'mcu_quiz_progress_v7';
-            const FINISHED_KEY = 'mcu_quiz_finished';
-            const RESULT_KEY = 'mcu_quiz_result';
-
+            const STORAGE_KEY_PROGRESS = 'mcu_quiz_progress_v8';
+            
             let currentQuestion = 0, score = 0, quizCompleted = false, feedbackActive = false;
             let selectedQuestions = [], userAnswers = [];
             let currentStreak = 0;
@@ -575,26 +475,12 @@
                 localStorage.setItem(STORAGE_KEY_PROGRESS,JSON.stringify(d));
             }
             function clearProgress(){ localStorage.removeItem(STORAGE_KEY_PROGRESS); }
-
-            function saveFinalResult() {
-                const resultData = {
-                    score: score,
-                    total: selectedQuestions.length,
-                    decreeStats: decreeStats,
-                    selectedQuestions: selectedQuestions,
-                    userAnswers: userAnswers
-                };
-                localStorage.setItem(RESULT_KEY, JSON.stringify(resultData));
-                localStorage.setItem(FINISHED_KEY, 'true');
-            }
-
             function updateDecreeStats(q, isCorrect){
                 const decreeNum = q.id.split('-')[0];
                 if(!decreeStats[decreeNum]) decreeStats[decreeNum] = {total:0,correct:0};
                 decreeStats[decreeNum].total++;
                 if(isCorrect) decreeStats[decreeNum].correct++;
             }
-
             function createConfetti(){
                 const colors = ['#10b981','#059669','#34d399','#6ee7b7'];
                 for(let i=0;i<60;i++){
@@ -605,103 +491,23 @@
                 }
             }
 
-            function renderPermanentResult(data) {
-                const {score, total, decreeStats, selectedQuestions, userAnswers} = data;
-                const pct = Math.round((score/total)*100);
-                const decreeOrder = ['I','II','III','IV','V'];
-                const breakdownHTML = decreeOrder.map(d=>{
-                    const s = decreeStats[d]||{total:0,correct:0};
-                    const dpct = s.total>0?Math.round((s.correct/s.total)*100):0;
-                    return `<div class="breakdown-row"><span class="breakdown-label">Decree ${d}</span><div class="breakdown-bar-track"><div class="breakdown-bar-fill ${dpct===0?'zero':''}" style="width:${dpct}%"></div></div><span class="breakdown-score">${s.correct}/${s.total}</span></div>`;
-                }).join('');
-                let msg = pct===100?'Perfect. You know the Legacy.':pct>=70?'Good effort. A few decrees need review.':pct>=50?'You passed, barely. Read the Codex again.':'The Council says study harder.';
-                app.innerHTML = `<div class="quiz-container result-screen">
-                    <div class="result-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div>
-                    <div class="result-title">Trial Completed</div>
-                    <div class="result-subtitle">You have already taken this trial. Results are final.</div>
-                    <div class="score-circle"><span class="score-value">${score}/${total}</span><span class="score-total">${pct}%</span></div>
-                    <div class="decree-breakdown"><h4>Performance by Decree</h4>${breakdownHTML}</div>
-                    <div class="result-message">${msg}</div>
-                    <div class="result-actions">
-                        <button class="btn" id="review-permanent-btn"><svg class="icon"><use href="#icon-eye"/></svg> Review Answers</button>
-                        <button class="btn btn-outline" id="share-permanent-btn"><svg class="icon"><use href="#icon-book"/></svg> Share Results</button>
-                        <a href="front.html" class="btn btn-outline"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a>
-                    </div>
-                </div>`;
-                document.getElementById('review-permanent-btn').addEventListener('click', ()=>{
-                    renderReviewFromData(selectedQuestions, userAnswers, score);
-                });
-                document.getElementById('share-permanent-btn').addEventListener('click', ()=>{
-                    const text = `I scored ${score}/${total} (${pct}%) on the Sinnercell Trial.`;
-                    navigator.clipboard?.writeText(text).then(()=>{
-                        const btn=document.getElementById('share-permanent-btn'); btn.innerHTML='Copied!'; setTimeout(()=>btn.innerHTML='<svg class="icon"><use href="#icon-book"/></svg> Share Results',2000);
-                    });
-                });
-            }
-
-            function renderReviewFromData(questions, answers, totalScore) {
-                app.innerHTML = `<div class="quiz-container review-screen">
-                    <div class="review-header"><h2>Trial Review</h2><span class="progress">${totalScore}/${questions.length} correct</span></div>
-                    ${questions.map((q,i)=>{ const ua=answers[i]; const isCorrect=ua===q.correctIndex; return `<div class="review-item ${isCorrect?'correct-item':'incorrect-item'}"><div class="ri-decree">${q.decree}</div><div class="ri-scenario">"${q.scenario}"</div><div class="ri-question">${q.question}</div>${q.choices.map((c,j)=>{ let cls=''; if(j===ua&&isCorrect) cls='user-correct'; else if(j===ua&&!isCorrect) cls='user-incorrect'; else if(j===q.correctIndex&&!isCorrect) cls='show-correct'; return `<div class="ri-option ${cls}"><div class="ri-marker">${j===q.correctIndex?'✓':j===ua&&!isCorrect?'✗':''}</div><span>${c}</span></div>`; }).join('')}<div class="ri-explanation">${q.explanation}</div></div>`; }).join('')}
-                    <div class="result-actions"><button class="btn" id="back-to-permanent-result">Back to Results</button></div>
-                </div>`;
-                document.getElementById('back-to-permanent-result').addEventListener('click', ()=>{
-                    const saved = JSON.parse(localStorage.getItem(RESULT_KEY));
-                    if (saved) renderPermanentResult(saved);
-                });
-            }
-
-            function renderStartScreen(){
-                // Check if already finished
-                if (localStorage.getItem(FINISHED_KEY) === 'true') {
-                    const savedResult = localStorage.getItem(RESULT_KEY);
-                    if (savedResult) {
-                        try {
-                            const data = JSON.parse(savedResult);
-                            renderPermanentResult(data);
-                            return;
-                        } catch(e) {}
-                    }
-                }
-
-                // Check for in-progress quiz
-                const savedProgress = localStorage.getItem(STORAGE_KEY_PROGRESS);
-                if (savedProgress) {
-                    try {
-                        const prog = JSON.parse(savedProgress);
-                        if (!prog.quizCompleted && prog.selectedIds && prog.selectedIds.length > 0) {
-                            // Resume option
-                            app.innerHTML = `<div class="quiz-container start-screen">
-                                <div class="shield-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div>
-                                <h2>Sinnercell Trial</h2>
-                                <p>You have an unfinished trial. Continue where you left off or start a new one.</p>
-                                <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;">
-                                    <button class="btn" id="resume-btn"><svg class="icon"><use href="#icon-play"/></svg> Resume Trial</button>
-                                    <button class="btn btn-outline" id="new-btn">Start New Trial</button>
-                                </div>
-                            </div>`;
-                            document.getElementById('resume-btn').addEventListener('click', ()=>{
-                                loadProgress(prog);
-                            });
-                            document.getElementById('new-btn').addEventListener('click', ()=>{
-                                clearProgress();
-                                startNewQuiz();
-                            });
-                            return;
-                        }
-                    } catch(e) {}
-                }
-                // Default: new quiz
+            function resetAndStartNewTrial(){
+                clearProgress();
+                localStorage.removeItem('mcu_quiz_finished');
+                localStorage.removeItem('mcu_quiz_result');
+                quizCompleted=false;
+                currentQuestion=0; score=0; userAnswers=[]; currentStreak=0; feedbackActive=false;
+                decreeStats = { I:{total:0,correct:0}, II:{total:0,correct:0}, III:{total:0,correct:0}, IV:{total:0,correct:0}, V:{total:0,correct:0} };
                 startNewQuiz();
             }
 
-            function startNewQuiz() {
+            function startNewQuiz(){
                 clearProgress();
                 quizCompleted=false; currentQuestion=0; score=0; userAnswers=[]; currentStreak=0;
                 decreeStats = { I:{total:0,correct:0}, II:{total:0,correct:0}, III:{total:0,correct:0}, IV:{total:0,correct:0}, V:{total:0,correct:0} };
                 selectedQuestions = shuffle([...FULL_QUESTION_BANK]).slice(0,10);
-                app.innerHTML = `<div class="quiz-container start-screen"><div class="shield-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div><h2>Sinnercell Trial</h2><p>This test is for Demons, the student members.<br>10 situations. Pick the right action.</p><p style="font-size:0.8rem;color:var(--text-secondary)">No time limit. One attempt only — results are final.</p><button class="btn" id="start-btn"><svg class="icon"><use href="#icon-play"/></svg> Begin Trial</button></div>`;
-                document.getElementById('start-btn').addEventListener('click', ()=>{ startQuiz(); });
+                app.innerHTML = `<div class="quiz-container start-screen"><div class="shield-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div><h2>Sinnercell Trial</h2><p>This test is for Demons, the student members.<br>10 situations. Pick the right action.</p><p style="font-size:0.8rem;color:var(--text-secondary)">Take the trial as many times as you wish to master the decrees. Results are yours to improve.</p><button class="btn" id="start-btn"><svg class="icon"><use href="#icon-play"/></svg> Begin Trial</button></div>`;
+                document.getElementById('start-btn').addEventListener('click', startQuiz);
             }
 
             function loadProgress(prog) {
@@ -711,7 +517,6 @@
                 userAnswers = prog.userAnswers;
                 currentStreak = prog.currentStreak || 0;
                 quizCompleted = false;
-                // Reset decree stats based on answered questions
                 decreeStats = { I:{total:0,correct:0}, II:{total:0,correct:0}, III:{total:0,correct:0}, IV:{total:0,correct:0}, V:{total:0,correct:0} };
                 for (let i=0; i<currentQuestion; i++) {
                     const q = selectedQuestions[i];
@@ -739,14 +544,13 @@
                 if(opts.length) opts[0].focus();
                 opts.forEach(o=>o.addEventListener('click',()=>{ if(feedbackActive)return; opts.forEach(x=>x.setAttribute('aria-checked','false')); o.setAttribute('aria-checked','true'); nb.disabled=false; fb.textContent=''; fb.classList.remove('error'); }));
                 nb.addEventListener('click',()=>{ if(feedbackActive)return; const sel=document.querySelector('.quiz-option[aria-checked="true"]'); if(!sel){ fb.textContent='Pick an answer first.'; fb.classList.add('error'); return; } const idx=Number.parseInt(sel.dataset.index,10); userAnswers[currentQuestion]=idx; const correct=q.correctIndex, isCorrect=(idx===correct); opts.forEach((o,i)=>{ o.setAttribute('aria-disabled','true'); if(i===correct) o.classList.add('correct-feedback'); if(i===idx&&!isCorrect) o.classList.add('incorrect-feedback'); }); fb.textContent=isCorrect?`Correct. ${q.explanation}`:`Not right. ${q.explanation}`; fb.classList.toggle('error',!isCorrect); if(isCorrect){ score++; currentStreak++; } else { currentStreak=0; } updateDecreeStats(q,isCorrect); feedbackActive=true; nb.disabled=true; setTimeout(()=>{ currentQuestion++; saveProgress(); feedbackActive=false; renderQuestion(); }, 2000); });
-                document.querySelector('.options-group').addEventListener('keydown',e=>{ const cur=document.activeElement; if(!cur.classList.contains('quiz-option'))return; const o=Array.from(document.querySelectorAll('.quiz-option')), i=o.indexOf(cur); if(e.key==='ArrowDown'||e.key==='ArrowRight'){ e.preventDefault(); o[(i+1)%o.length].focus(); } else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){ e.preventDefault(); o[(i-1+o.length)%o.length].focus(); } else if(e.key===' '||e.key==='Enter'){ e.preventDefault(); cur.click(); } });
+                document.querySelector('.options-group')?.addEventListener('keydown',e=>{ const cur=document.activeElement; if(!cur.classList?.contains('quiz-option'))return; const o=Array.from(document.querySelectorAll('.quiz-option')), i=o.indexOf(cur); if(e.key==='ArrowDown'||e.key==='ArrowRight'){ e.preventDefault(); o[(i+1)%o.length].focus(); } else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){ e.preventDefault(); o[(i-1+o.length)%o.length].focus(); } else if(e.key===' '||e.key==='Enter'){ e.preventDefault(); cur.click(); } });
                 document.addEventListener('keydown', function numberSelect(e){ if(feedbackActive||quizCompleted)return; const opts2=document.querySelectorAll('.quiz-option'); if(['1','2','3','4'].includes(e.key)){ const idx=Number.parseInt(e.key,10)-1; if(opts2[idx]){ opts2.forEach(o=>o.setAttribute('aria-checked','false')); opts2[idx].setAttribute('aria-checked','true'); nb.disabled=false; fb.textContent=''; fb.classList.remove('error'); } } if(e.key==='Enter'&&document.querySelector('.quiz-option[aria-checked="true"]')&&!nb.disabled){ nb.click(); } });
                 saveProgress();
             }
 
             function completeQuiz(){
                 quizCompleted=true; clearProgress();
-                saveFinalResult(); // save for one-take lock
                 const total=selectedQuestions.length, pct=Math.round((score/total)*100);
                 if(pct===100) setTimeout(createConfetti,300);
                 const decreeOrder = ['I','II','III','IV','V'];
@@ -756,47 +560,49 @@
                     return `<div class="breakdown-row"><span class="breakdown-label">Decree ${d}</span><div class="breakdown-bar-track"><div class="breakdown-bar-fill ${dpct===0?'zero':''}" style="width:${dpct}%"></div></div><span class="breakdown-score">${s.correct}/${s.total}</span></div>`;
                 }).join('');
                 let msg=pct===100?'Perfect. You know the Legacy.':pct>=70?'Good effort. A few decrees need review.':pct>=50?'You passed, barely. Read the Codex again.':'The Council says study harder.';
-                app.innerHTML = `<div class="quiz-container result-screen"><div class="result-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div><div class="result-title">Trial Done</div><div class="result-subtitle">Your results are final. This trial cannot be retaken.</div><div class="score-circle"><span class="score-value">${score}/${total}</span><span class="score-total">${pct}%</span></div><div class="decree-breakdown"><h4>Performance by Decree</h4>${breakdownHTML}</div><div class="result-message">${msg}</div><div class="result-actions"><button class="btn" id="review-btn"><svg class="icon"><use href="#icon-eye"/></svg> Review Answers</button><button class="btn btn-outline" id="share-btn"><svg class="icon"><use href="#icon-book"/></svg> Share Results</button><a href="front.html" class="btn btn-outline"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a><a href="students.html" class="btn btn-outline"><svg class="icon"><use href="#icon-users"/></svg> Legion</a></div></div>`;
-                document.getElementById('review-btn').addEventListener('click', renderReview);
-                document.getElementById('share-btn').addEventListener('click',()=>{
-                    const text = `I scored ${score}/${total} (${pct}%) on the Sinnercell Trial.`;
-                    navigator.clipboard?.writeText(text).then(()=>{
-                        const btn=document.getElementById('share-btn'); btn.innerHTML='Copied!'; setTimeout(()=>btn.innerHTML='<svg class="icon"><use href="#icon-book"/></svg> Share Results',2000);
-                    });
-                });
+                app.innerHTML = `<div class="quiz-container result-screen"><div class="result-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div><div class="result-title">Trial Done</div><div class="result-subtitle">You may take the trial again to sharpen your knowledge.</div><div class="score-circle"><span class="score-value">${score}/${total}</span><span class="score-total">${pct}%</span></div><div class="decree-breakdown"><h4>Performance by Decree</h4>${breakdownHTML}</div><div class="result-message">${msg}</div><div class="result-actions"><button class="btn" id="review-btn"><svg class="icon"><use href="#icon-eye"/></svg> Review Answers</button><button class="btn btn-outline" id="share-btn"><svg class="icon"><use href="#icon-book"/></svg> Share Results</button><button class="btn" id="new-trial-btn"><svg class="icon"><use href="#icon-flame"/></svg> New Trial</button><a href="front.html" class="btn btn-outline"><svg class="icon"><use href="#icon-flame"/></svg> Belphegor</a></div></div>`;
+                document.getElementById('review-btn').addEventListener('click', ()=>{ renderReview(); });
+                document.getElementById('share-btn').addEventListener('click',()=>{ const text = `I scored ${score}/${total} (${pct}%) on the Sinnercell Trial.`; navigator.clipboard?.writeText(text).then(()=>{ const btn=document.getElementById('share-btn'); btn.innerHTML='Copied!'; setTimeout(()=>btn.innerHTML='<svg class="icon"><use href="#icon-book"/></svg> Share Results',2000); }); });
+                document.getElementById('new-trial-btn').addEventListener('click', ()=>{ resetAndStartNewTrial(); });
             }
 
             function renderReview(){
                 const total=selectedQuestions.length;
-                app.innerHTML = `<div class="quiz-container review-screen"><div class="review-header"><h2>Trial Review</h2><span class="progress">${score}/${total} correct</span></div>${selectedQuestions.map((q,i)=>{ const ua=userAnswers[i]; const isCorrect=ua===q.correctIndex; return `<div class="review-item ${isCorrect?'correct-item':'incorrect-item'}"><div class="ri-decree">${q.decree}</div><div class="ri-scenario">"${q.scenario}"</div><div class="ri-question">${q.question}</div>${q.choices.map((c,j)=>{ let cls=''; if(j===ua&&isCorrect) cls='user-correct'; else if(j===ua&&!isCorrect) cls='user-incorrect'; else if(j===q.correctIndex&&!isCorrect) cls='show-correct'; return `<div class="ri-option ${cls}"><div class="ri-marker">${j===q.correctIndex?'✓':j===ua&&!isCorrect?'✗':''}</div><span>${c}</span></div>`; }).join('')}<div class="ri-explanation">${q.explanation}</div></div>`; }).join('')}<div class="result-actions"><button class="btn" id="back-to-results-btn">Back to Results</button></div></div>`;
+                app.innerHTML = `<div class="quiz-container review-screen"><div class="review-header"><h2>Trial Review</h2><span class="progress">${score}/${total} correct</span></div>${selectedQuestions.map((q,i)=>{ const ua=userAnswers[i]; const isCorrect=ua===q.correctIndex; return `<div class="review-item ${isCorrect?'correct-item':'incorrect-item'}"><div class="ri-decree">${q.decree}</div><div class="ri-scenario">"${q.scenario}"</div><div class="ri-question">${q.question}</div>${q.choices.map((c,j)=>{ let cls=''; if(j===ua&&isCorrect) cls='user-correct'; else if(j===ua&&!isCorrect) cls='user-incorrect'; else if(j===q.correctIndex&&!isCorrect) cls='show-correct'; return `<div class="ri-option ${cls}"><div class="ri-marker">${j===q.correctIndex?'✓':j===ua&&!isCorrect?'✗':''}</div><span>${c}</span></div>`; }).join('')}<div class="ri-explanation">${q.explanation}</div></div>`; }).join('')}<div class="result-actions"><button class="btn" id="back-to-results-btn">Back to Results</button><button class="btn btn-outline" id="review-new-trial">New Trial</button></div></div>`;
                 document.getElementById('back-to-results-btn').addEventListener('click', ()=>{ completeQuiz(); });
+                document.getElementById('review-new-trial').addEventListener('click', ()=>{ resetAndStartNewTrial(); });
             }
 
-            // Dark mode
+            function renderStartScreen(){
+                const savedProgress = localStorage.getItem(STORAGE_KEY_PROGRESS);
+                if (savedProgress) {
+                    try {
+                        const prog = JSON.parse(savedProgress);
+                        if (!prog.quizCompleted && prog.selectedIds && prog.selectedIds.length > 0 && prog.currentQuestion < prog.selectedIds.length) {
+                            app.innerHTML = `<div class="quiz-container start-screen"><div class="shield-icon"><svg class="icon" style="font-size:3.5rem;"><use href="#icon-shield"/></svg></div><h2>Sinnercell Trial</h2><p>You have an unfinished trial. Continue where you left off or start a new one.</p><div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;"><button class="btn" id="resume-btn"><svg class="icon"><use href="#icon-play"/></svg> Resume Trial</button><button class="btn btn-outline" id="new-btn">Start New Trial</button></div></div>`;
+                            document.getElementById('resume-btn').addEventListener('click', ()=>{ loadProgress(prog); });
+                            document.getElementById('new-btn').addEventListener('click', ()=>{ resetAndStartNewTrial(); });
+                            return;
+                        }
+                    } catch(e) {}
+                }
+                startNewQuiz();
+            }
+
             const darkToggle = document.getElementById('dark-toggle');
             const darkIcon = darkToggle.querySelector('use');
-            function updateDarkIcon() {
-                darkIcon.setAttribute('href', document.body.classList.contains('dark') ? '#icon-sun' : '#icon-moon');
-            }
+            function updateDarkIcon() { darkIcon.setAttribute('href', document.body.classList.contains('dark') ? '#icon-sun' : '#icon-moon'); }
             if (localStorage.getItem('mcu_dark_mode') === 'true') document.body.classList.add('dark');
             updateDarkIcon();
-            darkToggle.addEventListener('click', () => {
-                const isDark = document.body.classList.toggle('dark');
-                localStorage.setItem('mcu_dark_mode', isDark);
-                updateDarkIcon();
-            });
-//a
-            // Hamburger menu
-            const hamburger = document.getElementById('hamburger');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuOverlay = document.getElementById('menu-overlay');
+            darkToggle.addEventListener('click', () => { const isDark = document.body.classList.toggle('dark'); localStorage.setItem('mcu_dark_mode', isDark); updateDarkIcon(); });
+            
+            const hamburger = document.getElementById('hamburger'), mobileMenu = document.getElementById('mobile-menu'), menuOverlay = document.getElementById('menu-overlay');
             function closeMenu() { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('active'); }
             function openMenu() { mobileMenu.classList.add('open'); menuOverlay.classList.add('active'); }
             hamburger.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.contains('open') ? closeMenu() : openMenu(); });
             menuOverlay.addEventListener('click', closeMenu);
             document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu(); });
-
-            // Boot
+            
             renderStartScreen();
         })();
     </script>
